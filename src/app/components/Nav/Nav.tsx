@@ -54,11 +54,11 @@ const Nav = () => {
             </div>
           </div>
 
-          <div className="gap-3 cursor-pointer flex items-center">
+          <div className="gap-1 sm:gap-3 cursor-pointer flex items-center">
             <Theme />
             <Link
               href="/auth"
-              className="text-white bg-linear-to-br from-neon-cyan to-neon-purple p-2 rounded-lg hover:scale-105 transition-all"
+              className="text-white text-xs sm:text-lg md:text-xl bg-linear-to-br from-neon-cyan to-neon-purple p-2 rounded-lg hover:scale-105 transition-all"
             >
               Get Started
             </Link>

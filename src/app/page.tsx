@@ -1,7 +1,18 @@
-import Image from "next/image";
+"use client";
+import HeroSection from "./components/Home/HeroSection";
+import RoadmapSection from "./components/Home/RoadmapSection";
+import FeaturesSection from "./components/Home/FeaturesSection";
+import CTASection from "./components/Home/CTASection";
 
-export default function Home() {
+const Home = () => {
   return (
-<div>Home</div>
+    <>
+      <HeroSection />
+      <RoadmapSection />
+      <FeaturesSection />
+      <CTASection />
+    </>
   );
-}
+};
+
+export default Home;
