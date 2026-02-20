@@ -46,7 +46,7 @@ const PhoneMenu = () => {
           </span>
 
           <span
-            className={`absolute bottom-0 h-1 rounded-full transition-all duration-300group-hover:bg-neon-purple${pathname.startsWith("/quiz") ? "w-6 bg-neon-purple shadow-neon-purple" : "w-1 opacity-40 bg-muted-foreground"} `}
+            className={`absolute bottom-0 h-1 rounded-full transition-all duration-300group-hover:bg-neon-purple ${pathname.startsWith("/quiz") ? "w-6 bg-neon-purple shadow-neon-purple" : "w-1 opacity-40 bg-muted-foreground"} `}
           />
         </Link>
       </div>

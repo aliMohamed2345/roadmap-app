@@ -2,7 +2,11 @@ import { BiTrophy, BiBrain } from "react-icons/bi";
 import { IoBookOutline } from "react-icons/io5";
 import { FiTarget, FiZap } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
-import { roadmapDummyDataProps, sectionDummyDataProps } from "./types/roadmap";
+import {
+  quizDummyDataProps,
+  roadmapDummyDataProps,
+  sectionDummyDataProps,
+} from "./types/roadmap";
 export const features = [
   {
     icon: IoBookOutline,
@@ -315,5 +319,138 @@ export const sectionDummyData: sectionDummyDataProps[] = [
         type: "article",
       },
     ],
+  },
+];
+
+export const quizDummyData: quizDummyDataProps[] = [
+  {
+    title: `JavaScript Fundamentals`,
+    description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
+    difficulty: "Beginner",
+    id: 10,
+  },
+  {
+    title: `JavaScript Fundamentals`,
+    description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
+    difficulty: "Intermediate",
+    id: 10,
+  },
+  {
+    title: `JavaScript Fundamentals`,
+    description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
+    difficulty: "Advanced",
+    id: 10,
+  },
+  {
+    title: `JavaScript Fundamentals`,
+    description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
+    difficulty: "Expert",
+    id: 10,
+  },
+  {
+    title: `JavaScript Fundamentals`,
+    description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
+    difficulty: "Master",
+    id: 10,
+  },
+  {
+    title: `JavaScript Fundamentals`,
+    description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
+    difficulty: "Beginner",
+    id: 10,
+  },
+  {
+    title: `JavaScript Fundamentals`,
+    description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
+    difficulty: "Expert",
+    id: 10,
+  },
+  {
+    title: `JavaScript Fundamentals`,
+    description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
+    difficulty: "Intermediate",
+    id: 10,
+  },
+  {
+    title: `JavaScript Fundamentals`,
+    description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
+    difficulty: "Master",
+    id: 10,
+  },
+  {
+    title: `JavaScript Fundamentals`,
+    description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
+    difficulty: "Expert",
+    id: 10,
+  },
+  {
+    title: `JavaScript Fundamentals`,
+    description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
+    difficulty: "Beginner",
+    id: 10,
+  },
+  {
+    title: `JavaScript Fundamentals`,
+    description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
+    difficulty: "Master",
+    id: 10,
+  },
+];
+
+export const questionDummyData = [
+  {
+    questionId: 2332,
+    questionNumber: 1,
+    question:
+      "What is the main purpose of environment variables in an application?",
+    answers: [
+      "To store sensitive configuration outside the source code",
+      "To increase application UI performance",
+      "To replace the database",
+      "To style the frontend",
+    ],
+    correctAnswer: "To store sensitive configuration outside the source code",
+  },
+  {
+    questionId: 3314,
+    questionNumber: 2,
+    question:
+      "Which file is commonly used to define environment variables locally?",
+    answers: [".gitignore", "package.json", ".env", "README.md"],
+    correctAnswer: ".env",
+  },
+  {
+    questionId: 4105,
+    questionNumber: 3,
+    question: "Why should you avoid committing .env files to GitHub?",
+    answers: [
+      "It slows down the repository",
+      "It exposes sensitive information like API keys",
+      "It breaks the build process",
+      "It increases bundle size",
+    ],
+    correctAnswer: "It exposes sensitive information like API keys",
+  },
+  {
+    questionId: 3105,
+    questionNumber: 4,
+    question:
+      "What is a common example of sensitive data stored in environment variables?",
+    answers: ["CSS styles", "API keys", "HTML templates", "Component props"],
+    correctAnswer: "API keys",
+  },
+  {
+    questionId: 5106,
+    questionNumber: 5,
+    question:
+      "In production, where are environment variables usually configured?",
+    answers: [
+      "Inside the source code files",
+      "In the deployment platform settings (e.g., server or hosting provider)",
+      "In the browser console",
+      "Inside node_modules",
+    ],
+    correctAnswer:
+      "In the deployment platform settings (e.g., server or hosting provider)",
   },
 ];

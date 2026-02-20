@@ -9,7 +9,7 @@ const page = () => {
       <div className="text-center">
         <CiMap
           size={70}
-          className=" mx-auto rounded-lg text-white bg-linear-to-br from-neon-cyan to-neon-purple "
+          className=" mx-auto rounded-xl text-white bg-linear-to-br from-neon-cyan to-neon-purple "
         />
         <h1 className="text-lg sm:text-3xl md:text-5xl font-bold my-5">
           Learning Roadmaps
@@ -23,6 +23,7 @@ const page = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center my-5">
         {roadmapDummyData.map((roadmap) => (
           <RoadmapItem
+           mode="roadmap"
             title={roadmap.title}
             description={roadmap.description}
             numberOfSections={roadmap.numberOfSections}
