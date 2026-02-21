@@ -2,61 +2,105 @@ import { roadmapDummyDataProps } from "@/app/types/roadmap";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import { difficultySectionProps } from "@/app/types/roadmap";
-const RoadmapOrQuizItem = ({
+import { IoCodeSlashOutline } from "react-icons/io5";
+export const difficultyStyle = (difficulty: difficultySectionProps) => {
+  switch (difficulty) {
+    case "Beginner":
+      return "bg-chart-5 text-white";
+    case "Intermediate":
+      return "bg-chart-1 text-black";
+    case "Advanced":
+      return "bg-chart-2 text-white";
+    case "Expert":
+      return "bg-chart-3 text-white";
+    case "Master":
+      return "bg-chart-4 text-black";
+    default:
+      return "bg-muted text-muted-foreground";
+  }
+};
+const RoadmapItem = ({
   title,
   description,
   id,
   numberOfSections,
   difficulty,
   mode = "roadmap",
+  tags,
+  steps,
 }: roadmapDummyDataProps) => {
-  const quizDifficultyStyle = (difficulty: difficultySectionProps) => {
-    switch (difficulty) {
-      case "Beginner":
-        return "bg-chart-5";
-      case "Intermediate":
-        return "bg-chart-2";
-      case "Advanced":
-        return "bg-chart-4";
-      case "Expert":
-        return "bg-chart-3";
-      case "Master":
-        return "bg-chart-1";
-    }
-  };
   return (
-    <div className="relative overflow-hidden rounded-2xl border-2 border-border bg-card text-card-foreground p-5 transition-all duration-300 hover:border-primary/60 hover:shadow-xl hover:shadow-primary/10 group">
-      <div className="absolute top-0 left-0 h-1 w-full bg-linear-to-r from-neon-cyan via-neon-purple to-neon-pink opacity-60 group-hover:opacity-100 transition-opacity" />
+    <div className="group relative rounded-3xl border border-border/60 bg-card/70 backdrop-blur-xl p-6 shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 overflow-hidden">
+      <div className="absolute -inset-1 bg-linear-to-r from-neon-cyan via-neon-purple to-neon-pink opacity-0 group-hover:opacity-20 blur-2xl transition duration-500" />
 
-      <div className="flex justify-between gap-4 mb-3 items-center">
-        <h5 className="text-base sm:text-xl font-semibold tracking-tight transition-colors group-hover:text-primary">
-          {title}
-        </h5>
+      <div className="relative z-10">
+        <div className="flex justify-between items-start mb-4 gap-3 flex-col sm:flex-row sm">
+          <h5 className="text-base sm:text-lg md:text-xl font-bold tracking-tight leading-snug group-hover:text-primary transition-colors line-clamp-2 wrap-break-words hyphens-auto">
+            {title}
+          </h5>
 
-        <span
-          className={`shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full  shadow-sm ${mode === "roadmap" ? `bg-secondary/90 text-secondary-foreground` : quizDifficultyStyle(difficulty!)}`}
+          {mode !== "quiz" && (
+            <span
+              className={`shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-white shadow-md
+              ${
+                mode === "roadmap"
+                  ? "bg-secondary text-secondary-foreground"
+                  : `bg-linear-to-r ${difficultyStyle(difficulty!)}`
+              }`}
+            >
+              {mode === "roadmap" ? `${numberOfSections} Sections` : difficulty}
+            </span>
+          )}
+        </div>
+
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+          {description}
+        </p>
+
+        {mode === "project" && (
+          <>
+            <div className="flex flex-wrap gap-2 mt-4">
+              {tags?.slice(0, 3).map((tag, i) => (
+                <span
+                  key={i}
+                  className="text-xs font-medium px-3 py-1 rounded-full bg-muted text-muted-foreground border border-border hover:bg-neon-purple transition-all hover:text-white cursor-pointer"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-3 text-xs text-muted-foreground flex items-center gap-2">
+              <IoCodeSlashOutline className="opacity-70" />
+              {steps?.length ?? 0} steps
+            </div>
+          </>
+        )}
+
+        <div className="h-px w-full bg-linear-to-r from-transparent via-border to-transparent my-6" />
+
+        <Link
+          href={`/${
+            mode === "roadmap"
+              ? "roadmap"
+              : mode === "quiz"
+                ? "quiz"
+                : "project"
+          }/${id}`}
+          className="block"
         >
-          {mode === "roadmap" ? `${numberOfSections} Sections` : difficulty}
-        </span>
+          <div className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-2xl font-semibold text-sm text-white bg-linear-to-r from-neon-cyan to-neon-purple shadow-lg transition-all duration-300 hover:shadow-primary/40 hover:scale-[1.04] active:scale-100">
+            {mode === "roadmap"
+              ? "Start Learning"
+              : mode === "quiz"
+                ? "Start Quiz"
+                : "Start Project"}
+            <BsArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1.5" />
+          </div>
+        </Link>
       </div>
-
-      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-        {description}
-      </p>
-
-      <div className="h-px w-full bg-border my-5" />
-
-      <Link
-        href={`/${mode === "roadmap" ? "roadmap" : "quiz"}/${id}`}
-        className="block"
-      >
-        <button className="w-full -fit flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm bg-linear-to-br from-neon-cyan to-neon-purple shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-[1.03] hover:shadow-primary/40 active:scale-100 text-white cursor-pointer">
-          {mode === "roadmap" ? `Start Learning` : `Start Quiz`}
-          <BsArrowRight className="h-5 w-5 transition-all duration-300 group-hover:translate-x-1.5 " />
-        </button>
-      </Link>
     </div>
   );
 };
 
-export default RoadmapOrQuizItem;
+export default RoadmapItem;

@@ -1,7 +1,6 @@
 "use client";
 
 import { QuestionItemProps } from "@/app/types/quiz";
-import { useState } from "react";
 import {
   MdOutlineRadioButtonUnchecked,
   MdOutlineRadioButtonChecked,
@@ -12,9 +11,9 @@ const QuestionItem = ({
   questionId,
   answers,
   questionNumber,
+  selectedAnswer,
+  onSelectAnswer,
 }: QuestionItemProps) => {
-  const [selectedAnswer, setSelectedAnswer] = useState<string>("");
-  console.log(questionId);
   return (
     <div className="relative group rounded-2xl p-px bg-linear-to-br from-neon-cyan/40 to-neon-purple/40">
       <div className="rounded-2xl bg-card p-6 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/10">
@@ -35,8 +34,8 @@ const QuestionItem = ({
             return (
               <button
                 key={index}
-                onClick={() => setSelectedAnswer(answer)}
-                className={`flex items-center gap-4 rounded-xl px-4 py-3 text-left cursor-pointer transition-all duration-200 border
+                onClick={() => onSelectAnswer(questionId, answer)}
+                className={`flex items-center gap-4 rounded-xl px-4 py-3 text-left transition-all duration-200 border cursor-pointer
                 ${
                   isSelected
                     ? "border-primary bg-primary/10 text-foreground shadow-md shadow-primary/20"
@@ -44,19 +43,15 @@ const QuestionItem = ({
                 }`}
               >
                 {isSelected ? (
-                  <div className="shrink-0">
-                    <MdOutlineRadioButtonChecked
-                      size={24}
-                      className="text-primary transition-all"
-                    />
-                  </div>
+                  <MdOutlineRadioButtonChecked
+                    size={24}
+                    className="text-primary shrink-0"
+                  />
                 ) : (
-                  <div className="shrink-0">
-                    <MdOutlineRadioButtonUnchecked
-                      size={24}
-                      className="text-muted-foreground transition-all"
-                    />
-                  </div>
+                  <MdOutlineRadioButtonUnchecked
+                    size={24}
+                    className="text-muted-foreground shrink-0"
+                  />
                 )}
 
                 <span className="font-medium text-sm sm:text-lg">{answer}</span>

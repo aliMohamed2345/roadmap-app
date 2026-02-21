@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { RiRoadMapFill } from "react-icons/ri";
 import { MdQuiz } from "react-icons/md";
+import { GrProjects } from "react-icons/gr";
 
 const PhoneMenu = () => {
   const pathname = usePathname();
@@ -46,7 +47,25 @@ const PhoneMenu = () => {
           </span>
 
           <span
-            className={`absolute bottom-0 h-1 rounded-full transition-all duration-300group-hover:bg-neon-purple ${pathname.startsWith("/quiz") ? "w-6 bg-neon-purple shadow-neon-purple" : "w-1 opacity-40 bg-muted-foreground"} `}
+            className={`absolute bottom-0 h-1 rounded-full transition-all duration-300 group-hover:bg-neon-purple ${pathname.startsWith("/quiz") ? "w-6 bg-neon-purple shadow-neon-purple" : "w-1 opacity-40 bg-muted-foreground"} `}
+          />
+        </Link>
+        <Link
+          href={`/project`}
+          className={`group relative flex flex-col items-center gap-1 px-3 py-2 transition-all text-muted-foreground hover:text-neon-pink ${pathname.startsWith("/project") && "text-neon-pink"}`}
+        >
+          <GrProjects
+            size={20}
+            className={`transition-all duration-300 ${pathname.startsWith("/project") && `scale-110 drop-shadow-neon-pink`}`}
+          />
+          <span
+            className={`text-xs font-medium transition-all duration-300 ${pathname.startsWith("/project") && `drop-shadow-neon-pink`}`}
+          >
+            Projects
+          </span>
+
+          <span
+            className={`absolute bottom-0 h-1 rounded-full transition-all duration-300 group-hover:bg-neon-pink ${pathname.startsWith("/project") ? "w-6 bg-neon-pink shadow-neon-pink" : "w-1 opacity-40 bg-muted-foreground"} `}
           />
         </Link>
       </div>

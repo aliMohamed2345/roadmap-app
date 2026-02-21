@@ -3,6 +3,7 @@ import { IoBookOutline } from "react-icons/io5";
 import { FiTarget, FiZap } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
 import {
+  projectDummyDataProps,
   quizDummyDataProps,
   roadmapDummyDataProps,
   sectionDummyDataProps,
@@ -452,5 +453,637 @@ export const questionDummyData = [
     ],
     correctAnswer:
       "In the deployment platform settings (e.g., server or hosting provider)",
+  },
+];
+
+export const projectDummyData: projectDummyDataProps[] = [
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Beginner`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Intermediate`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Advanced`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Intermediate`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Beginner`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Advanced`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Beginner`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Beginner`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Beginner`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Beginner`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Beginner`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Beginner`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Beginner`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Beginner`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Beginner`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Beginner`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
+  },
+  {
+    title: `Personal Portfolio Website`,
+    description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
+    level: `Beginner`,
+    tags: ["JavaScript", "HTML", "CSS"],
+    id: 593,
+    steps: [
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+      {
+        title: `Step 1: Project Setup & Planning`,
+        description: `Set up your development environment, create the project structure, and plan your portfolio layout.`,
+      },
+    ],
   },
 ];

@@ -51,6 +51,14 @@ const Nav = () => {
               >
                 Quizzes
               </Link>
+              <Link
+                href={`/project`}
+                className={`hover:bg-background p-2 transition rounded-md  ${
+                  path.includes(`project`) && `text-green bg-background`
+                }`}
+              >
+                Projects
+              </Link>
             </div>
           </div>
 

@@ -1,6 +1,5 @@
 import RoadmapOrQuizItem from "@/app/components/Roadmap/RoadmapItem";
 import { quizDummyData } from "@/app/data";
-import React from "react";
 import { MdOutlineQuiz } from "react-icons/md";
 
 const page = () => {

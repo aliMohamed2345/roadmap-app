@@ -1,7 +1,8 @@
 export interface QuestionItemProps {
   question: string;
-  questionId: number;
+  questionId: string;
   answers: string[];
-  correctAnswer: string;
   questionNumber: number;
+  selectedAnswer?: string;
+  onSelectAnswer: (questionId: string, answer: string) => void;
 }
