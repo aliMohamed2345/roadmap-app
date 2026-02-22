@@ -45,3 +45,14 @@ export interface projectDummyDataProps {
   steps: { title: string; description: string }[];
   level: `Beginner` | `Intermediate` | `Advanced`;
 }
+
+export interface updateProfileProps {
+  username: string;
+  bio: string;
+  email: string;
+  links: {
+    github: string;
+    linkedin: string;
+    website: string;
+  };
+}

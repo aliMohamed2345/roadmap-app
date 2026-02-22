@@ -8,6 +8,7 @@ import {
   roadmapDummyDataProps,
   sectionDummyDataProps,
 } from "./types/roadmap";
+import { FaCalendar, FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 export const features = [
   {
     icon: IoBookOutline,
@@ -1086,4 +1087,143 @@ export const projectDummyData: projectDummyDataProps[] = [
       },
     ],
   },
+];
+
+export const userDummyData = {
+  id: 34,
+  username: `John Doe`,
+  email: `ZaHl8@example.com`,
+  bio: `No Bio Yet`,
+};
+
+export const progressData = {
+  roadmap: [
+    {
+      roadmap: "roadmap-1",
+      completedSections: ["sec1", "sec2", "sec3"],
+      numberOfAllSections: 10,
+    },
+    {
+      roadmap: "roadmap-1",
+      completedSections: ["sec1", "sec2", "sec3"],
+      numberOfAllSections: 10,
+    },
+    {
+      roadmap: "roadmap-1",
+      completedSections: ["sec1", "sec2", "sec3"],
+      numberOfAllSections: 10,
+    },
+    {
+      roadmap: "roadmap-1",
+      completedSections: ["sec1", "sec2", "sec3"],
+      numberOfAllSections: 10,
+    },
+    {
+      roadmap: "roadmap-1",
+      completedSections: ["sec1", "sec2", "sec3"],
+      numberOfAllSections: 10,
+    },
+  ],
+
+  quiz: [
+    {
+      quiz: "quiz-1",
+      percentage: 92,
+      totalQuestions: 20,
+      correctAnswers: 18,
+      wrongAnswers: 2,
+      grade: "A",
+      status: "Pass",
+      createdAt: new Date("2026-02-15"),
+    },
+    {
+      quiz: "quiz-2",
+      percentage: 78,
+      totalQuestions: 20,
+      correctAnswers: 15,
+      wrongAnswers: 5,
+      grade: "B",
+      status: "Pass",
+      createdAt: new Date("2026-02-10"),
+    },
+    {
+      quiz: "quiz-2",
+      percentage: 78,
+      totalQuestions: 20,
+      correctAnswers: 15,
+      wrongAnswers: 5,
+      grade: "B",
+      status: "Pass",
+      createdAt: new Date("2026-02-10"),
+    },
+    {
+      quiz: "quiz-2",
+      percentage: 78,
+      totalQuestions: 20,
+      correctAnswers: 15,
+      wrongAnswers: 5,
+      grade: "B",
+      status: "Pass",
+      createdAt: new Date("2026-02-10"),
+    },
+    {
+      quiz: "quiz-2",
+      percentage: 78,
+      totalQuestions: 20,
+      correctAnswers: 15,
+      wrongAnswers: 5,
+      grade: "B",
+      status: "Pass",
+      createdAt: new Date("2026-02-10"),
+    },
+  ],
+
+  project: [
+    {
+      project: "project-1",
+      completedSteps: ["s1", "s2"],
+      totalSteps: 8,
+      completedCount: 2,
+      createdAt: new Date("2026-02-01"),
+    },
+    {
+      project: "project-1",
+      completedSteps: ["s1", "s2"],
+      totalSteps: 8,
+      completedCount: 2,
+      createdAt: new Date("2026-02-01"),
+    },
+    {
+      project: "project-1",
+      completedSteps: ["s1", "s2"],
+      totalSteps: 8,
+      completedCount: 2,
+      createdAt: new Date("2026-02-01"),
+    },
+    {
+      project: "project-1",
+      completedSteps: ["s1", "s2"],
+      totalSteps: 8,
+      completedCount: 2,
+      createdAt: new Date("2026-02-01"),
+    },
+    {
+      project: "project-1",
+      completedSteps: ["s1", "s2"],
+      totalSteps: 8,
+      completedCount: 2,
+      createdAt: new Date("2026-02-01"),
+    },
+  ],
+};
+
+export const personalInfoData = [
+  { icon: FaEnvelope, label: "Email", value: "john@example.com" },
+  { icon: FaPhone, label: "Phone", value: "+1 234 567 8900" },
+  {
+    icon: FaMapMarkerAlt,
+    label: "Location",
+    value: "San Francisco, CA",
+  },
+  { icon: FaCalendar, label: "Birth Date", value: "May 14, 1998" },
 ];

@@ -6,3 +6,5 @@ export interface QuestionItemProps {
   selectedAnswer?: string;
   onSelectAnswer: (questionId: string, answer: string) => void;
 }
+
+export type tabsTypesProps = "Quizzes" | "Learning" | "Projects";

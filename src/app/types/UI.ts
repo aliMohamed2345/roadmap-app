@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 export interface AuthInputProps{
   label: string;
   placeholder: string;
@@ -14,4 +15,12 @@ export interface AuthSubmitButtonProps {
 export interface AuthHeaderProps{
     title:string; 
     subtitle:string
+}
+
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title?: string;
+  children: ReactNode;
+  width?: string;
 }
