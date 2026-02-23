@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { features } from "@/app/data";
-
 const FeaturesSection = () => {
   return (
     <section className="py-24 relative overflow-hidden">

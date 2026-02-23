@@ -38,6 +38,7 @@
   --color-neon-cyan: var(--color-neon-cyan);
   --color-neon-purple: var(--color-neon-purple);
   --color-neon-pink: var(--color-neon-pink);
+  --color-neon-red: var(--color-neon-red);
 }
 
 /*light theme*/
@@ -73,6 +74,7 @@
   --color-neon-cyan: rgb(0, 255, 255);
   --color-neon-purple: rgb(166, 77, 255);
   --color-neon-pink: rgb(255, 51, 187);
+  --color-neon-red: rgb(255, 20, 60);
 
   --color-sidebar-background: rgb(255, 255, 255);
   --color-sidebar-foreground: rgb(20, 24, 31);
@@ -123,6 +125,7 @@
   --color-neon-cyan: rgb(0, 255, 255);
   --color-neon-purple: rgb(166, 77, 255);
   --color-neon-pink: rgb(255, 51, 187);
+  --color-neon-red: rgb(255, 30, 70);
 
   --color-sidebar-background: rgb(7, 10, 19);
   --color-sidebar-foreground: rgb(248, 250, 252);

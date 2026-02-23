@@ -36,7 +36,6 @@ const DropDownMenu = ({
 
   return (
     <div ref={dropdownRef} className="relative w-48 text-sm">
-      {/* Toggle dropdown */}
       <button
         onClick={() => setOpen((prev) => !prev)}
         className="w-full flex cursor-pointer items-center justify-between px-4 py-2 rounded-xl border border-border bg-card text-card-foreground hover:bg-muted transition-all"

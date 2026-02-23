@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { RiRoadMapFill } from "react-icons/ri";
 import { MdQuiz } from "react-icons/md";
 import { GrProjects } from "react-icons/gr";
-
+import { IoShieldOutline } from "react-icons/io5";
 const PhoneMenu = () => {
   const pathname = usePathname();
 
@@ -55,7 +55,7 @@ const PhoneMenu = () => {
           className={`group relative flex flex-col items-center gap-1 px-3 py-2 transition-all text-muted-foreground hover:text-neon-pink ${pathname.startsWith("/project") && "text-neon-pink"}`}
         >
           <GrProjects
-            size={20}
+            size={25}
             className={`transition-all duration-300 ${pathname.startsWith("/project") && `scale-110 drop-shadow-neon-pink`}`}
           />
           <span
@@ -66,6 +66,24 @@ const PhoneMenu = () => {
 
           <span
             className={`absolute bottom-0 h-1 rounded-full transition-all duration-300 group-hover:bg-neon-pink ${pathname.startsWith("/project") ? "w-6 bg-neon-pink shadow-neon-pink" : "w-1 opacity-40 bg-muted-foreground"} `}
+          />
+        </Link>
+        <Link
+          href={`/admin`}
+          className={`group relative flex flex-col items-center gap-1 px-3 py-2 transition-all text-muted-foreground  hover:text-neon-red ${pathname.startsWith("/admin") && "text-neon-red"}`}
+        >
+          <IoShieldOutline
+            size={20}
+            className={`transition-all duration-300 ${pathname.startsWith("/admin") && `scale-110 drop-shadow-neon-red`}`}
+          />
+          <span
+            className={`text-xs font-medium transition-all duration-300 ${pathname.startsWith("/admin") && `drop-shadow-neon-red`}`}
+          >
+            Admin
+          </span>
+
+          <span
+            className={`absolute bottom-0 h-1 rounded-full transition-all duration-300 group-hover:bg-neon-red ${pathname.startsWith("/admin") ? "w-6 bg-neon-red shadow-neon-red" : "w-1 opacity-40 bg-muted-foreground"} `}
           />
         </Link>
       </div>

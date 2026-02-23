@@ -27,7 +27,7 @@ const Page = () => {
     roadmapDummyData.find((r) => r.id === +roadmapId!) || roadmapDummyData[0];
 
   const totalSections = roadmap.numberOfSections;
-  
+
   const [isSectionComplete, setIsSectionComplete] = useState<boolean[]>(
     Array.from({ length: totalSections! }).map(() => false),
   );

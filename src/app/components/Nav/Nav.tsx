@@ -59,6 +59,14 @@ const Nav = () => {
               >
                 Projects
               </Link>
+              <Link
+                href={`/admin`}
+                className={`hover:bg-background p-2 transition rounded-md  ${
+                  path.includes(`admin`) && `text-green bg-background`
+                }`}
+              >
+                Admin
+              </Link>
             </div>
           </div>
 

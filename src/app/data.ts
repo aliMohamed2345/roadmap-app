@@ -1,6 +1,6 @@
 import { BiTrophy, BiBrain } from "react-icons/bi";
 import { IoBookOutline } from "react-icons/io5";
-import { FiTarget, FiZap } from "react-icons/fi";
+import { FiTarget, FiUsers, FiZap } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
 import {
   projectDummyDataProps,
@@ -8,7 +8,14 @@ import {
   roadmapDummyDataProps,
   sectionDummyDataProps,
 } from "./types/roadmap";
-import { FaCalendar, FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import {
+  FaCalendar,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaRegMap,
+} from "react-icons/fa";
+import { IoMdHelpCircleOutline } from "react-icons/io";
 export const features = [
   {
     icon: IoBookOutline,
@@ -99,17 +106,20 @@ export const sectionDummyData: sectionDummyDataProps[] = [
     id: 10,
     resources: [
       {
-        title: `HTML Carsh Course`,
+        id: 23,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "course",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 64,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "video",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 53,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "article",
       },
@@ -119,20 +129,23 @@ export const sectionDummyData: sectionDummyDataProps[] = [
     title: `HTML&CSS Basics`,
     difficulty: "Intermediate",
     description: `Learn the fundamentals of web structure and styling`,
-    id: 10,
+    id: 11,
     resources: [
       {
-        title: `HTML Carsh Course`,
+        id: 21,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "course",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 15,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "video",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 24,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "article",
       },
@@ -142,20 +155,23 @@ export const sectionDummyData: sectionDummyDataProps[] = [
     title: `HTML&CSS Basics`,
     description: `Learn the fundamentals of web structure and styling`,
     difficulty: "Advanced",
-    id: 10,
+    id: 12,
     resources: [
       {
-        title: `HTML Carsh Course`,
+        id: 24,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "course",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 63,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "video",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 52,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "article",
       },
@@ -165,20 +181,23 @@ export const sectionDummyData: sectionDummyDataProps[] = [
     title: `HTML&CSS Basics`,
     description: `Learn the fundamentals of web structure and styling`,
     difficulty: "Expert",
-    id: 10,
+    id: 13,
     resources: [
       {
-        title: `HTML Carsh Course`,
+        id: 92,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "course",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 84,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "video",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 30,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "article",
       },
@@ -188,20 +207,23 @@ export const sectionDummyData: sectionDummyDataProps[] = [
     title: `HTML&CSS Basics`,
     description: `Learn the fundamentals of web structure and styling`,
     difficulty: "Beginner",
-    id: 10,
+    id: 14,
     resources: [
       {
-        title: `HTML Carsh Course`,
+        id: 25,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "course",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 53,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "video",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 26,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "article",
       },
@@ -211,20 +233,23 @@ export const sectionDummyData: sectionDummyDataProps[] = [
     title: `HTML&CSS Basics`,
     description: `Learn the fundamentals of web structure and styling`,
     difficulty: "Advanced",
-    id: 10,
+    id: 15,
     resources: [
       {
-        title: `HTML Carsh Course`,
+        id: 34,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "course",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 34,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "video",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 34,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "article",
       },
@@ -234,20 +259,23 @@ export const sectionDummyData: sectionDummyDataProps[] = [
     title: `HTML&CSS Basics`,
     description: `Learn the fundamentals of web structure and styling`,
     difficulty: "Advanced",
-    id: 10,
+    id: 16,
     resources: [
       {
-        title: `HTML Carsh Course`,
+        id: 34,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "course",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 34,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "video",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 34,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "article",
       },
@@ -256,44 +284,24 @@ export const sectionDummyData: sectionDummyDataProps[] = [
   {
     title: `HTML&CSS Basics`,
     description: `Learn the fundamentals of web structure and styling`,
-    id: 10,
+    id: 17,
     difficulty: "Advanced",
     resources: [
       {
-        title: `HTML Carsh Course`,
+        id: 53,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "course",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 53,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "video",
       },
       {
-        title: `HTML Carsh Course`,
-        url: `https://example.com`,
-        type: "article",
-      },
-    ],
-  },
-  {
-    title: `HTML&CSS Basics`,
-    description: `Learn the fundamentals of web structure and styling`,
-    difficulty: "Advanced",
-    id: 10,
-    resources: [
-      {
-        title: `HTML Carsh Course`,
-        url: `https://example.com`,
-        type: "course",
-      },
-      {
-        title: `HTML Carsh Course`,
-        url: `https://example.com`,
-        type: "video",
-      },
-      {
-        title: `HTML Carsh Course`,
+        id: 53,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "article",
       },
@@ -303,20 +311,49 @@ export const sectionDummyData: sectionDummyDataProps[] = [
     title: `HTML&CSS Basics`,
     description: `Learn the fundamentals of web structure and styling`,
     difficulty: "Advanced",
-    id: 10,
+    id: 18,
     resources: [
       {
-        title: `HTML Carsh Course`,
+        id: 53,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "course",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 53,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "video",
       },
       {
-        title: `HTML Carsh Course`,
+        id: 53,
+        title: `HTML Crash Course`,
+        url: `https://example.com`,
+        type: "article",
+      },
+    ],
+  },
+  {
+    title: `HTML&CSS Basics`,
+    description: `Learn the fundamentals of web structure and styling`,
+    difficulty: "Advanced",
+    id: 19,
+    resources: [
+      {
+        id: 21,
+        title: `HTML Crash Course`,
+        url: `https://example.com`,
+        type: "course",
+      },
+      {
+        id: 22,
+        title: `HTML Crash Course`,
+        url: `https://example.com`,
+        type: "video",
+      },
+      {
+        id: 23,
+        title: `HTML Crash Course`,
         url: `https://example.com`,
         type: "article",
       },
@@ -328,74 +365,74 @@ export const quizDummyData: quizDummyDataProps[] = [
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
-    difficulty: "Beginner",
+    rank: "Beginner",
     id: 10,
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
-    difficulty: "Intermediate",
-    id: 10,
+    rank: "Intermediate",
+    id: 11,
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
-    difficulty: "Advanced",
-    id: 10,
+    rank: "Advanced",
+    id: 12,
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
-    difficulty: "Expert",
-    id: 10,
+    rank: "Expert",
+    id: 13,
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
-    difficulty: "Master",
-    id: 10,
+    rank: "Master",
+    id: 14,
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
-    difficulty: "Beginner",
-    id: 10,
+    rank: "Beginner",
+    id: 15,
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
-    difficulty: "Expert",
-    id: 10,
+    rank: "Expert",
+    id: 16,
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
-    difficulty: "Intermediate",
-    id: 10,
+    rank: "Intermediate",
+    id: 17,
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
-    difficulty: "Master",
-    id: 10,
+    rank: "Master",
+    id: 18,
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
-    difficulty: "Expert",
-    id: 10,
+    rank: "Expert",
+    id: 19,
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
-    difficulty: "Beginner",
-    id: 10,
+    rank: "Beginner",
+    id: 20,
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
-    difficulty: "Master",
-    id: 10,
+    rank: "Master",
+    id: 21,
   },
 ];
 
@@ -1226,4 +1263,22 @@ export const personalInfoData = [
     value: "San Francisco, CA",
   },
   { icon: FaCalendar, label: "Birth Date", value: "May 14, 1998" },
+];
+
+export const adminTabs = [
+  {
+    id: "roadmaps",
+    label: "Roadmaps",
+    icon: FaRegMap,
+  },
+  {
+    id: "quizzes",
+    label: "Quizzes",
+    icon: IoMdHelpCircleOutline,
+  },
+  {
+    id: "users",
+    label: "Users",
+    icon: FiUsers,
+  },
 ];

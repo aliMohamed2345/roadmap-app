@@ -8,7 +8,7 @@ export const difficultyStyle = (difficulty: difficultySectionProps) => {
     case "Beginner":
       return "bg-chart-5 text-white";
     case "Intermediate":
-      return "bg-chart-1 text-black";
+      return "bg-chart-1 text-white";
     case "Advanced":
       return "bg-chart-2 text-white";
     case "Expert":

@@ -22,7 +22,7 @@ export interface quizDummyDataProps {
   title: string;
   description: string;
   id: number;
-  difficulty?: difficultySectionProps;
+  rank?: difficultySectionProps;
 }
 
 export interface sectionDummyDataProps {
@@ -31,6 +31,7 @@ export interface sectionDummyDataProps {
   id: number;
   difficulty: difficultySectionProps;
   resources: {
+    id: number;
     url: string;
     type: resourcesTypeSectionProps;
     title: string;
@@ -56,3 +57,4 @@ export interface updateProfileProps {
     website: string;
   };
 }
+
