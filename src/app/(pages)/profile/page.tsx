@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { IoBookOutline } from "react-icons/io5";
@@ -12,12 +12,21 @@ import ProjectTab from "@/app/components/Profile/ProjectTab";
 import { updateProfileProps } from "@/app/types/roadmap";
 import EditProfileModal from "@/app/components/Profile/EditProfileModal";
 import { personalInfoData } from "@/app/data";
+// import { useSelector } from "react-redux";
+// import { RootState } from "@/app/redux/store";
+// import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
+// import { apiRoutes } from "@/app/api/apiRoutes";
+// import toast from "react-hot-toast";
 // import ProfileDetailsLoading from "@/app/components/Profile/ProfileDetailsLoading";
 
 function Page() {
+  // const { user, isAuthenticated } = useSelector(
+    // (state: RootState) => state.user,
+  // );
   const tabs: tabsTypesProps[] = ["Quizzes", "Learning", "Projects"];
   const [openEditProfile, setOpenEditProfile] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState("Quizzes");
+  // const [loading, setLoading] = useState(true);
   const [updateProfile, setUpdateProfile] = useState<updateProfileProps>({
     username: "",
     bio: "",
@@ -28,9 +37,27 @@ function Page() {
       website: "",
     },
   });
+
+  // useEffect(() => {
+  //   const loadingProfileData = async () => {
+  //     if (user && isAuthenticated) {
+  //       const res = await RoadmapApiAxiosInstance.get(
+  //         apiRoutes.Users.getProfile.route,
+  //         { method: apiRoutes.Users.getProfile.method, withCredentials: true },
+  //       );
+  //       if (res.data?.success) {
+  //         console.log(res.data);
+  //       } else {
+  //         toast.error(res.data?.message);
+  //         console.log(res.data?.message);
+  //       }
+  //     }
+  //   };
+  //   loadingProfileData();
+  // }, [user, isAuthenticated]);
+  // if (loading) return <ProfileDetailsLoading />;
   return (
     <div className="pt-24 px-6 pb-12 text-foreground space-y-8">
-      {/* <ProfileDetailsLoading/> */}
       <div className="relative overflow-hidden rounded-3xl border border-border bg-card/80 backdrop-blur-xl shadow-xl p-8">
         <div className="absolute inset-0 opacity-20 bg-linear-to-r from-neon-cyan via-neon-purple to-neon-pink" />
 

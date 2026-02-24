@@ -5,6 +5,7 @@ import Nav from "./components/Nav/Nav";
 import PhoneMenu from "./components/Nav/PhoneMenu";
 import { Toaster } from "react-hot-toast";
 import { Suspense } from "react";
+import ReduxProvider from "./ReduxProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,10 +32,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <Suspense>
-          <Toaster reverseOrder={false} position="top-center" />
-          <Nav />
-          {children}
-          <PhoneMenu />
+          <ReduxProvider>
+            <Toaster reverseOrder={false} position="top-center" />
+            <Nav />
+            {children}
+            <PhoneMenu />
+          </ReduxProvider>
         </Suspense>
       </body>
     </html>

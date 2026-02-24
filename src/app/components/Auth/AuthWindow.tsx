@@ -12,9 +12,21 @@ import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
 import { apiRoutes } from "@/app/api/apiRoutes";
 import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/app/redux/Slices/userSlice";
 
 const AuthWindow = () => {
+  const {
+    // isAuthenticated,
+    // loading: loadingUser,
+    // error: loadingError,
+    user,
+  } = useSelector((state: RootState) => state.user);
+  console.log(user);
   const router = useRouter();
+  const dispatch = useDispatch();
   const [currentTab, setCurrentTab] = useState<"signup" | "signin">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,6 +59,7 @@ const AuthWindow = () => {
       if (!res.data.success) {
         setError(res.data.message);
       } else {
+        dispatch(setUser(res.data.user));
         router.push("/");
       }
     } catch (err: unknown) {
@@ -71,12 +84,13 @@ const AuthWindow = () => {
       const res = await RoadmapApiAxiosInstance.post(
         apiRoutes.Auth.login.route,
         { email, password },
-        { method: apiRoutes.Auth.signup.method },
+        { method: apiRoutes.Auth.login.method },
       );
 
       if (!res.data.success) {
         setError(res.data.message);
       } else {
+        dispatch(setUser(res.data.user));
         router.push("/");
       }
     } catch (err: unknown) {

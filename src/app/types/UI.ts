@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import { ReactNode, SetStateAction, Dispatch } from "react";
+import { UserProps } from "./api";
 export interface AuthInputProps {
   label: string;
   placeholder: string;
@@ -24,4 +25,10 @@ export interface ModalProps {
   title?: string;
   children: ReactNode;
   width?: string;
+}
+
+export interface ProfileWindowProps {
+  openProfile: boolean;
+  user: UserProps;
+  setOpenProfile: Dispatch<SetStateAction<boolean>>;
 }
