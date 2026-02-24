@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-export interface AuthInputProps{
+export interface AuthInputProps {
   label: string;
   placeholder: string;
   value: string;
@@ -9,12 +9,13 @@ export interface AuthInputProps{
 
 export interface AuthSubmitButtonProps {
   text: string;
+  loading: boolean;
   onHandleSubmit: () => void;
 }
 
-export interface AuthHeaderProps{
-    title:string; 
-    subtitle:string
+export interface AuthHeaderProps {
+  title: string;
+  subtitle: string;
 }
 
 export interface ModalProps {

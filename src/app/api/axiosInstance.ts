@@ -5,7 +5,7 @@ const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
 const RoadmapApiAxiosInstance = axios.create({
   baseURL,
-  //   timeout: 10000,
+  timeout: 20000,
   withCredentials: true,
   params: {
     key: apiKey,
