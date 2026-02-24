@@ -26,7 +26,7 @@ const page = () => {
             description={quiz.description}
             id={quiz.id}
             mode="quiz"
-            difficulty={quiz.difficulty}
+            difficulty={quiz.rank}
             key={i}
           />
         ))}
