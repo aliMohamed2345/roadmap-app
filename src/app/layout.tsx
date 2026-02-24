@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav/Nav";
 import PhoneMenu from "./components/Nav/PhoneMenu";
-
+import { Toaster } from "react-hot-toast";
+import { Suspense } from "react";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -29,9 +30,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-        <Nav />
-        {children}
-        <PhoneMenu />
+        <Suspense>
+          <Toaster reverseOrder={false} position="top-center" />
+          <Nav />
+          {children}
+          <PhoneMenu />
+        </Suspense>
       </body>
     </html>
   );
