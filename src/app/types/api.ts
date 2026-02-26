@@ -13,6 +13,7 @@ export interface UserProps {
   isAdmin: boolean;
   username?: string;
   email?: string;
+  imageURL: string;
 }
 
 export interface UserStateProps {

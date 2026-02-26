@@ -9,7 +9,8 @@ import toast from "react-hot-toast";
 import { AxiosError } from "axios";
 import { profileProps } from "@/app/types/api";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-
+import { useDispatch } from "react-redux";
+import { updateUser } from "@/app/redux/Slices/userSlice";
 const ProfileImageUploader = ({
   initialImage,
   setOpenImage,
@@ -21,6 +22,7 @@ const ProfileImageUploader = ({
   setOpenImage: Dispatch<SetStateAction<boolean>>;
   setProfile: Dispatch<SetStateAction<profileProps | null>>;
 }) => {
+  const dispatch = useDispatch();
   const [imageSrc, setImageSrc] = useState<string>(initialImage || "");
   const [loading, setLoading] = useState(false);
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +44,7 @@ const ProfileImageUploader = ({
           setProfile((prev) =>
             prev ? { ...prev, imageURL: res.data.imageURL } : prev,
           );
+          dispatch(updateUser({ imageURL: res.data.imageURL }));
           toast.success("Image uploaded successfully");
         } else {
           toast.error(res.data?.message || "Failed to upload image");

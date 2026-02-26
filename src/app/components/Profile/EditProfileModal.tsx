@@ -6,10 +6,12 @@ import { SetStateAction, Dispatch } from "react";
 import { FiEdit } from "react-icons/fi";
 import { useState } from "react";
 import { AxiosError } from "axios";
-import { profileProps } from "@/app/types/api";
 import { validateUpdateUserData } from "@/app/validators";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { updateUser } from "@/app/redux/Slices/userSlice";
+import { profileProps } from "@/app/types/api";
 const EditProfileModal = ({
   setProfile,
   profile,
@@ -19,6 +21,7 @@ const EditProfileModal = ({
   profile: profileProps;
   setEditProfile: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const dispatch = useDispatch();
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [updateProfile, setUpdateProfile] = useState<updateProfileProps>({
@@ -52,6 +55,12 @@ const EditProfileModal = ({
           prev
             ? { ...prev, ...updateProfile }
             : ({ ...updateProfile } as profileProps),
+        );
+        dispatch(
+          updateUser({
+            username: updateProfile.username,
+            email: updateProfile.email,
+          }),
         );
         toast.success("Profile updated successfully");
         setEditProfile(false);

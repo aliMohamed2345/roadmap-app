@@ -12,6 +12,7 @@ import { AxiosError } from "axios";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { logout } from "@/app/redux/Slices/userSlice";
+import Image from "next/image";
 const ProfileWindow = ({
   setOpenProfile,
   openProfile,
@@ -44,12 +45,17 @@ const ProfileWindow = ({
   };
   return (
     <div className="relative cursor-pointer">
-      <button
+      <Image
         onClick={() => setOpenProfile((prev) => !prev)}
-        className="text-white sm:text-lg md:text-xl p-1 rounded-full w-10 h-10 bg-primary/20 flex justify-center items-center hover:scale-105 transition-all cursor-pointer"
-      >
-        {user?.username?.slice(0, 1).toUpperCase()}
-      </button>
+        src={
+          user?.imageURL ||
+          "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+        }
+        alt={user?.username || "User"}
+        width={40}
+        height={40}
+        className="w-10 h-10 rounded-full border-2 border-primary/60 shadow-sm object-cover cursor-pointer transition-transform duration-200 hover:scale-105 hover:shadow-md"
+      />
 
       <AnimatePresence>
         {openProfile && (
