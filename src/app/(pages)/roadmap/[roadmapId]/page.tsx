@@ -14,7 +14,7 @@ import {
   MdOutlineRadioButtonChecked,
 } from "react-icons/md";
 
-import { roadmapDummyData, sectionDummyData } from "@/app/data";
+import { sectionDummyData, roadmapDummyData } from "@/app/data";
 import {
   difficultySectionProps,
   resourcesTypeSectionProps,
@@ -24,7 +24,7 @@ const Page = () => {
   const { roadmapId } = useParams();
 
   const roadmap =
-    roadmapDummyData.find((r) => r.id === +roadmapId!) || roadmapDummyData[0];
+    roadmapDummyData.find((r) => r.id === roadmapId!) || roadmapDummyData[0];
 
   const totalSections = roadmap.numberOfSections;
 

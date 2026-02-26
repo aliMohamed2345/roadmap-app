@@ -12,16 +12,10 @@ import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
 import { apiRoutes } from "@/app/api/apiRoutes";
 import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
-import { useSelector } from "react-redux";
-import { RootState } from "@/app/redux/store";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/app/redux/Slices/userSlice";
 
 const AuthWindow = () => {
-  const {
-    user,
-  } = useSelector((state: RootState) => state.user);
-  console.log(user);
   const router = useRouter();
   const dispatch = useDispatch();
   const [currentTab, setCurrentTab] = useState<"signup" | "signin">("signin");

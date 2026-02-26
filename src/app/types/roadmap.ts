@@ -12,7 +12,7 @@ export interface roadmapDummyDataProps {
   description: string;
   numberOfSections?: number;
   mode?: "roadmap" | "quiz" | "project";
-  id: number;
+  id: string;
   difficulty?: difficultySectionProps;
   tags?: string[];
   steps?: { title: string; description: string }[];

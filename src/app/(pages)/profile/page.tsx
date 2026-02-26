@@ -32,7 +32,6 @@ function Page() {
   const tabs: tabsTypesProps[] = ["Roadmaps", "Quizzes", "Projects"];
   const [profile, setProfile] = useState<profileProps | null>(null);
   const defaultImage = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
-  console.log(profile);
   const [openEditProfile, setOpenEditProfile] = useState<boolean>(false);
   const [openChangePassword, setOpenChangePassword] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState("Quizzes");

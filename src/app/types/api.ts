@@ -69,3 +69,12 @@ export interface changePasswordProps {
   password: string;
   confirmPassword: string;
 }
+
+export interface roadmapProps {
+  title: string;
+  description: string;
+  numberOfSections?: number;
+  id: string;
+  sections: string[];
+  _id?:string
+}

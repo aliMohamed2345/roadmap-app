@@ -50,43 +50,19 @@ export const features = [
 
 export const roadmapDummyData: roadmapDummyDataProps[] = [
   {
-    id: 1,
+    id: "234324",
     title: "Frontend Development",
     description: `Master modern frontend technologies from HTML/CSS to React, TypeScript and state management`,
     numberOfSections: 4,
   },
   {
-    id: 2,
+    id: "234",
     title: "Frontend Development",
     description: `Master modern frontend technologies from HTML/CSS to React, TypeScript and state management`,
     numberOfSections: 4,
   },
   {
-    id: 3,
-    title: "Frontend Development",
-    description: `Master modern frontend technologies from HTML/CSS to React, TypeScript and state management`,
-    numberOfSections: 4,
-  },
-  {
-    id: 4,
-    title: "Frontend Development",
-    description: `Master modern frontend technologies from HTML/CSS to React, TypeScript and state management`,
-    numberOfSections: 4,
-  },
-  {
-    id: 5,
-    title: "Frontend Development",
-    description: `Master modern frontend technologies from HTML/CSS to React, TypeScript and state management`,
-    numberOfSections: 4,
-  },
-  {
-    id: 6,
-    title: "Frontend Development",
-    description: `Master modern frontend technologies from HTML/CSS to React, TypeScript and state management`,
-    numberOfSections: 4,
-  },
-  {
-    id: 7,
+    id: "234",
     title: "Frontend Development",
     description: `Master modern frontend technologies from HTML/CSS to React, TypeScript and state management`,
     numberOfSections: 4,
