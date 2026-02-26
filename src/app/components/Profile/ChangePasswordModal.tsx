@@ -1,40 +1,35 @@
 "use client";
-import { apiRoutes } from "@/app/api/apiRoutes";
+import { Dispatch, SetStateAction, useState } from "react";
+import { changePasswordProps } from "@/app/types/api";
 import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
-import { updateProfileProps } from "@/app/types/roadmap";
-import { SetStateAction, Dispatch } from "react";
-import { FiEdit } from "react-icons/fi";
-import { useState } from "react";
-import { AxiosError } from "axios";
-import { profileProps } from "@/app/types/api";
-import { validateUpdateUserData } from "@/app/validators";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { validateChangePassword } from "@/app/validators";
+import { apiRoutes } from "@/app/api/apiRoutes";
 import toast from "react-hot-toast";
-const EditProfileModal = ({
-  setProfile,
-  profile,
-  setEditProfile,
+import { AxiosError } from "axios";
+import { FiEdit } from "react-icons/fi";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+const ChangePasswordModal = ({
+  setChangePassword,
 }: {
-  setProfile: Dispatch<SetStateAction<profileProps | null>>;
-  profile: profileProps;
-  setEditProfile: Dispatch<SetStateAction<boolean>>;
+  setChangePassword: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [updateProfile, setUpdateProfile] = useState<updateProfileProps>({
-    username: profile?.username || "",
-    bio: profile?.bio || "",
-    email: profile?.email || "",
-  });
+  const [changePasswordData, setChangePasswordData] =
+    useState<changePasswordProps>({
+      confirmPassword: "",
+      currentPassword: "",
+      password: "",
+    });
   const handleEditProfile = async () => {
     try {
       setLoading(true);
       setError("");
 
-      const validatorError = validateUpdateUserData(
-        updateProfile.username || "",
-        updateProfile.email || "",
-        updateProfile.bio || "",
+      const validatorError = validateChangePassword(
+        changePasswordData.password,
+        changePasswordData?.confirmPassword,
+        changePasswordData?.currentPassword,
       );
       if (validatorError) {
         setError(validatorError);
@@ -43,18 +38,18 @@ const EditProfileModal = ({
       }
 
       const res = await RoadmapApiAxiosInstance.put(
-        apiRoutes.Users.updateProfile.route,
-        updateProfile,
+        apiRoutes.Users.changePassword.route,
+        changePasswordData,
       );
 
       if (res.data?.success) {
-        setProfile((prev) =>
+        setChangePasswordData((prev) =>
           prev
-            ? { ...prev, ...updateProfile }
-            : ({ ...updateProfile } as profileProps),
+            ? { ...prev, ...changePasswordData }
+            : ({ ...changePasswordData } as changePasswordProps),
         );
-        toast.success("Profile updated successfully");
-        setEditProfile(false);
+        toast.success("Password changed successfully");
+        setChangePassword(false);
       } else {
         setError(res.data?.message || "Something went wrong");
       }
@@ -70,60 +65,62 @@ const EditProfileModal = ({
       <div className="grid md:grid-cols-2 gap-5">
         <div className="space-y-2">
           <label className="text-sm text-muted-foreground flex items-center gap-2">
-            User Name
+            Old Password
           </label>
 
           <div className="flex items-center gap-3 rounded-2xl border border-border bg-muted/60 px-4 py-3 focus-within:border-primary transition">
             <input
               className="w-full bg-transparent outline-none text-sm"
               type="text"
-              value={updateProfile?.username}
+              value={changePasswordData.currentPassword}
               onChange={(e) =>
-                setUpdateProfile((prev) => ({
+                setChangePasswordData((prev) => ({
                   ...prev,
-                  username: e.target.value,
+                  currentPassword: e.target.value,
                 }))
               }
-              placeholder="Enter username"
+              placeholder="Enter Old Password"
             />
           </div>
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm text-muted-foreground">Email</label>
+          <label className="text-sm text-muted-foreground">New Password</label>
 
           <div className="flex items-center gap-3 rounded-2xl border border-border bg-muted/60 px-4 py-3 focus-within:border-primary transition">
             <input
               className="w-full bg-transparent outline-none text-sm"
-              type="email"
-              value={updateProfile?.email}
+              type="text"
+              value={changePasswordData.password}
               onChange={(e) =>
-                setUpdateProfile((prev) => ({
+                setChangePasswordData((prev) => ({
                   ...prev,
-                  email: e.target.value,
+                  password: e.target.value,
                 }))
               }
-              placeholder="Enter email"
+              placeholder="Enter New Password"
             />
           </div>
         </div>
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm text-muted-foreground">Bio</label>
+        <label className="text-sm text-muted-foreground">
+          Confirm Password
+        </label>
 
         <div className="rounded-2xl border border-border bg-muted/60 px-4 py-3 focus-within:border-primary transition">
           <input
             className="w-full bg-transparent outline-none text-sm"
             type="text"
-            value={updateProfile?.bio}
+            value={changePasswordData?.confirmPassword}
             onChange={(e) =>
-              setUpdateProfile((prev) => ({
+              setChangePasswordData((prev) => ({
                 ...prev,
-                bio: e.target.value,
+                confirmPassword: e.target.value,
               }))
             }
-            placeholder="Tell something about yourself"
+            placeholder="Enter Confirm Password"
           />
         </div>
       </div>
@@ -150,4 +147,4 @@ const EditProfileModal = ({
   );
 };
 
-export default EditProfileModal;
+export default ChangePasswordModal;

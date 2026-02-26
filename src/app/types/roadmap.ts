@@ -48,14 +48,9 @@ export interface projectDummyDataProps {
 }
 
 export interface updateProfileProps {
-  username: string;
-  bio: string;
-  email: string;
-  links: {
-    github: string;
-    linkedin: string;
-    website: string;
-  };
+  username?: string;
+  bio?: string;
+  email?: string;
 }
 
 export interface User {

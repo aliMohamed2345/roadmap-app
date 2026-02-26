@@ -38,3 +38,14 @@ export const convertToQueryString = (filters: FiltersProps) => {
 
   return params.toString();
 };
+
+export const convertDateToYear = (dateString: Date) => {
+  if (!dateString) return "N/A";
+  const date = new Date(dateString);
+
+  const formatted = date.toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
+  return formatted;
+};

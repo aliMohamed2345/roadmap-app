@@ -19,9 +19,6 @@ import { setUser } from "@/app/redux/Slices/userSlice";
 
 const AuthWindow = () => {
   const {
-    // isAuthenticated,
-    // loading: loadingUser,
-    // error: loadingError,
     user,
   } = useSelector((state: RootState) => state.user);
   console.log(user);
