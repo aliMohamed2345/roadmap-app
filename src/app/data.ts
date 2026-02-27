@@ -337,73 +337,73 @@ export const quizDummyData: quizDummyDataProps[] = [
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
     rank: "Beginner",
-    id: 10,
+    id: "10",
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
     rank: "Intermediate",
-    id: 11,
+    id: "11",
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
     rank: "Advanced",
-    id: 12,
+    id: "12",
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
     rank: "Expert",
-    id: 13,
+    id: "13",
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
     rank: "Master",
-    id: 14,
+    id: "14",
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
     rank: "Beginner",
-    id: 15,
+    id: "15",
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
     rank: "Expert",
-    id: 16,
+    id: "16",
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
     rank: "Intermediate",
-    id: 17,
+    id: "17",
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
     rank: "Master",
-    id: 18,
+    id: "18",
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
     rank: "Expert",
-    id: 19,
+    id: "19",
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
     rank: "Beginner",
-    id: 20,
+    id: "20",
   },
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,
     rank: "Master",
-    id: 21,
+    id: "21",
   },
 ];
 
@@ -471,7 +471,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Beginner`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -508,7 +508,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Intermediate`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -545,7 +545,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Advanced`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -582,7 +582,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Intermediate`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -619,7 +619,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Beginner`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -656,7 +656,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Advanced`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -693,7 +693,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Beginner`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -730,7 +730,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Beginner`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -767,7 +767,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Beginner`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -804,7 +804,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Beginner`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -841,7 +841,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Beginner`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -878,7 +878,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Beginner`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -915,7 +915,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Beginner`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -952,7 +952,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Beginner`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -989,7 +989,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Beginner`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -1026,7 +1026,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Beginner`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,
@@ -1063,7 +1063,7 @@ export const projectDummyData: projectDummyDataProps[] = [
     description: `Build a modern, responsive portfolio website showcasing your work and skills. Learn HTML, CSS, and JavaScript fundamentals.`,
     level: `Beginner`,
     tags: ["JavaScript", "HTML", "CSS"],
-    id: 593,
+    id: "593",
     steps: [
       {
         title: `Step 1: Project Setup & Planning`,

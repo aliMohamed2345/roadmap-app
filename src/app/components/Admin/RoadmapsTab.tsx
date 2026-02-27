@@ -43,7 +43,7 @@ const RoadmapsTab = () => {
         </div>
 
         {roadmapDummyData.map((roadmap) => {
-          const isRoadmapOpen = openRoadmap === roadmap.id;
+          const isRoadmapOpen = String(openRoadmap) === roadmap.id;
 
           return (
             <motion.div
@@ -54,7 +54,7 @@ const RoadmapsTab = () => {
               <div
                 className="flex sm:items-center justify-between p-5 cursor-pointer flex-col sm:flex-row items-end gap-4"
                 onClick={() =>
-                  setOpenRoadmap(isRoadmapOpen ? null : roadmap.id)
+                  setOpenRoadmap(isRoadmapOpen ? null : +roadmap.id)
                 }
               >
                 <div className="flex items-center gap-3">

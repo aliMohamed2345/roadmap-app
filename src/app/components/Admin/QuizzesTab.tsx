@@ -27,7 +27,7 @@ const QuizzesTab = () => {
           </button>
         </div>
         {quizDummyData.map((quiz) => {
-          const isQuizOpen = openQuiz === quiz.id;
+          const isQuizOpen = String(openQuiz) === quiz.id;
           return (
             <motion.div
               key={quiz.id}
