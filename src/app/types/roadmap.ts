@@ -1,3 +1,5 @@
+import { resourceProps } from "./api";
+
 export type difficultySectionProps =
   | "Beginner"
   | "Intermediate"
@@ -28,14 +30,10 @@ export interface quizDummyDataProps {
 export interface sectionDummyDataProps {
   title: string;
   description: string;
-  id: number;
+  id: string;
+  _id?: string;
   difficulty: difficultySectionProps;
-  resources: {
-    id: number;
-    url: string;
-    type: resourcesTypeSectionProps;
-    title: string;
-  }[];
+  resources: resourceProps[];
 }
 
 export interface projectDummyDataProps {

@@ -25,19 +25,15 @@ const Page = () => {
             const formatted = res.data?.roadmap?.map(
               (roadmapItem: roadmapProps) => ({
                 ...roadmapItem,
-                numberOfSections: roadmapItem.sections?.length || 0,
+                numberOfSections: roadmapItem.sections?.length || [],
                 id: roadmapItem._id,
               }),
             );
             setRoadmaps(formatted);
           }
-          console.log(res.data);
         }
       } catch (err: unknown) {
         const axiosError = err as AxiosError<{ message: string }>;
-        console.log(
-          axiosError.response?.data?.message || "Something went wrong",
-        );
         toast.error(
           axiosError.response?.data?.message || "Something went wrong",
         );

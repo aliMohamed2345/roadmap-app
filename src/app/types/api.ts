@@ -1,4 +1,4 @@
-import { difficultySectionProps } from "./roadmap";
+import { difficultySectionProps, resourcesTypeSectionProps } from "./roadmap";
 
 export interface FiltersProps {
   q?: string;
@@ -70,11 +70,36 @@ export interface changePasswordProps {
   confirmPassword: string;
 }
 
+export interface resourceProps {
+  id: string;
+  _id?: string;
+  url: string;
+  type: resourcesTypeSectionProps;
+  title: string;
+}
+
+export interface sectionProps {
+  _id: string;
+  title: string;
+  description: string;
+  completed: boolean;
+  difficulty?: difficultySectionProps;
+  resources: resourceProps[];
+}
+
 export interface roadmapProps {
   title: string;
   description: string;
   numberOfSections?: number;
   id: string;
-  sections: string[];
-  _id?:string
+  sections: sectionProps[] | string[];
+  _id?: string;
+}
+
+export interface userProgressProps {
+  total?: number;
+  completed?: number;
+  progressPercentage?: number;
+  roadmap: roadmapProps;
+  sections: sectionProps[];
 }

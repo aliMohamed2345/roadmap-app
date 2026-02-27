@@ -1,9 +1,15 @@
 "use client";
 
+import { RootState } from "@/app/redux/store";
+import { useSelector } from "react-redux";
+
 const RoadmapDetailsLoading = () => {
+  const { isAuthenticated } = useSelector((state: RootState) => state.user);
   return (
     <div className="min-h-screen bg-background pt-24 pb-10 animate-pulse">
-      <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div
+        className={`container mx-auto px-4 grid grid-cols-1 ${isAuthenticated ? "sm:grid-cols-4 md:grid-cols-3" : "sm:grid-cols-3"} gap-6`}
+      >
         <div className="lg:col-span-1 hidden sm:block">
           <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5">
             <div className="absolute top-0 left-0 h-1 w-full bg-muted" />
@@ -63,17 +69,19 @@ const RoadmapDetailsLoading = () => {
           ))}
         </div>
 
-        <div className="lg:col-span-1">
-          <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 text-center">
-            <div className="absolute top-0 left-0 h-1 w-full bg-muted" />
+        {isAuthenticated && (
+          <div className="lg:col-span-1">
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 text-center">
+              <div className="absolute top-0 left-0 h-1 w-full bg-muted" />
 
-            <div className="h-28 w-28 rounded-full bg-muted mx-auto mb-4" />
+              <div className="h-28 w-28 rounded-full bg-muted mx-auto mb-4" />
 
-            <div className="h-4 w-32 rounded bg-muted mx-auto mb-4" />
-            <div className="h-4 w-40 rounded bg-muted mx-auto mb-2" />
-            <div className="h-4 w-28 rounded bg-muted mx-auto" />
+              <div className="h-4 w-32 rounded bg-muted mx-auto mb-4" />
+              <div className="h-4 w-40 rounded bg-muted mx-auto mb-2" />
+              <div className="h-4 w-28 rounded bg-muted mx-auto" />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

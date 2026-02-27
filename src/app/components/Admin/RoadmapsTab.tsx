@@ -122,7 +122,7 @@ const RoadmapsTab = () => {
 
                       <div className="space-y-4">
                         {sectionDummyData.map((section) => {
-                          const isSectionOpen = openSection === section.id;
+                          const isSectionOpen = openSection === +section.id;
 
                           return (
                             <motion.div
@@ -134,7 +134,7 @@ const RoadmapsTab = () => {
                                 className="flex justify-between items-center p-4 cursor-pointer flex-col sm:flex-row gap-5"
                                 onClick={() =>
                                   setOpenSection(
-                                    isSectionOpen ? null : section.id,
+                                    isSectionOpen ? null : +section.id,
                                   )
                                 }
                               >

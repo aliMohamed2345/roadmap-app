@@ -1,5 +1,11 @@
+import { MdOutlineArticle } from "react-icons/md";
 import { FiltersProps } from "./types/api";
-
+import {
+  difficultySectionProps,
+  resourcesTypeSectionProps,
+} from "./types/roadmap";
+import { FiVideo } from "react-icons/fi";
+import { IoBookOutline } from "react-icons/io5";
 export const isValidUrl = (url: string): boolean => {
   if (!url) return false;
 
@@ -48,4 +54,30 @@ export const convertDateToYear = (dateString: Date) => {
     year: "numeric",
   });
   return formatted;
+};
+
+export const iconDependingOnType = (type: resourcesTypeSectionProps) => {
+  switch (type) {
+    case "article":
+      return <MdOutlineArticle size={20} />;
+    case "video":
+      return <FiVideo size={20} />;
+    case "course":
+      return <IoBookOutline size={20} />;
+  }
+};
+
+export const styleDependingOnDifficulty = (
+  difficulty: difficultySectionProps,
+) => {
+  switch (difficulty) {
+    case "Beginner":
+      return "bg-chart-5";
+    case "Intermediate":
+      return "bg-chart-2";
+    case "Advanced":
+      return "bg-chart-4";
+    case "Expert":
+      return "bg-chart-3";
+  }
 };
