@@ -41,6 +41,7 @@ export interface projectDummyDataProps {
   description: string;
   tags: string[];
   id: string;
+  _id?:string;
   steps: { title: string; description: string }[];
   level: `Beginner` | `Intermediate` | `Advanced`;
 }
