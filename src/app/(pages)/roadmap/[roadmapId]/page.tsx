@@ -15,6 +15,7 @@ import CongratsWindowModule from "@/app/components/Roadmap/CongratsWindowModal";
 import RoadmapContentsList from "@/app/components/Roadmap/RoadmapContentsList";
 import ProgressCircle from "@/app/components/Roadmap/ProgressCircle";
 import RoadmapDetailsSections from "@/app/components/Roadmap/RoadmapDetailsSections";
+import ExportRoadmap from "@/app/components/Roadmap/ExportRoadmap";
 
 const Page = () => {
   const { isAuthenticated } = useSelector((state: RootState) => state.user);
@@ -91,9 +92,7 @@ const Page = () => {
       <div className="pt-24 pb-10">
         <div
           className={`container mx-auto px-4 grid grid-cols-1 ${
-            isAuthenticated
-              ? "sm:grid-cols-4 md:grid-cols-3"
-              : "sm:grid-cols-3"
+            isAuthenticated ? "sm:grid-cols-4 md:grid-cols-4" : "sm:grid-cols-3"
           } gap-6`}
         >
           <RoadmapContentsList
@@ -114,7 +113,14 @@ const Page = () => {
                 ? userProgress?.roadmap.description
                 : roadmapDetails?.description}
             </p>
-
+            <ExportRoadmap
+              roadmapId={String(roadmapId!)}
+              roadmapTitle={
+                isAuthenticated
+                  ? String(userProgress?.roadmap.title)
+                  : String(roadmapDetails?.title)
+              }
+            />
             <RoadmapDetailsSections
               userProgress={userProgress}
               isAuthenticated={isAuthenticated}

@@ -81,3 +81,17 @@ export const styleDependingOnDifficulty = (
       return "bg-chart-3";
   }
 };
+
+export const downloadFile = (data: Blob, filename: string) => {
+  const url = window.URL.createObjectURL(data);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+
+  document.body.appendChild(link);
+  link.click();
+
+  document.body.removeChild(link);
+  window.URL.revokeObjectURL(url);
+};
