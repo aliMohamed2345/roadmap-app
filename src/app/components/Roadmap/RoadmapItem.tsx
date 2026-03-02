@@ -28,6 +28,8 @@ const RoadmapItem = ({
   mode = "roadmap",
   tags,
   steps,
+  quizDescription,
+  quizTitle,
 }: roadmapDummyDataProps) => {
   return (
     <div className="group relative rounded-3xl border border-border/60 bg-card/70 backdrop-blur-xl p-6 shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 overflow-hidden">
@@ -80,13 +82,16 @@ const RoadmapItem = ({
         <div className="h-px w-full bg-linear-to-r from-transparent via-border to-transparent my-6" />
 
         <Link
-          href={`/${
-            mode === "roadmap"
-              ? "roadmap"
-              : mode === "quiz"
-                ? "quiz"
-                : "project"
-          }/${id}`}
+          href={{
+            pathname: `/${
+              mode === "roadmap"
+                ? "roadmap"
+                : mode === "quiz"
+                  ? "quiz"
+                  : "project"
+            }/${id}`,
+            query: mode === "quiz" ? { quizDescription, quizTitle } : undefined,
+          }}
           className="block"
         >
           <div className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-2xl font-semibold text-sm text-white bg-linear-to-r from-neon-cyan to-neon-purple shadow-lg transition-all duration-300 hover:shadow-primary/40 hover:scale-[1.04] active:scale-100">

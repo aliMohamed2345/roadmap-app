@@ -1,3 +1,4 @@
+import { QuestionItemProps } from "./quiz";
 import { difficultySectionProps, resourcesTypeSectionProps } from "./roadmap";
 
 export interface FiltersProps {
@@ -6,6 +7,12 @@ export interface FiltersProps {
   page?: number;
   limit?: number;
   level?: difficultySectionProps;
+}
+export interface QuestionsFilterProps {
+  q?: string;
+  page?: number;
+  limit?: number;
+  random: boolean;
 }
 
 export interface UserProps {
@@ -102,4 +109,11 @@ export interface userProgressProps {
   progressPercentage?: number;
   roadmap: roadmapProps;
   sections: sectionProps[];
+}
+
+export interface QuestionProps {
+  totalQuestions: number;
+  questions: QuestionItemProps[];
+  totalPages: number;
+  page: number;
 }

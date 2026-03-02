@@ -3,8 +3,7 @@ import { IoBookOutline } from "react-icons/io5";
 import { FiTarget, FiUsers, FiZap } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
 import {
-  projectDummyDataProps,
-  quizDummyDataProps,
+  quizProps,
   roadmapDummyDataProps,
   sectionDummyDataProps,
   User,
@@ -332,7 +331,7 @@ export const sectionDummyData: sectionDummyDataProps[] = [
   },
 ];
 
-export const quizDummyData: quizDummyDataProps[] = [
+export const quizDummyData: quizProps[] = [
   {
     title: `JavaScript Fundamentals`,
     description: `Test your knowledge of JavaScript basics including variables, functions, closures, and ES6+ features.`,

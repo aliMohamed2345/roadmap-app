@@ -1,5 +1,5 @@
 import { convertToQueryString } from "../helper";
-import { FiltersProps } from "../types/api";
+import { FiltersProps, QuestionsFilterProps } from "../types/api";
 export const apiRoutes = {
   Auth: {
     login: {
@@ -105,6 +105,11 @@ export const apiRoutes = {
       route: (quizId: string) => `/api/v1/quiz/${quizId}/restart`,
       method: "GET",
     },
+    getAllQuestionsByQuiz: {
+      route: (quizId: string, filters: QuestionsFilterProps) =>
+        `/api/v1/quiz/${quizId}/questions/submit?${convertToQueryString(filters)}`,
+      method: "GET",
+    },
   },
   Roadmap: {
     getAllRoadmaps: {
@@ -129,6 +134,18 @@ export const apiRoutes = {
     },
     getProgress: {
       route: (id: string) => `/api/v1/roadmap/${id}/progress`,
+      method: "GET",
+    },
+    exportRoadmapToPDF: {
+      route: (id: string) => `/api/v1/roadmap/${id}/progress/export/pdf`,
+      method: "GET",
+    },
+    exportRoadmapToJSON: {
+      route: (id: string) => `/api/v1/roadmap/${id}/progress/export/json`,
+      method: "GET",
+    },
+    exportRoadmapToCSV: {
+      route: (id: string) => `/api/v1/roadmap/${id}/progress/export/csv`,
       method: "GET",
     },
   },
@@ -191,7 +208,8 @@ export const apiRoutes = {
   },
   Project: {
     getAllProjects: {
-      route: (filters:FiltersProps)=>`/api/v1/project?${convertToQueryString(filters)}`,
+      route: (filters: FiltersProps) =>
+        `/api/v1/project?${convertToQueryString(filters)}`,
       method: "GET",
     },
     createProject: {

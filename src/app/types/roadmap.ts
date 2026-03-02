@@ -18,12 +18,15 @@ export interface roadmapDummyDataProps {
   difficulty?: difficultySectionProps;
   tags?: string[];
   steps?: { title: string; description: string }[];
+  quizTitle?:string
+  quizDescription?:string
 }
 
-export interface quizDummyDataProps {
+export interface quizProps {
   title: string;
   description: string;
   id: string;
+  _id?:string
   rank?: difficultySectionProps;
 }
 

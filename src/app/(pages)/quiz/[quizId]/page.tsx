@@ -1,48 +1,143 @@
 "use client";
 
 import QuestionItem from "@/app/components/Quiz/QuestionItem";
-import { questionDummyData, quizDummyData } from "@/app/data";
-import { useParams } from "next/navigation";
-import { useMemo, useState } from "react";
-import { IoIosArrowBack } from "react-icons/io";
+import { useParams, useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { GoCheck } from "react-icons/go";
 import QuizDetailsLoading from "@/app/components/Quiz/QuizDetailsLoading";
-
+import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
+import { apiRoutes } from "@/app/api/apiRoutes";
+import toast from "react-hot-toast";
+import { AxiosError } from "axios";
+import { QuestionItemProps } from "@/app/types/quiz";
+import { QuestionProps } from "@/app/types/api";
+import { useRouter } from "next/navigation";
+import { convertToQueryString } from "@/app/helper";
 const Page = () => {
+  const searchParams = useSearchParams();
   const { quizId } = useParams();
-  console.log(quizId);
-  const quiz = quizDummyData[0];
+  const router = useRouter();
+  const quizTitle = searchParams.get("quizTitle");
+  const quizDescription = searchParams.get("quizDescription");
+  const QUESTION_PER_PAGE = 10;
 
+  const [questionDetails, setQuestionDetails] = useState<QuestionProps>();
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedAnswers, setSelectedAnswers] = useState<
     Record<string, string>
   >({});
 
+  console.log(selectedAnswers);
+
   const answeredCount = Object.keys(selectedAnswers).length;
 
   const progress = useMemo(() => {
-    return (answeredCount / questionDummyData.length) * 100;
-  }, [answeredCount]);
+    const total = questionDetails?.questions.length ?? 0;
+    if (!total) return 0;
+    return (answeredCount / total) * 100;
+  }, [answeredCount, questionDetails]);
 
   const handleSelectAnswer = (questionId: string, answer: string) => {
     setSelectedAnswers((prev) => ({
       ...prev,
       [questionId]: answer,
     }));
+
+    const stored: { _id: string; userAnswer: string }[] = JSON.parse(
+      localStorage.getItem("questions") || "[]",
+    );
+
+    const index = stored.findIndex((q) => q._id === questionId);
+
+    if (index !== -1) {
+      stored[index].userAnswer = answer;
+    } else {
+      stored.push({ _id: questionId, userAnswer: answer });
+    }
+
+    localStorage.setItem("questions", JSON.stringify(stored));
   };
+
+  useEffect(() => {
+    const fetchQuizData = async () => {
+      setLoading(true);
+      try {
+        const res = await RoadmapApiAxiosInstance.get(
+          apiRoutes.Question.getAllQuestionsByQuiz.route(String(quizId), {
+            page: currentPage,
+            random: false,
+            limit: QUESTION_PER_PAGE,
+          }),
+        );
+
+        if (res.data.success) {
+          setQuestionDetails(res.data);
+        }
+      } catch (err) {
+        const axiosError = err as AxiosError<{ message: string }>;
+        toast.error(
+          axiosError.response?.data?.message || "Something went wrong",
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchQuizData();
+  }, [quizId, currentPage]);
+
+  useEffect(() => {
+    if (!questionDetails?.questions) return;
+
+    const stored: { _id: string; userAnswer: string }[] = JSON.parse(
+      localStorage.getItem("questions") || "[]",
+    );
+
+    const answersForThisPage: Record<string, string> = {};
+
+    questionDetails.questions.forEach((q) => {
+      const found = stored.find((item) => item._id === q._id);
+      if (found?.userAnswer) {
+        answersForThisPage[String(q._id)] = found.userAnswer;
+      }
+    });
+
+    setSelectedAnswers(answersForThisPage);
+  }, [questionDetails]);
+
+  const handlePreviousButton = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const handleNextButton = () => {
+    if (currentPage < (questionDetails?.totalPages ?? 1)) {
+      setCurrentPage((prev) => prev + 1);
+    } else {
+      router.push(
+        `/quiz/${quizId}/submit?quizTitle=${encodeURIComponent(quizTitle as string)}`,
+      );
+      console.log("Submit quiz");
+    }
+  };
+
+  if (loading) return <QuizDetailsLoading />;
 
   return (
     <div className="pt-24 pb-20">
-      {/* <QuizDetailsLoading /> */}
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="mb-10">
-          <h1 className="text-2xl sm:text-4xl font-bold mb-3">{quiz.title}</h1>
+          <h1 className="text-2xl sm:text-4xl font-bold mb-3">{quizTitle}</h1>
 
           <p className="text-muted-foreground max-w-2xl text-sm sm:text-lg">
-            {quiz.description}
+            {quizDescription}
           </p>
 
           <div className="mt-4 inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold bg-linear-to-br from-neon-cyan to-neon-purple text-white">
-            {questionDummyData.length} Questions
+            {questionDetails?.totalQuestions} Questions
           </div>
         </div>
 
@@ -50,7 +145,7 @@ const Page = () => {
           <div className="flex justify-between mb-3 text-sm sm:text-base font-medium">
             <span className="text-muted-foreground">Progress</span>
             <span>
-              {answeredCount} / {questionDummyData.length} answered
+              {answeredCount} / {questionDetails?.questions.length} answered
             </span>
           </div>
 
@@ -63,35 +158,48 @@ const Page = () => {
         </div>
 
         <div className="flex flex-col gap-8">
-          {questionDummyData.map((question) => (
+          {questionDetails?.questions?.map((question: QuestionItemProps, i) => (
             <QuestionItem
-              key={question.questionId}
-              questionId={String(question.questionId)}
-              questionNumber={question.questionNumber}
+              key={question._id}
+              _id={String(question._id)}
+              questionNumber={(currentPage - 1) * QUESTION_PER_PAGE + (i + 1)}
               question={question.question}
-              answers={question.answers}
-              selectedAnswer={selectedAnswers[question.questionId]}
+              answers={question.options!}
+              selectedAnswer={selectedAnswers[String(question._id)]}
               onSelectAnswer={handleSelectAnswer}
             />
           ))}
         </div>
 
         <div className="mt-14 rounded-2xl bg-card border border-border p-4 shadow-md">
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-0 sm:justify-between">
-            <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-border hover:bg-muted transition-all">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:justify-between">
+            <button
+              disabled={currentPage === 1}
+              onClick={handlePreviousButton}
+              className="w-full sm:w-auto cursor-pointer flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-border hover:bg-muted transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <IoIosArrowBack /> Previous
             </button>
 
             <button
-              disabled={answeredCount !== questionDummyData.length}
-              className={`w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-2 rounded-lg text-white transition-all shadow-md
+              disabled={answeredCount !== questionDetails?.questions.length}
+              onClick={handleNextButton}
+              className={`w-full sm:w-auto cursor-pointer flex items-center justify-center gap-2 px-6 py-2 rounded-lg text-white transition-all shadow-md
                 ${
-                  answeredCount === questionDummyData.length
+                  answeredCount === questionDetails?.questions.length
                     ? "bg-linear-to-r from-neon-cyan to-neon-purple hover:opacity-90"
                     : "bg-muted cursor-not-allowed"
                 }`}
             >
-              Submit Quiz <GoCheck size={20} />
+              {currentPage === questionDetails?.totalPages ? (
+                <>
+                  Submit Quiz <GoCheck size={20} />
+                </>
+              ) : (
+                <>
+                  Next <IoIosArrowForward />
+                </>
+              )}
             </button>
           </div>
         </div>
