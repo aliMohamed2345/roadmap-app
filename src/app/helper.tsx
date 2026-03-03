@@ -1,5 +1,5 @@
 import { MdOutlineArticle } from "react-icons/md";
-import { FiltersProps } from "./types/api";
+import { FiltersProps, QuizGradeProps } from "./types/api";
 import {
   difficultySectionProps,
   resourcesTypeSectionProps,
@@ -95,3 +95,11 @@ export const downloadFile = (data: Blob, filename: string) => {
   document.body.removeChild(link);
   window.URL.revokeObjectURL(url);
 };
+
+ export const getGradeColor = (grade:QuizGradeProps) => {
+    if (grade === "A+" || grade === "A") return "bg-chart-5";
+    if (grade === "B") return "bg-chart-1";
+    if (grade === "C") return "bg-chart-4";
+    if (grade === "D") return "bg-chart-2";
+    return "bg-destructive";
+  };

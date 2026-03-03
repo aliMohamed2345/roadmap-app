@@ -98,16 +98,16 @@ export const apiRoutes = {
       method: "POST",
     },
     submitQuizAnswers: {
-      route: (quizId: string) => `/api/v1/quiz/${quizId}/submit`,
+      route: (quizId: string) => `/api/v1/quiz/${quizId}/questions/submit`,
       method: "POST",
     },
     restartQuizAnswers: {
-      route: (quizId: string) => `/api/v1/quiz/${quizId}/restart`,
+      route: (quizId: string) => `/api/v1/quiz/${quizId}/questions/restart`,
       method: "GET",
     },
     getAllQuestionsByQuiz: {
       route: (quizId: string, filters: QuestionsFilterProps) =>
-        `/api/v1/quiz/${quizId}/questions/submit?${convertToQueryString(filters)}`,
+        `/api/v1/quiz/${quizId}/questions?${convertToQueryString(filters)}`,
       method: "GET",
     },
   },

@@ -45,16 +45,16 @@ const Page = () => {
       [questionId]: answer,
     }));
 
-    const stored: { _id: string; userAnswer: string }[] = JSON.parse(
+    const stored: { questionId: string; answer: string }[] = JSON.parse(
       localStorage.getItem("questions") || "[]",
     );
 
-    const index = stored.findIndex((q) => q._id === questionId);
+    const index = stored.findIndex((q) => q.questionId === questionId);
 
     if (index !== -1) {
-      stored[index].userAnswer = answer;
+      stored[index].answer = answer;
     } else {
-      stored.push({ _id: questionId, userAnswer: answer });
+      stored.push({  questionId, answer });
     }
 
     localStorage.setItem("questions", JSON.stringify(stored));

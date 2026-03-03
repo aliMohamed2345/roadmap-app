@@ -117,3 +117,24 @@ export interface QuestionProps {
   totalPages: number;
   page: number;
 }
+export type QuizGradeProps = "A+" | "A" | "B" | "C" | "D" | "F";
+export type StatusGradeProps = "Failed" | "Passed";
+
+export interface answerDetailsProps {
+  correctAnswer: string;
+  isCorrect: boolean;
+  question: string;
+  questionId: string;
+  userAnswer: string;
+}
+export interface quizResultsProps {
+    quizId?: string;
+    quizTitle: string;
+    status: StatusGradeProps;
+    grade: QuizGradeProps;
+    percentage: number;
+    totalQuestions: number;
+    wrongAnswers: number;
+    correctAnswers: number;
+    answerDetails: answerDetailsProps[]
+}
