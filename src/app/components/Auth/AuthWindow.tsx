@@ -44,7 +44,6 @@ const AuthWindow = () => {
       const res = await RoadmapApiAxiosInstance.post(
         apiRoutes.Auth.signup.route,
         { username, email, password },
-        { method: apiRoutes.Auth.signup.method },
       );
 
       if (!res.data.success) {
@@ -75,7 +74,6 @@ const AuthWindow = () => {
       const res = await RoadmapApiAxiosInstance.post(
         apiRoutes.Auth.login.route,
         { email, password },
-        { method: apiRoutes.Auth.login.method },
       );
 
       if (!res.data.success) {

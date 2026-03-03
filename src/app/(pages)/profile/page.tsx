@@ -44,7 +44,6 @@ function Page() {
         if (user && isAuthenticated) {
           const res = await RoadmapApiAxiosInstance.get(
             apiRoutes.Users.getProfile.route,
-            { method: apiRoutes.Users.getProfile.method },
           );
           if (res.data?.success) {
             setProfile(res.data.user);

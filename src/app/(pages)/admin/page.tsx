@@ -45,7 +45,7 @@ const Page = () => {
             <button
               key={tab.id}
               onClick={() => setCurrentTab(tab.id as adminTypeProps)}
-              className={`relative z-10 flex-1 flex items-center text-xs sm:text-base cursor-pointer justify-center gap-2 rounded-xl py-2.5 text-sm font-medium transition-all duration-300 ${
+              className={`relative z-10 flex-1 flex items-center text-xs sm:text-base cursor-pointer justify-center gap-2 rounded-xl py-2.5  font-medium transition-all duration-300 ${
                 isActive
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"

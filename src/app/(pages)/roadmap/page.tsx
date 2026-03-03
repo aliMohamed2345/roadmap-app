@@ -18,7 +18,6 @@ const Page = () => {
       try {
         const res = await RoadmapApiAxiosInstance.get(
           apiRoutes.Roadmap.getAllRoadmaps.route,
-          { method: apiRoutes.Roadmap.getAllRoadmaps.method },
         );
         if (res.data.success) {
           if (res.data.success) {

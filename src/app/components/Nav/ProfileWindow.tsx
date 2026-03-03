@@ -27,7 +27,6 @@ const ProfileWindow = ({
       const res = await RoadmapApiAxiosInstance.post(
         apiRoutes.Auth.logout.route,
         {},
-        { method: apiRoutes.Auth.logout.method },
       );
       if (!res.data.success) {
         toast.error(res.data.message);

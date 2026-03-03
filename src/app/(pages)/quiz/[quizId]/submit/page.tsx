@@ -1,6 +1,7 @@
 "use client";
 import { apiRoutes } from "@/app/api/apiRoutes";
 import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
+import NotFoundQuizResults from "@/app/components/Quiz/NotFoundQuizResults";
 import QuizResults from "@/app/components/Quiz/QuizResults";
 import QuizResultsLoading from "@/app/components/Quiz/QuizResultsLoading";
 import { quizResultsProps } from "@/app/types/api";
@@ -43,7 +44,7 @@ const Page = () => {
     if (quizId) fetchResults();
   }, [quizId]);
   if (loading) return <QuizResultsLoading />;
-  // if(!quizResult) return null
+  if (!quizResult) return <NotFoundQuizResults />;
   return (
     <QuizResults
       answerDetails={quizResult?.answerDetails ?? []}
@@ -54,7 +55,7 @@ const Page = () => {
       status={quizResult?.status ?? "Failed"}
       totalQuestions={quizResult?.totalQuestions ?? 0}
       wrongAnswers={quizResult?.wrongAnswers ?? 0}
-      quizId={quizResult?.quizId??""}
+      quizId={quizResult?.quizId ?? ""}
     />
   );
 };
