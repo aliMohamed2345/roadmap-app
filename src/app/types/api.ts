@@ -1,6 +1,5 @@
 import { QuestionItemProps } from "./quiz";
 import { difficultySectionProps, resourcesTypeSectionProps } from "./roadmap";
-
 export interface FiltersProps {
   q?: string;
   isAdmin?: boolean;
@@ -16,11 +15,20 @@ export interface QuestionsFilterProps {
 }
 
 export interface UserProps {
-  id: string;
+  id?: string;
+  _id?: string;
   isAdmin: boolean;
   username?: string;
   email?: string;
   imageURL: string;
+  createdAt?: Date;
+  updatedAt?:Date
+  bio?: string;
+  progressData: {
+    project: projectProgressDataProps[];
+    roadmap: roadmapProgressDataProps[];
+    quiz: quizRoadmapProgressDataProps[];
+  };
 }
 
 export interface UserStateProps {
@@ -55,21 +63,6 @@ export interface projectProgressDataProps {
   createdAt: Date;
 }
 
-export interface profileProps {
-  id: string;
-  username: string;
-  email: string;
-  createdAt: Date;
-  updatedAt: Date;
-  bio: string;
-  isAdmin: boolean;
-  imageURL: string;
-  progressData: {
-    roadmap: roadmapProgressDataProps[];
-    quiz: quizRoadmapProgressDataProps[];
-    project: projectProgressDataProps[];
-  };
-}
 
 export interface changePasswordProps {
   currentPassword: string;
@@ -128,13 +121,21 @@ export interface answerDetailsProps {
   userAnswer: string;
 }
 export interface quizResultsProps {
-    quizId?: string;
-    quizTitle: string;
-    status: StatusGradeProps;
-    grade: QuizGradeProps;
-    percentage: number;
-    totalQuestions: number;
-    wrongAnswers: number;
-    correctAnswers: number;
-    answerDetails: answerDetailsProps[]
+  quizId?: string;
+  quizTitle: string;
+  status: StatusGradeProps;
+  grade: QuizGradeProps;
+  percentage: number;
+  totalQuestions: number;
+  wrongAnswers: number;
+  correctAnswers: number;
+  answerDetails: answerDetailsProps[];
 }
+
+export interface UsersProps {
+  totalPages: number;
+  page?:number
+  totalUsers: number;
+  users: UserProps[];
+}
+

@@ -18,15 +18,15 @@ export interface roadmapDummyDataProps {
   difficulty?: difficultySectionProps;
   tags?: string[];
   steps?: { title: string; description: string }[];
-  quizTitle?:string
-  quizDescription?:string
+  quizTitle?: string;
+  quizDescription?: string;
 }
 
 export interface quizProps {
   title: string;
   description: string;
   id: string;
-  _id?:string
+  _id?: string;
   rank?: difficultySectionProps;
 }
 
@@ -44,7 +44,7 @@ export interface projectDummyDataProps {
   description: string;
   tags: string[];
   id: string;
-  _id?:string;
+  _id?: string;
   steps: { title: string; description: string }[];
   level: `Beginner` | `Intermediate` | `Advanced`;
 }

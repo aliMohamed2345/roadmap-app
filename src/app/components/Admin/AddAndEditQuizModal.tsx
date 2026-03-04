@@ -1,18 +1,14 @@
 import { difficultySectionProps } from "@/app/types/roadmap";
 import { useState } from "react";
 import DropDownMenu from "../UI/DropDownMenu";
+import { AddAndEditQuizModalProps } from "@/app/types/admin";
 
 const AddAndEditQuizModal = ({
   mode,
   title,
   description,
   rank,
-}: {
-  mode: "ADD" | "EDIT";
-  title?: string;
-  description?: string;
-  rank?: difficultySectionProps;
-}) => {
+}: AddAndEditQuizModalProps) => {
   const [currentTitle, setCurrentTitle] = useState<string>(
     mode === "ADD" ? "" : title || "",
   );

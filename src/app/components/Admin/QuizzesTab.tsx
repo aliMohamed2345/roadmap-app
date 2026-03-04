@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import Modal from "../UI/Modal";
-import AddAndEditQuizModal from "./AddAndEditQuizModal";
 import { questionDummyData, quizDummyData } from "@/app/data";
 import { motion } from "framer-motion";
 import { FiChevronRight, FiEdit2, FiPlus, FiTrash2 } from "react-icons/fi";

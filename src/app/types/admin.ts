@@ -1,5 +1,7 @@
 import { difficultySectionProps, resourcesTypeSectionProps } from "./roadmap";
 import { Dispatch, SetStateAction } from "react";
+import { WindowProps } from "./UI";
+import { UsersProps } from "./api";
 
 export interface AddAndEditResourceModalProps {
   mode: "ADD" | "EDIT";
@@ -81,4 +83,29 @@ export interface ActiveQuizModalStateProps {
 export interface DeleteModalProps {
   onCancel: Dispatch<SetStateAction<boolean>>;
   mode: `roadmap` | `section` | `resource` | `quiz` | `question`;
+}
+
+export type roleTypeProps = "User" | "Admin" | "select a role";
+
+export interface ActiveModalProps {
+  modal: ActiveModalStateProps;
+  onClose: () => void;
+}
+
+export interface ActiveQuizModalProps {
+  modal: ActiveQuizModalStateProps;
+  onClose: () => void;
+}
+
+export interface AddAndEditQuizModalProps {
+  mode: "ADD" | "EDIT";
+  title?: string;
+  description?: string;
+  rank?: difficultySectionProps;
+}
+
+export interface DeleteUserModalProps {
+  onCancel: Dispatch<SetStateAction<WindowProps>>;
+  setUserData: Dispatch<SetStateAction<UsersProps>>;
+  userId: string;
 }

@@ -1,17 +1,10 @@
 "use client";
 
+import { DropDownMenuProps } from "@/app/types/UI";
 import { useState, useRef, useEffect } from "react";
 import { IoIosArrowDown, IoIosCheckmark } from "react-icons/io";
 
-const DropDownMenu = ({
-  option,
-  onChange,
-  optionList,
-}: {
-  option: string;
-  onChange: (value: string) => void;
-  optionList: string[];
-}) => {
+const DropDownMenu = ({ option, onChange, optionList }: DropDownMenuProps) => {
   const [selected, setSelected] = useState(option);
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);

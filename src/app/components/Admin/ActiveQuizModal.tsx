@@ -1,16 +1,10 @@
 import React from "react";
-import { ActiveQuizModalStateProps } from "@/app/types/admin";
+import { ActiveQuizModalProps } from "@/app/types/admin";
 import Modal from "../UI/Modal";
 import AddAndEditQuestionModal from "./AddAndEditQuestionModal";
 import AddAndEditQuizModal from "./AddAndEditQuizModal";
 import DeleteModal from "./DeleteRoadmapModal";
-const ActiveQuizModal = ({
-  modal,
-  onClose,
-}: {
-  modal: ActiveQuizModalStateProps;
-  onClose: () => void;
-}) => {
+const ActiveQuizModal = ({ modal, onClose }: ActiveQuizModalProps) => {
   if (!modal?.type) return null;
 
   switch (modal?.type) {

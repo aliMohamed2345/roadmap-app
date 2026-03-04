@@ -3,14 +3,8 @@ import AddAndEditSectionModal from "./AddAndEditSectionModal";
 import DeleteModal from "./DeleteRoadmapModal";
 import AddAndEditRoadmapModal from "./AddAndEditRoadmapModal";
 import Modal from "../UI/Modal";
-import { ActiveModalStateProps } from "@/app/types/admin";
-const ActiveModal = ({
-  modal,
-  onClose,
-}: {
-  modal: ActiveModalStateProps;
-  onClose: () => void;
-}) => {
+import { ActiveModalProps } from "@/app/types/admin";
+const ActiveModal = ({ modal, onClose }: ActiveModalProps) => {
   if (!modal.type) return null;
 
   switch (modal.type) {

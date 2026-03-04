@@ -13,7 +13,6 @@ import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
 import { apiRoutes } from "@/app/api/apiRoutes";
 import toast from "react-hot-toast";
 import ProfileDetailsLoading from "@/app/components/Profile/ProfileDetailsLoading";
-import { profileProps } from "@/app/types/api";
 import Image from "next/image";
 import { convertDateToYear } from "@/app/helper";
 import { GoShieldCheck } from "react-icons/go";
@@ -25,12 +24,13 @@ import { FaLock } from "react-icons/fa";
 import ChangePasswordModal from "@/app/components/Profile/ChangePasswordModal";
 import ProfileImageUploader from "@/app/components/Profile/ProfileImageUploader";
 import { motion } from "framer-motion";
+import { UserProps } from "@/app/types/api";
 function Page() {
   const { user, isAuthenticated } = useSelector(
     (state: RootState) => state.user,
   );
   const tabs: tabsTypesProps[] = ["Roadmaps", "Quizzes", "Projects"];
-  const [profile, setProfile] = useState<profileProps | null>(null);
+  const [profile, setProfile] = useState<UserProps | null>(null);
   const defaultImage = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
   const [openEditProfile, setOpenEditProfile] = useState<boolean>(false);
   const [openChangePassword, setOpenChangePassword] = useState<boolean>(false);

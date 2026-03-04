@@ -2,7 +2,6 @@
 import { apiRoutes } from "@/app/api/apiRoutes";
 import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
 import { updateProfileProps } from "@/app/types/roadmap";
-import { SetStateAction, Dispatch } from "react";
 import { FiEdit } from "react-icons/fi";
 import { useState } from "react";
 import { AxiosError } from "axios";
@@ -11,16 +10,13 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { updateUser } from "@/app/redux/Slices/userSlice";
-import { profileProps } from "@/app/types/api";
+import { UsersProps } from "@/app/types/api";
+import { EditProfileModalProps } from "@/app/types/UI";
 const EditProfileModal = ({
-  setProfile,
   profile,
   setEditProfile,
-}: {
-  setProfile: Dispatch<SetStateAction<profileProps | null>>;
-  profile: profileProps;
-  setEditProfile: Dispatch<SetStateAction<boolean>>;
-}) => {
+  setUsersData,
+}: EditProfileModalProps) => {
   const dispatch = useDispatch();
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -46,16 +42,21 @@ const EditProfileModal = ({
       }
 
       const res = await RoadmapApiAxiosInstance.put(
-        apiRoutes.Users.updateProfile.route,
+        apiRoutes.Users.updateUserById.route(profile._id || ""),
         updateProfile,
       );
 
       if (res.data?.success) {
-        setProfile((prev) =>
-          prev
-            ? { ...prev, ...updateProfile }
-            : ({ ...updateProfile } as profileProps),
-        );
+        setUsersData((prev) => {
+          if (!prev) return prev;
+
+          return {
+            ...prev,
+            users: prev.users.map((user) =>
+              user._id === profile._id ? { ...user, ...updateProfile } : user,
+            ),
+          };
+        });
         dispatch(
           updateUser({
             username: updateProfile.username,

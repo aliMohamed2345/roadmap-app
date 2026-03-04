@@ -7,7 +7,7 @@ import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
 import { apiRoutes } from "@/app/api/apiRoutes";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
-import { profileProps } from "@/app/types/api";
+import { UserProps } from "@/app/types/api";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { updateUser } from "@/app/redux/Slices/userSlice";
@@ -20,7 +20,7 @@ const ProfileImageUploader = ({
   alt?: string;
   initialImage?: string;
   setOpenImage: Dispatch<SetStateAction<boolean>>;
-  setProfile: Dispatch<SetStateAction<profileProps | null>>;
+  setProfile: Dispatch<SetStateAction<UserProps | null>>;
 }) => {
   const dispatch = useDispatch();
   const [imageSrc, setImageSrc] = useState<string>(initialImage || "");

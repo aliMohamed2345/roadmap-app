@@ -39,6 +39,12 @@ export const apiRoutes = {
     getUserById: {
       route: (id: string) => `/api/v1/users/${id}`,
     },
+    deleteUserById: {
+      route: (id: string) => `/api/v1/users/${id}`,
+    },
+    updateUserById: {
+      route: (id: string) => `/api/v1/users/${id}`,
+    },
     toggleRole: {
       route: (id: string) => `/api/v1/users/${id}/role`,
     },
