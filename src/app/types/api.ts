@@ -11,7 +11,7 @@ export interface QuestionsFilterProps {
   q?: string;
   page?: number;
   limit?: number;
-  random: boolean;
+  random?: boolean;
 }
 
 export interface UserProps {

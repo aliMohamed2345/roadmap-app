@@ -1,11 +1,24 @@
+import { apiRoutes } from "@/app/api/apiRoutes";
+import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
 import { AddAndEditQuestionModalProps } from "@/app/types/admin";
+import {
+  validateEditQuestion,
+  validateQuestionCreation,
+} from "@/app/validators";
+import { AxiosError } from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const AddAndEditQuestionModal = ({
   mode,
   question,
   answers,
   correctAnswer,
+  setQuestions,
+  id,
+  quizId,
+  onClose,
 }: AddAndEditQuestionModalProps) => {
   const [currentQuestion, setCurrentQuestion] = useState<string>(
     mode === "ADD" ? "" : question || "",
@@ -16,6 +29,106 @@ const AddAndEditQuestionModal = ({
   const [currentAnswers, setCurrentAnswers] = useState<string[]>(
     mode === "ADD" ? [] : answers || [],
   );
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+  console.log({ quizId });
+  const handleCreateOrEditQuestions = async (mode: "ADD" | "EDIT") => {
+    setLoading(true);
+    if (mode === "ADD") {
+      try {
+        const message = validateQuestionCreation(
+          currentQuestion,
+          currentCorrectAnswer,
+          currentAnswers,
+        );
+        if (message) {
+          setError(message);
+          setLoading(false);
+          return;
+        }
+
+        const res = await RoadmapApiAxiosInstance.post(
+          apiRoutes.Question.createQuestionFromQuiz.route(quizId),
+          {
+            question: currentQuestion,
+            answer: currentCorrectAnswer,
+            options: currentAnswers,
+          },
+        );
+        console.log(res.data);
+        if (res.data.success) {
+          console.log(res.data);
+          toast.success(res.data.message);
+          setCurrentQuestion("");
+          setCurrentAnswers([]);
+          setCurrentCorrectAnswer("");
+          setError("");
+          setQuestions((prev) => ({
+            ...prev,
+            questions: res.data.question
+              ? [...prev.questions, res.data.question]
+              : prev.questions,
+            totalQuestions: prev.totalQuestions + 1,
+          }));
+          onClose();
+        }
+      } catch (error) {
+        const axiosError = error as AxiosError<{ message: string }>;
+        toast.error(
+          axiosError.response?.data?.message || "Something went wrong",
+        );
+      } finally {
+        setLoading(false);
+      }
+    } else if (mode === "EDIT") {
+      try {
+        const message = validateEditQuestion(
+          currentQuestion,
+          currentCorrectAnswer,
+          currentAnswers,
+        );
+        if (message) {
+          setError(message);
+          setLoading(false);
+          return;
+        }
+        const res = await RoadmapApiAxiosInstance.put(
+          apiRoutes.Question.updateQuestionFromQuiz.route(quizId, id),
+          {
+            question: currentQuestion,
+            answer: currentCorrectAnswer,
+            options: currentAnswers,
+          },
+        );
+        console.log(res.data);
+        if (res.data.success) {
+          toast.success(res.data.message);
+          setCurrentAnswers([]);
+          setCurrentCorrectAnswer("");
+          setCurrentQuestion("");
+          setError("");
+          setQuestions((prev) => ({
+            ...prev,
+            questions: prev.questions.map((question) => {
+              if (!question) return question;
+
+              return question._id === id
+                ? { ...question, ...res.data.question }
+                : question;
+            }),
+          }));
+          onClose();
+        }
+      } catch (error) {
+        const axiosError = error as AxiosError<{ message: string }>;
+        toast.error(
+          axiosError.response?.data?.message || "Something went wrong",
+        );
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
   return (
     <div className="flex flex-col gap-2">
@@ -35,10 +148,11 @@ const AddAndEditQuestionModal = ({
             key={index}
             value={currentAnswers[index] || ""}
             onChange={(e) =>
-              setCurrentAnswers((prev) => [
-                ...prev,
-                (prev[index] = e.target.value),
-              ])
+              setCurrentAnswers((prev) => {
+                const updated = [...prev];
+                updated[index] = e.target.value;
+                return updated;
+              })
             }
             type="text"
             id={`answer-${index + 1}`}
@@ -58,8 +172,28 @@ const AddAndEditQuestionModal = ({
         className="border border-border bg-background rounded-lg p-2"
       />
 
-      <button className="p-2 rounded-lg bg-linear-to-br from-neon-cyan to-neon-purple text-white cursor-pointer hover:scale-105 transition-all gap-2 my-5 w-full max-w-md mx-auto">
-        {mode === "ADD" ? `Create Question` : `Update Question`}
+      {error && (
+        <p
+          className={`text-destructive text-center ${error ? "opacity-100" : "opacity-0"}`}
+        >
+          {error}
+        </p>
+      )}
+
+      <button
+        onClick={() => handleCreateOrEditQuestions(mode)}
+        className="p-2 rounded-lg bg-linear-to-br from-neon-cyan to-neon-purple text-white cursor-pointer hover:scale-105 transition-all gap-2 my-5 w-full max-w-md mx-auto"
+      >
+        {loading ? (
+          <AiOutlineLoading3Quarters
+            className="animate-spin text-white mx-auto"
+            size={22}
+          />
+        ) : mode === "ADD" ? (
+          `Create Questions`
+        ) : (
+          `Update Questions`
+        )}
       </button>
     </div>
   );

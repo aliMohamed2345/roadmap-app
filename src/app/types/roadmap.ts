@@ -25,7 +25,7 @@ export interface roadmapDummyDataProps {
 export interface quizProps {
   title: string;
   description: string;
-  id: string;
+  id?: string;
   _id?: string;
   rank?: difficultySectionProps;
 }

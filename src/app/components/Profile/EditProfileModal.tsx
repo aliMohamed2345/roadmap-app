@@ -10,7 +10,6 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { updateUser } from "@/app/redux/Slices/userSlice";
-import { UsersProps } from "@/app/types/api";
 import { EditProfileModalProps } from "@/app/types/UI";
 const EditProfileModal = ({
   profile,

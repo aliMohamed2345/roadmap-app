@@ -1,7 +1,12 @@
-import { difficultySectionProps, resourcesTypeSectionProps } from "./roadmap";
+import {
+  difficultySectionProps,
+  quizProps,
+  resourcesTypeSectionProps,
+} from "./roadmap";
 import { Dispatch, SetStateAction } from "react";
 import { WindowProps } from "./UI";
-import { UsersProps } from "./api";
+import { QuestionProps, UsersProps } from "./api";
+import { QuestionItemProps } from "./quiz";
 
 export interface AddAndEditResourceModalProps {
   mode: "ADD" | "EDIT";
@@ -28,6 +33,10 @@ export interface AddAndEditQuestionModalProps {
   question?: string;
   answers?: string[];
   correctAnswer?: string;
+  setQuestions: Dispatch<SetStateAction<QuestionProps>>;
+  id: string;
+  quizId: string;
+  onClose: () => void;
 }
 
 export type adminTypeProps = "roadmaps" | "quizzes" | "users";
@@ -65,6 +74,8 @@ export interface ActiveModalPayloadQuizDataProps {
   question?: string;
   answers?: string[];
   correctAnswer?: string;
+  _id?: string;
+  id?: string;
 }
 
 export interface ActiveModalPayloadDataProps {
@@ -79,10 +90,18 @@ export interface ActiveQuizModalStateProps {
   type: ModalQuizTypeProps;
   payload?: ActiveModalPayloadQuizDataProps;
 }
+export interface ActiveQuestionModalStateProps {
+  type: ModalQuizTypeProps;
+  payload?: QuestionItemProps;
+}
 
 export interface DeleteModalProps {
   onCancel: Dispatch<SetStateAction<boolean>>;
   mode: `roadmap` | `section` | `resource` | `quiz` | `question`;
+  questionId?: string;
+  setQuizzes: Dispatch<SetStateAction<quizProps[]>>;
+  setQuestions: Dispatch<SetStateAction<QuestionProps>>;
+  quizId:string
 }
 
 export type roleTypeProps = "User" | "Admin" | "select a role";
@@ -93,8 +112,10 @@ export interface ActiveModalProps {
 }
 
 export interface ActiveQuizModalProps {
-  modal: ActiveQuizModalStateProps;
+  modal: ActiveQuizModalStateProps | ActiveQuestionModalStateProps;
   onClose: () => void;
+  setQuizzes: Dispatch<SetStateAction<quizProps[]>>;
+  setQuestions: Dispatch<SetStateAction<QuestionProps>>;
 }
 
 export interface AddAndEditQuizModalProps {
@@ -102,6 +123,9 @@ export interface AddAndEditQuizModalProps {
   title?: string;
   description?: string;
   rank?: difficultySectionProps;
+  onClose: () => void;
+  setQuizzes: Dispatch<SetStateAction<quizProps[]>>;
+  id?: string;
 }
 
 export interface DeleteUserModalProps {

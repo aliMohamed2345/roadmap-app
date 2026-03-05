@@ -1,5 +1,53 @@
+"use client";
+import { apiRoutes } from "@/app/api/apiRoutes";
+import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
 import { DeleteModalProps } from "@/app/types/admin";
-const DeleteModal = ({ onCancel, mode }: DeleteModalProps) => {
+import { AxiosError } from "axios";
+import { useState } from "react";
+import toast from "react-hot-toast";
+const DeleteModal = ({
+  onCancel,
+  mode,
+  questionId,
+  setQuizzes,
+  setQuestions,
+  quizId,
+}: DeleteModalProps) => {
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handleDeleteModal = async () => {
+    try {
+      setLoading(true);
+      const res = await RoadmapApiAxiosInstance.delete(
+        mode === "quiz"
+          ? apiRoutes.Quiz.deleteQuizById.route(quizId ?? "")
+          : mode === "question"
+            ? apiRoutes.Question.deleteQuestionFromQuiz.route(
+                quizId!,
+                questionId!,
+              )
+            : "",
+      );
+
+      if (res.data.success) {
+        setQuizzes((prev) => prev?.filter((quiz) => quiz._id !== quizId));
+        setQuestions((prev) => ({
+          ...prev,
+          questions: prev?.questions?.filter(
+            (question) => question._id !== questionId,
+          ),
+        }));
+        toast.success(res.data.message);
+        setLoading(false);
+        onCancel(false);
+      }
+    } catch (error) {
+      const axiosError = error as AxiosError<{ message: string }>;
+      toast.error(axiosError.response?.data?.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div>
       <p className="text-lg sm:text-xl font-bold text-center">
@@ -22,17 +70,26 @@ const DeleteModal = ({ onCancel, mode }: DeleteModalProps) => {
           Cancel
         </button>
 
-        <button className="px-5 py-2.5 cursor-pointer rounded-xl bg-destructive text-destructive-foreground font-semibold shadow-md transition-all duration-200 hover:bg-destructive/90 hover:shadow-lg active:scale-95">
-          Delete{" "}
-          {mode === "roadmap"
-            ? "Roadmap"
-            : mode === "section"
-              ? "Section"
-              : mode === "resource"
-                ? "Resource"
-                : mode === "question"
-                  ? "Question"
-                  : "Quiz"}
+        <button
+          onClick={handleDeleteModal}
+          className="px-5 py-2.5 cursor-pointer rounded-xl bg-destructive text-destructive-foreground font-semibold shadow-md transition-all duration-200 hover:bg-destructive/90 hover:shadow-lg active:scale-95"
+        >
+          {loading ? (
+            "Loading..."
+          ) : (
+            <>
+              Delete{" "}
+              {mode === "roadmap"
+                ? "Roadmap"
+                : mode === "section"
+                  ? "Section"
+                  : mode === "resource"
+                    ? "Resource"
+                    : mode === "question"
+                      ? "Question"
+                      : "Quiz"}
+            </>
+          )}
         </button>
       </div>
     </div>
