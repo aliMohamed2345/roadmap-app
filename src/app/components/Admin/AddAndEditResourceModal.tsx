@@ -37,7 +37,6 @@ const AddAndEditResourceModal = ({
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
-  console.log({ resourceId, sectionId, roadmapId });
 
   const handleSubmitResource = async (mode: "ADD" | "EDIT") => {
     setLoading(true);
@@ -67,7 +66,6 @@ const AddAndEditResourceModal = ({
         );
 
         if (res.data.success) {
-          console.log(res.data);
           toast.success(res.data.message);
           setCurrentTitle("");
           setCurrentType("article");

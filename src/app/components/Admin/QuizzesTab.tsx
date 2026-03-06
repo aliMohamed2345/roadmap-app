@@ -34,7 +34,6 @@ const QuizzesTab = () => {
     {},
   );
   const [pageMap, setPageMap] = useState<Record<string, number>>({});
-  console.log(noQuestionsFound);
 
   useEffect(() => {
     const fetchQuizzes = async () => {

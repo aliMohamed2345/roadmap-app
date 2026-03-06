@@ -2,7 +2,6 @@ import { BiTrophy, BiBrain } from "react-icons/bi";
 import { IoBookOutline } from "react-icons/io5";
 import { FiTarget, FiUsers, FiZap } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
-import {  User } from "./types/roadmap";
 import { FaRegMap } from "react-icons/fa";
 import { IoMdHelpCircleOutline } from "react-icons/io";
 export const features = [
@@ -42,7 +41,6 @@ export const features = [
   },
 ];
 
-
 export const adminTabs = [
   {
     id: "roadmaps",
@@ -58,48 +56,5 @@ export const adminTabs = [
     id: "users",
     label: "Users",
     icon: FiUsers,
-  },
-];
-
-export const users: User[] = [
-  {
-    id: 1,
-    name: "admin_sarah",
-    email: "sarah@example.com",
-    role: "admin",
-    status: "active",
-    joined: "8/15/2025",
-  },
-  {
-    id: 2,
-    name: "john_dev",
-    email: "john@example.com",
-    role: "user",
-    status: "active",
-    joined: "9/1/2025",
-  },
-  {
-    id: 3,
-    name: "maria_learns",
-    email: "maria@example.com",
-    role: "user",
-    status: "banned",
-    joined: "10/12/2025",
-  },
-  {
-    id: 4,
-    name: "alex_code",
-    email: "alex@example.com",
-    role: "user",
-    status: "active",
-    joined: "11/3/2025",
-  },
-  {
-    id: 5,
-    name: "mod_james",
-    email: "james@example.com",
-    role: "admin",
-    status: "active",
-    joined: "7/20/2025",
   },
 ];

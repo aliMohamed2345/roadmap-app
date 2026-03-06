@@ -30,7 +30,6 @@ const RoadmapsTab = () => {
   });
   const [loading, setLoading] = useState<boolean>(true);
   const [loadingSections, setLoadingSections] = useState<boolean>(false);
-  console.log(sections);
   const toggleModal = (
     e: React.MouseEvent,
     payload?: ActiveModalPayloadDataProps,
@@ -75,7 +74,6 @@ const RoadmapsTab = () => {
       const res = await RoadmapApiAxiosInstance.get(
         apiRoutes.Section.getAllRoadmapSections.route(roadmap._id!),
       );
-      console.log(res.data);
       if (res.data.success) {
         setSections(res.data.sections);
       }

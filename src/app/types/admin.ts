@@ -6,7 +6,7 @@ import {
 } from "./roadmap";
 import { Dispatch, SetStateAction } from "react";
 import { WindowProps } from "./UI";
-import { QuestionProps, resourceProps, roadmapProps, UsersProps } from "./api";
+import { QuestionProps, roadmapProps, UsersProps } from "./api";
 import { QuestionItemProps } from "./quiz";
 
 export interface AddAndEditResourceModalProps {

@@ -58,7 +58,6 @@ const AddAndEditSectionModal = ({
         );
 
         if (res.data.success) {
-          console.log(res.data);
           toast.success(res.data.message);
           setCurrentTitle("");
           setCurrentDescription("");

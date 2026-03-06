@@ -19,7 +19,6 @@ const DeleteModal = ({
   resourceId,
 }: DeleteModalProps) => {
   const [loading, setLoading] = useState<boolean>(false);
-  console.log({ roadmapId, sectionId, resourceId });
   const handleDeleteModal = async () => {
     try {
       setLoading(true);

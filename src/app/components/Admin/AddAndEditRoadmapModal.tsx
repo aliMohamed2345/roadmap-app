@@ -21,7 +21,6 @@ const AddAndEditRoadmapModal = ({
   const [currentDescription, setCurrentDescription] = useState<string>(
     mode === "ADD" ? "" : description || "",
   );
-  console.log({roadmapId})
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -49,7 +48,6 @@ const AddAndEditRoadmapModal = ({
         );
 
         if (res.data.success) {
-          console.log(res.data);
           toast.success(res.data.message);
           setCurrentTitle("");
           setCurrentDescription("");
