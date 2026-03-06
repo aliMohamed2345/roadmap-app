@@ -30,11 +30,12 @@ export interface quizProps {
   rank?: difficultySectionProps;
 }
 
-export interface sectionDummyDataProps {
+export interface sectionDataProps {
   title: string;
   description: string;
   id: string;
   _id?: string;
+  roadmapId:string
   difficulty: difficultySectionProps;
   resources: resourceProps[];
 }

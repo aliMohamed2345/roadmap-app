@@ -12,7 +12,7 @@ const QuizProfileTab = ({ quiz }: { quiz: quizRoadmapProgressDataProps[] }) => {
           className="flex flex-wrap md:flex-nowrap justify-between items-center gap-4 rounded-2xl border border-border bg-muted/60 p-5 hover:border-primary hover:shadow-md transition-all duration-300"
         >
           <div className="space-y-1">
-            <p className="font-semibold">Quiz ID: {quizItem.quiz}</p>
+            <p className="font-semibold">Quiz ID: {quizItem._id}</p>
             <p className="text-xs text-muted-foreground">
               {quizItem.totalQuestions} Questions • {quizItem.correctAnswers}{" "}
               Correct • {quizItem.wrongAnswers} Wrong

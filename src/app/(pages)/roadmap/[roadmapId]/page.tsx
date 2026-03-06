@@ -1,7 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
-import { sectionDummyDataProps } from "@/app/types/roadmap";
 import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
@@ -16,6 +15,7 @@ import RoadmapContentsList from "@/app/components/Roadmap/RoadmapContentsList";
 import ProgressCircle from "@/app/components/Roadmap/ProgressCircle";
 import RoadmapDetailsSections from "@/app/components/Roadmap/RoadmapDetailsSections";
 import ExportRoadmap from "@/app/components/Roadmap/ExportRoadmap";
+import { sectionDataProps } from "@/app/types/roadmap";
 
 const Page = () => {
   const { isAuthenticated } = useSelector((state: RootState) => state.user);
@@ -24,7 +24,7 @@ const Page = () => {
   const [roadmapDetails, setRoadmapDetails] = useState<roadmapProps>();
   const [userProgress, setUserProgress] = useState<userProgressProps>();
   const [sectionDetails, setSectionDetails] =
-    useState<sectionDummyDataProps[]>();
+    useState<sectionDataProps[]>();
   const [loading, setLoading] = useState(true);
   const [openCongratsModal, setOpenCongratsModal] = useState(false);
   useEffect(() => {

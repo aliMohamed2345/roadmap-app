@@ -28,7 +28,6 @@ const AddAndEditQuizModal = ({
   const [currentRank, setCurrentRank] = useState<difficultySectionProps>(
     mode === "ADD" ? "Beginner" : rank || "Beginner",
   );
-  console.log(id);
   const [loading, setLoading] = useState<boolean>(false);
 
   const [error, setError] = useState<string>("");

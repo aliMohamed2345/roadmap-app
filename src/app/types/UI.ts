@@ -62,5 +62,5 @@ export interface DropDownMenuProps {
 export interface EditProfileModalProps {
   profile: UserProps;
   setEditProfile: Dispatch<SetStateAction<boolean>>;
-  setUsersData: Dispatch<SetStateAction<UsersProps>>;
+  setUsersData?: Dispatch<SetStateAction<UsersProps>>;
 }

@@ -49,6 +49,7 @@ export interface quizRoadmapProgressDataProps {
   percentage: number;
   totalQuestions: number;
   correctAnswers: number;
+  _id:string
   wrongAnswers: number;
   grade: string;
   status: string;

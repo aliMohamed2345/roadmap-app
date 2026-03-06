@@ -8,13 +8,18 @@ import toast from "react-hot-toast";
 const DeleteModal = ({
   onCancel,
   mode,
-  questionId,
   setQuizzes,
   setQuestions,
+  setRoadmaps,
+  setSections,
   quizId,
+  questionId,
+  roadmapId,
+  sectionId,
+  resourceId,
 }: DeleteModalProps) => {
   const [loading, setLoading] = useState<boolean>(false);
-
+  console.log({ roadmapId, sectionId, resourceId });
   const handleDeleteModal = async () => {
     try {
       setLoading(true);
@@ -26,17 +31,41 @@ const DeleteModal = ({
                 quizId!,
                 questionId!,
               )
-            : "",
+            : mode === "roadmap"
+              ? apiRoutes.Roadmap.deleteRoadmapById.route(roadmapId ?? "")
+              : mode === "section"
+                ? apiRoutes.Section.deleteSectionToRoadmap.route(
+                    roadmapId ?? "",
+                    sectionId ?? "",
+                  )
+                : mode === "resource"
+                  ? apiRoutes.Resource.deleteResourceByIdToRoadmap.route(
+                      roadmapId ?? "",
+                      sectionId ?? "",
+                      resourceId ?? "",
+                    )
+                  : "",
       );
 
       if (res.data.success) {
-        setQuizzes((prev) => prev?.filter((quiz) => quiz._id !== quizId));
-        setQuestions((prev) => ({
+        setQuizzes!((prev) => prev?.filter((quiz) => quiz._id !== quizId));
+        setQuestions!((prev) => ({
           ...prev,
           questions: prev?.questions?.filter(
             (question) => question._id !== questionId,
           ),
         }));
+        setRoadmaps!((prev) =>
+          prev?.filter((roadmap) => roadmap._id !== roadmapId),
+        );
+        setSections!((prev) =>
+          prev?.filter((section) => section._id !== sectionId),
+        );
+        setSections!((prev) =>
+          prev?.filter((section) =>
+            section.resources.filter((r) => r._id !== resourceId),
+          ),
+        );
         toast.success(res.data.message);
         setLoading(false);
         onCancel(false);

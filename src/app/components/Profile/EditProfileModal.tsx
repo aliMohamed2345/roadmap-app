@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { updateUser } from "@/app/redux/Slices/userSlice";
 import { EditProfileModalProps } from "@/app/types/UI";
+import { UsersProps } from "@/app/types/api";
 const EditProfileModal = ({
   profile,
   setEditProfile,
@@ -46,7 +47,7 @@ const EditProfileModal = ({
       );
 
       if (res.data?.success) {
-        setUsersData((prev) => {
+        setUsersData!((prev:UsersProps) => {
           if (!prev) return prev;
 
           return {

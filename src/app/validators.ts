@@ -1,4 +1,8 @@
-import { difficultySectionProps } from "./types/roadmap";
+import { isValidUrl } from "./helper";
+import {
+  difficultySectionProps,
+  resourcesTypeSectionProps,
+} from "./types/roadmap";
 
 export const validateSignUpCredentials = (
   username: string,
@@ -223,6 +227,216 @@ export const validateQuestionCreation = (
 
   const uniqueOptions = new Set(options.map((o) => o.trim().toLowerCase()));
   if (uniqueOptions.size !== options.length) return "Options must be unique.";
+
+  return "";
+};
+
+export const validateRoadmapCreation = (title: string, description: string) => {
+  if (!title) return "Title is required.";
+  if (!description) return "description is required.";
+
+  if (typeof title !== "string") return "Title must be a string.";
+  if (title.trim().length > 100)
+    return "Title must be less than 100 characters.";
+  if (title.trim().length < 3) return "Title must be more than 3 characters.";
+
+  if (typeof description !== "string") return "Description must be a string.";
+  if (description.trim().length < 10) {
+    return "Description must be at least 10 characters long.";
+  }
+  if (description.trim().length > 1000) {
+    return "Description cannot exceed 1000 characters.";
+  }
+
+  return "";
+};
+
+export const validateEditRoadmap = (title: string, description: string) => {
+  if (title) {
+    if (typeof title !== "string") return "Title must be a string.";
+    if (title.trim().length > 100)
+      return "Title must be less than 100 characters.";
+    if (title.trim().length < 3) return "Title must be more than 3 characters.";
+  }
+  if (description) {
+    if (typeof description !== "string") return "Description must be a string.";
+    if (description.trim().length < 10) {
+      return "Description must be at least 10 characters long.";
+    }
+    if (description.trim().length > 1000) {
+      return "Description cannot exceed 1000 characters.";
+    }
+  }
+
+  return "";
+};
+
+export const validateSectionCreation = (
+  title: string,
+  description: string,
+  difficulty: difficultySectionProps,
+) => {
+  const allDifficulties = ["Beginner", "Intermediate", "Advanced", "Expert"];
+
+  const trimmedTitle = title?.trim();
+  const trimmedDescription = description?.trim();
+  const trimmedDifficulty = difficulty?.trim();
+
+  if (!trimmedTitle) return "title is required.";
+
+  if (trimmedTitle.length < 3)
+    return "Title must be at least 3 characters long.";
+
+  if (trimmedTitle.length > 100) return "Title cannot exceed 100 characters.";
+
+  if (/^\d+$/.test(trimmedTitle)) return "Title cannot contain numbers only.";
+
+  if (!trimmedDescription) return "description is required.";
+
+  if (trimmedDescription.length < 10)
+    return "Description must be at least 10 characters long.";
+
+  if (trimmedDescription.length > 1000)
+    return "Description cannot exceed 1000 characters.";
+
+  if (!trimmedDifficulty) return "difficulty is required.";
+
+  const difficultyNormalized =
+    trimmedDifficulty.charAt(0).toUpperCase() +
+    trimmedDifficulty.slice(1).toLowerCase();
+
+  if (!allDifficulties.includes(difficultyNormalized)) {
+    return `Difficulty must be one of: ${allDifficulties.join(", ")}`;
+  }
+
+  return "";
+};
+export const validateEditSection = (
+  title: string,
+  description: string,
+  difficulty: difficultySectionProps,
+) => {
+  const allDifficulties = ["Beginner", "Intermediate", "Advanced", "Expert"];
+
+  const trimmedTitle = title?.trim();
+  const trimmedDescription = description?.trim();
+  const trimmedDifficulty = difficulty?.trim();
+  if (trimmedTitle) {
+    if (trimmedTitle.length < 3)
+      return "Title must be at least 3 characters long.";
+
+    if (trimmedTitle.length > 100) return "Title cannot exceed 100 characters.";
+
+    if (/^\d+$/.test(trimmedTitle)) return "Title cannot contain numbers only.";
+  }
+  if (trimmedDescription) {
+    if (trimmedDescription.length < 10)
+      return "Description must be at least 10 characters long.";
+
+    if (trimmedDescription.length > 1000)
+      return "Description cannot exceed 1000 characters.";
+  }
+
+  const difficultyNormalized =
+    trimmedDifficulty.charAt(0).toUpperCase() +
+    trimmedDifficulty.slice(1).toLowerCase();
+  if (trimmedDifficulty) {
+    if (!allDifficulties.includes(difficultyNormalized)) {
+      return `Difficulty must be one of: ${allDifficulties.join(", ")}`;
+    }
+  }
+
+  return "";
+};
+
+export const validateResourceCreation = (
+  url: string,
+  title: string,
+  type: resourcesTypeSectionProps,
+) => {
+  url = url?.trim();
+  title = title?.trim();
+  type = type?.trim() as resourcesTypeSectionProps;
+
+  // Required fields
+  if (!url) return "URL is required";
+  if (!title) return "Title is required";
+  if (!type) return "Type is required";
+
+  // Validate type
+  const validTypes = ["video", "article", "course"];
+  if (!validTypes.includes(type)) {
+    return `Type must be one of: ${validTypes.join(", ")}`;
+  }
+
+  // Validate URL format (simple regex)
+  const urlRegex = /^(https?:\/\/)[\w\-]+(\.[\w\-]+)+[/#?]?.*$/i;
+  if (!urlRegex.test(url)) {
+    return "Invalid URL format";
+  }
+
+  //Title length check
+  if (title.length < 3) {
+    return "Title must be at least 3 characters long";
+  }
+  if (title.length > 150) {
+    return "Title cannot exceed 150 characters";
+  }
+
+  //Optional special check for video type
+  if (type === "video") {
+    const isYouTubeLink =
+      url.includes("youtube.com") || url.includes("youtu.be");
+    if (!isYouTubeLink) {
+      return "Video resources must be valid YouTube links";
+    }
+  }
+  if (!isValidUrl(url)) return "the url not valid";
+  return "";
+};
+export const validateEditResource = (
+  url: string,
+  title: string,
+  type: resourcesTypeSectionProps,
+) => {
+  url = url?.trim();
+  title = title?.trim();
+  type = type?.trim() as resourcesTypeSectionProps;
+
+  if (title) {
+    //Title length check
+    if (title.length < 3) {
+      return "Title must be at least 3 characters long";
+    }
+    if (title.length > 150) {
+      return "Title cannot exceed 150 characters";
+    }
+  }
+
+  if (type) {
+    // Validate type
+    const validTypes = ["video", "article", "course"];
+    if (!validTypes.includes(type)) {
+      return `Type must be one of: ${validTypes.join(", ")}`;
+    }
+    //Optional special check for video type
+    if (type === "video") {
+      const isYouTubeLink =
+        url.includes("youtube.com") || url.includes("youtu.be");
+      if (!isYouTubeLink) {
+        return "Video resources must be valid YouTube links";
+      }
+    }
+  }
+  if (url) {
+    if (!isValidUrl(url)) return "the url not valid";
+
+    // Validate URL format (simple regex)
+    const urlRegex = /^(https?:\/\/)[\w\-]+(\.[\w\-]+)+[/#?]?.*$/i;
+    if (!urlRegex.test(url)) {
+      return "Invalid URL format";
+    }
+  }
 
   return "";
 };

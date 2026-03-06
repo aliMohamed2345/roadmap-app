@@ -1,5 +1,5 @@
 import { userProgressProps } from "@/app/types/api";
-import { sectionDummyDataProps } from "@/app/types/roadmap";
+import { sectionDataProps } from "@/app/types/roadmap";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 
@@ -17,7 +17,7 @@ const RoadmapContentsList = ({
 }: {
   isAuthenticated: boolean;
   userProgress?: userProgressProps;
-  sectionDetails?: sectionDummyDataProps[];
+  sectionDetails?: sectionDataProps[];
 }) => {
   return (
     <div className="lg:col-span-1 bg-card border border-border rounded-xl p-5 h-fit ">

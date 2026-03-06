@@ -2,7 +2,7 @@ import { apiRoutes } from "@/app/api/apiRoutes";
 import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
 import { iconDependingOnType, styleDependingOnDifficulty } from "@/app/helper";
 import { resourceProps, userProgressProps } from "@/app/types/api";
-import { sectionDummyDataProps } from "@/app/types/roadmap";
+import { sectionDataProps } from "@/app/types/roadmap";
 import Link from "next/link";
 import React from "react";
 import toast from "react-hot-toast";
@@ -18,7 +18,7 @@ const RoadmapDetailsSections = ({
   setUserProgress,
   sectionDetails,
 }: {
-  sectionDetails?: sectionDummyDataProps[];
+  sectionDetails?: sectionDataProps[];
   isAuthenticated: boolean;
   userProgress?: userProgressProps;
   setUserProgress: React.Dispatch<

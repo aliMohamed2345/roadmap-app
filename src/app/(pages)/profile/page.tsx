@@ -200,7 +200,6 @@ function Page() {
               <EditProfileModal
                 setEditProfile={setOpenEditProfile}
                 profile={profile!}
-                setProfile={setProfile}
               />
             </Modal>
           )}
