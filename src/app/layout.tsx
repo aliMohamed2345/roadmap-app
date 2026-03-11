@@ -6,6 +6,7 @@ import PhoneMenu from "./components/Nav/PhoneMenu";
 import { Toaster } from "react-hot-toast";
 import { Suspense } from "react";
 import ReduxProvider from "./ReduxProvider";
+import AuthInitializer from "./components/Auth/AuthInitializer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function RootLayout({
       >
         <Suspense>
           <ReduxProvider>
+            <AuthInitializer />
             <Toaster reverseOrder={false} position="top-center" />
             <Nav />
             {children}

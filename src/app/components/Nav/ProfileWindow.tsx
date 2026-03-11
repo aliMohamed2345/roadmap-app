@@ -13,6 +13,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { logout } from "@/app/redux/Slices/userSlice";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 const ProfileWindow = ({
   setOpenProfile,
   openProfile,
@@ -20,6 +21,7 @@ const ProfileWindow = ({
 }: ProfileWindowProps) => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const router = useRouter();
   const handleLogout = async (e: React.MouseEvent) => {
     e.stopPropagation();
     setLoading(true);
@@ -33,10 +35,11 @@ const ProfileWindow = ({
       } else {
         toast.success(res.data.message);
         dispatch(logout());
+        router.push("/");
       }
     } catch (err: unknown) {
       const axiosError = err as AxiosError<{ message: string }>;
-      alert(axiosError.response?.data?.message || "Something went wrong");
+      toast.error(axiosError.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
       setOpenProfile(false);

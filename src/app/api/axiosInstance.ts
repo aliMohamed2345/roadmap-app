@@ -1,4 +1,8 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, {
+  AxiosError,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
 import toast from "react-hot-toast";
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -35,15 +39,17 @@ RoadmapApiAxiosInstance.interceptors.response.use(
   },
   (error: AxiosError) => {
     const status = error.response?.status;
+    const isSilent = (
+      error.config as InternalAxiosRequestConfig & { _silentAuth?: boolean }
+    )?._silentAuth;
 
     if (process.env.NODE_ENV === "development") {
       toast.error(`❌ API Error:${error.response || error.message}`);
       console.error("❌ API Error:", error.response || error.message);
     }
 
-    if (status === 401) {
+    if (status === 401 && !isSilent) {
       console.warn("Unauthorized - maybe redirect to login");
-      toast.error("Unauthorized - maybe redirect to login");
     }
 
     if (status === 403) {
