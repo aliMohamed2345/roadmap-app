@@ -25,6 +25,7 @@ import ChangePasswordModal from "@/app/components/Profile/ChangePasswordModal";
 import ProfileImageUploader from "@/app/components/Profile/ProfileImageUploader";
 import { motion } from "framer-motion";
 import { UserProps } from "@/app/types/api";
+import UnauthorizedPage from "@/app/components/Auth/UnauthorizedPage";
 function Page() {
   const { user, isAuthenticated } = useSelector(
     (state: RootState) => state.user,
@@ -58,6 +59,7 @@ function Page() {
     };
     loadingProfileData();
   }, [user, isAuthenticated]);
+  if (!isAuthenticated) return <UnauthorizedPage  mode="authenticate"/>;
   if (loading) return <ProfileDetailsLoading />;
   return (
     <>

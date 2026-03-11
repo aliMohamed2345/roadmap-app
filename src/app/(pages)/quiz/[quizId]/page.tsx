@@ -13,7 +13,9 @@ import { AxiosError } from "axios";
 import { QuestionItemProps } from "@/app/types/quiz";
 import { QuestionProps } from "@/app/types/api";
 import { useRouter } from "next/navigation";
-import { convertToQueryString } from "@/app/helper";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
+import UnauthorizedPage from "@/app/components/Auth/UnauthorizedPage";
 const Page = () => {
   const searchParams = useSearchParams();
   const { quizId } = useParams();
@@ -22,6 +24,7 @@ const Page = () => {
   const quizDescription = searchParams.get("quizDescription");
   const QUESTION_PER_PAGE = 10;
 
+  const { isAuthenticated } = useSelector((state: RootState) => state.user);
   const [questionDetails, setQuestionDetails] = useState<QuestionProps>();
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -54,7 +57,7 @@ const Page = () => {
     if (index !== -1) {
       stored[index].answer = answer;
     } else {
-      stored.push({  questionId, answer });
+      stored.push({ questionId, answer });
     }
 
     localStorage.setItem("questions", JSON.stringify(stored));
@@ -62,31 +65,33 @@ const Page = () => {
 
   useEffect(() => {
     const fetchQuizData = async () => {
-      setLoading(true);
-      try {
-        const res = await RoadmapApiAxiosInstance.get(
-          apiRoutes.Question.getAllQuestionsByQuiz.route(String(quizId), {
-            page: currentPage,
-            random: false,
-            limit: QUESTION_PER_PAGE,
-          }),
-        );
+      if (isAuthenticated) {
+        setLoading(true);
+        try {
+          const res = await RoadmapApiAxiosInstance.get(
+            apiRoutes.Question.getAllQuestionsByQuiz.route(String(quizId), {
+              page: currentPage,
+              random: false,
+              limit: QUESTION_PER_PAGE,
+            }),
+          );
 
-        if (res.data.success) {
-          setQuestionDetails(res.data);
+          if (res.data.success) {
+            setQuestionDetails(res.data);
+          }
+        } catch (err) {
+          const axiosError = err as AxiosError<{ message: string }>;
+          toast.error(
+            axiosError.response?.data?.message || "Something went wrong",
+          );
+        } finally {
+          setLoading(false);
         }
-      } catch (err) {
-        const axiosError = err as AxiosError<{ message: string }>;
-        toast.error(
-          axiosError.response?.data?.message || "Something went wrong",
-        );
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchQuizData();
-  }, [quizId, currentPage]);
+  }, [quizId, currentPage, isAuthenticated]);
 
   useEffect(() => {
     if (!questionDetails?.questions) return;
@@ -123,6 +128,7 @@ const Page = () => {
       console.log("Submit quiz");
     }
   };
+  if (!isAuthenticated) return <UnauthorizedPage mode="authenticate" />;
 
   if (loading) return <QuizDetailsLoading />;
 

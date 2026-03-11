@@ -23,8 +23,7 @@ const Page = () => {
 
   const [roadmapDetails, setRoadmapDetails] = useState<roadmapProps>();
   const [userProgress, setUserProgress] = useState<userProgressProps>();
-  const [sectionDetails, setSectionDetails] =
-    useState<sectionDataProps[]>();
+  const [sectionDetails, setSectionDetails] = useState<sectionDataProps[]>();
   const [loading, setLoading] = useState(true);
   const [openCongratsModal, setOpenCongratsModal] = useState(false);
   useEffect(() => {
@@ -101,7 +100,6 @@ const Page = () => {
             userProgress={userProgress}
           />
 
-          {/* Roadmap details */}
           <div className="lg:col-span-2 flex flex-col">
             <h1 className="text-2xl sm:text-4xl font-bold mb-4">
               {isAuthenticated
@@ -113,14 +111,16 @@ const Page = () => {
                 ? userProgress?.roadmap.description
                 : roadmapDetails?.description}
             </p>
-            <ExportRoadmap
-              roadmapId={String(roadmapId!)}
-              roadmapTitle={
-                isAuthenticated
-                  ? String(userProgress?.roadmap.title)
-                  : String(roadmapDetails?.title)
-              }
-            />
+            {isAuthenticated && (
+              <ExportRoadmap
+                roadmapId={String(roadmapId!)}
+                roadmapTitle={
+                  isAuthenticated
+                    ? String(userProgress?.roadmap.title)
+                    : String(roadmapDetails?.title)
+                }
+              />
+            )}
             <RoadmapDetailsSections
               userProgress={userProgress}
               isAuthenticated={isAuthenticated}

@@ -31,7 +31,7 @@ const RoadmapContentsList = ({
         <h3 className="font-semibold text-lg">Contents</h3>
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-1/2">
         {isAuthenticated
           ? userProgress?.sections.map((section, index) => (
               <button

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import { difficultySectionProps } from "@/app/types/roadmap";
 import { IoCodeSlashOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
 export const difficultyStyle = (difficulty: difficultySectionProps) => {
   switch (difficulty) {
     case "Beginner":
@@ -31,6 +33,14 @@ const RoadmapItem = ({
   quizDescription,
   quizTitle,
 }: roadmapDummyDataProps) => {
+  const { isAuthenticated } = useSelector((state: RootState) => state.user);
+  const itemLink = isAuthenticated
+    ? `/${
+        mode === "roadmap" ? "roadmap" : mode === "quiz" ? "quiz" : "project"
+      }/${id}`
+    : mode === "roadmap"
+      ? `/roadmap/${id}`
+      : `auth`;
   return (
     <div className="group relative rounded-3xl border border-border/60 bg-card/70 backdrop-blur-xl p-6 shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 overflow-hidden">
       <div className="absolute -inset-1 bg-linear-to-r from-neon-cyan via-neon-purple to-neon-pink opacity-0 group-hover:opacity-20 blur-2xl transition duration-500" />
@@ -83,14 +93,11 @@ const RoadmapItem = ({
 
         <Link
           href={{
-            pathname: `/${
-              mode === "roadmap"
-                ? "roadmap"
-                : mode === "quiz"
-                  ? "quiz"
-                  : "project"
-            }/${id}`,
-            query: mode === "quiz" ? { quizDescription, quizTitle } : undefined,
+            pathname: itemLink,
+            query:
+              isAuthenticated && mode === "quiz"
+                ? { quizDescription, quizTitle }
+                : undefined,
           }}
           className="block"
         >
