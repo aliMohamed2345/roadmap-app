@@ -1,13 +1,11 @@
+import { EmptyTabProps } from "@/app/types/UI";
 import Link from "next/link";
 import { FaInbox } from "react-icons/fa";
 
 const EmptyTab = ({
   message,
   linkUrl,
-}: {
-  message: string;
-  linkUrl?: string;
-}) => {
+}: EmptyTabProps) => {
   return (
     <div className="flex flex-col items-center justify-center text-center space-y-4 rounded-3xl border border-border bg-card/80 backdrop-blur-xl p-10 shadow-sm">
       <div className="flex items-center justify-center h-16 w-16 rounded-full bg-muted/50">

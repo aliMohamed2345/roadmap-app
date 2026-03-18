@@ -82,3 +82,30 @@ export interface RoadmapDetailsSectionsProps {
     React.SetStateAction<userProgressProps | undefined>
   >;
 }
+
+export interface NotFoundQuestionsProps {
+  onAddQuestion: () => void;
+}
+
+export interface EmptyTabProps {
+  message: string;
+  linkUrl?: string;
+}
+
+export interface ProfileImageUploaderProps {
+  alt?: string;
+  initialImage?: string;
+  setOpenImage: Dispatch<SetStateAction<boolean>>;
+  setProfile: Dispatch<SetStateAction<UserProps | null>>;
+}
+
+export interface NotFoundProjectProps {
+  message?: string;
+  clearFilters?: () => void;
+}
+
+export interface RoadmapContentsListProps {
+  isAuthenticated: boolean;
+  userProgress?: userProgressProps;
+  sectionDetails?: sectionDataProps[];
+}

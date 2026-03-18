@@ -1,12 +1,10 @@
+import { NotFoundProjectProps } from "@/app/types/UI";
 import { IoSearch } from "react-icons/io5";
 
 const NotFoundProject = ({
   message = "not found",
   clearFilters,
-}: {
-  message?: string;
-  clearFilters?: () => void;
-}) => {
+}: NotFoundProjectProps) => {
   return (
     <div className="flex flex-col items-center justify-center text-center p-10 rounded-xl border border-border bg-card shadow-sm">
       <div className="flex items-center justify-center w-20 h-20 rounded-full bg-accent text-accent-foreground mb-6">

@@ -1,9 +1,8 @@
 import { MdQuiz } from "react-icons/md";
 import { FiPlus } from "react-icons/fi";
+import { NotFoundQuestionsProps } from "@/app/types/UI";
 
-interface NotFoundQuestionsProps {
-  onAddQuestion: () => void;
-}
+
 
 const NotFoundQuestions = ({ onAddQuestion }: NotFoundQuestionsProps) => {
   return (

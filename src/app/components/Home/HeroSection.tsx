@@ -8,7 +8,6 @@ import {
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { BsArrowRight } from "react-icons/bs";
-import { GiSparkles } from "react-icons/gi";
 
 const HeroSection = () => {
   const [currentTime, setCurrentTime] = useState(new Date().getHours());
