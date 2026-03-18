@@ -14,8 +14,11 @@ import CongratsWindowModule from "@/app/components/Roadmap/CongratsWindowModal";
 import RoadmapContentsList from "@/app/components/Roadmap/RoadmapContentsList";
 import ProgressCircle from "@/app/components/Roadmap/ProgressCircle";
 import RoadmapDetailsSections from "@/app/components/Roadmap/RoadmapDetailsSections";
-import ExportRoadmap from "@/app/components/Roadmap/ExportRoadmap";
+import ExportBTN from "@/app/components/UI/ExportBTN";
 import { sectionDataProps } from "@/app/types/roadmap";
+import {
+  exportHelper,
+} from "@/app/helper";
 
 const Page = () => {
   const { isAuthenticated } = useSelector((state: RootState) => state.user);
@@ -86,6 +89,13 @@ const Page = () => {
 
   if (loading) return <RoadmapDetailsLoading />;
 
+  const title = isAuthenticated
+    ? userProgress?.roadmap.title
+    : roadmapDetails?.title;
+
+  const description = isAuthenticated
+    ? userProgress?.roadmap.description
+    : roadmapDetails?.description;
   return (
     <>
       <div className="pt-24 pb-10">
@@ -101,24 +111,28 @@ const Page = () => {
           />
 
           <div className="lg:col-span-2 flex flex-col">
-            <h1 className="text-2xl sm:text-4xl font-bold mb-4">
-              {isAuthenticated
-                ? userProgress?.roadmap.title
-                : roadmapDetails?.title}
-            </h1>
+            <h1 className="text-2xl sm:text-4xl font-bold mb-4">{title}</h1>
             <p className="text-base sm:text-lg font-bold text-muted-foreground mb-5 text-center sm:text-left">
-              {isAuthenticated
-                ? userProgress?.roadmap.description
-                : roadmapDetails?.description}
+              {description}
             </p>
             {isAuthenticated && (
-              <ExportRoadmap
-                roadmapId={String(roadmapId!)}
-                roadmapTitle={
-                  isAuthenticated
-                    ? String(userProgress?.roadmap.title)
-                    : String(roadmapDetails?.title)
+              <ExportBTN
+                exportToCSV={() =>
+                  exportHelper(String(roadmapId), title ?? "", "csv", "roadmap")
                 }
+                exportToJSON={() =>
+                  exportHelper(
+                    String(roadmapId),
+                    title ?? "",
+                    "json",
+                    "roadmap",
+                  )
+                }
+                exportToPDF={() =>
+                  exportHelper(String(roadmapId), title ?? "", "pdf", "roadmap")
+                }
+                id={String(roadmapId!)}
+                title={title ?? ""}
               />
             )}
             <RoadmapDetailsSections

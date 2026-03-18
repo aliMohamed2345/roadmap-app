@@ -6,7 +6,9 @@ import UnauthorizedPage from "@/app/components/Auth/UnauthorizedPage";
 import CongratsProjectMessageModal from "@/app/components/Project/CongratsProjectMessageModal";
 import ProjectDetailsLoading from "@/app/components/Project/ProjectDetailsLoading";
 import { difficultyStyle } from "@/app/components/Roadmap/RoadmapItem";
+import ExportBTN from "@/app/components/UI/ExportBTN";
 import Modal from "@/app/components/UI/Modal";
+import { exportHelper } from "@/app/helper";
 import { RootState } from "@/app/redux/store";
 import { projectDummyDataProps } from "@/app/types/roadmap";
 import { AxiosError } from "axios";
@@ -80,9 +82,10 @@ const Page = () => {
       localStorage.setItem(storageKey, "true");
     }
   }, [isProjectCompleted, projectId]);
-  if (!isAuthenticated) return <UnauthorizedPage mode="authenticate"/>;
 
   if (loading) return <ProjectDetailsLoading />;
+
+  if (!isAuthenticated) return <UnauthorizedPage mode="authenticate" />;
 
   return (
     <>
@@ -129,7 +132,7 @@ const Page = () => {
           </div>
         </div>
 
-        {!isAuthenticated && (
+        {isAuthenticated && (
           <div className="rounded-3xl border border-border/60 bg-card/70 backdrop-blur-xl p-6 shadow-lg mb-12">
             <div className="flex justify-between mb-4 text-sm font-medium">
               <span className="text-muted-foreground">Progress</span>
@@ -147,8 +150,49 @@ const Page = () => {
             </div>
           </div>
         )}
+        <div className="rounded-3xl border border-border/60 bg-card/70 backdrop-blur-xl p-6 shadow-lg mb-10">
+          <div className="flex items-center justify-between flex-col sm:flex-row gap-3">
+            <div className="space-y-1 text-center sm:text-left">
+              <p className="text-base sm:text-lg font-semibold">
+                Export Project
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Download this project and its steps in your preferred format.
+              </p>
+            </div>
 
-        <div>
+            <ExportBTN
+              id={String(projectId) ?? ""}
+              title={project?.title ?? ""}
+              exportToCSV={() =>
+                exportHelper(
+                  String(projectId) ?? "",
+                  project?.title ?? "",
+                  "csv",
+                  "project",
+                )
+              }
+              exportToJSON={() =>
+                exportHelper(
+                  String(projectId) ?? "",
+                  project?.title ?? "",
+                  "json",
+                  "project",
+                )
+              }
+              exportToPDF={() =>
+                exportHelper(
+                  String(projectId) ?? "",
+                  project?.title ?? "",
+                  "pdf",
+                  "project",
+                )
+              }
+            />
+          </div>
+        </div>
+
+        <div className="pt-10">
           <h2 className="text-xl sm:text-2xl font-bold mb-6">Project Steps</h2>
 
           <div className="flex flex-col gap-5">
@@ -161,7 +205,7 @@ const Page = () => {
                 }`}
               >
                 <div className="flex gap-5 items-start">
-                  {!isAuthenticated && (
+                  {isAuthenticated && (
                     <div>
                       {completedSteps[i] ? (
                         <MdOutlineRadioButtonChecked

@@ -1,10 +1,9 @@
 import { apiRoutes } from "@/app/api/apiRoutes";
 import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
 import { iconDependingOnType, styleDependingOnDifficulty } from "@/app/helper";
-import { resourceProps, userProgressProps } from "@/app/types/api";
-import { sectionDataProps } from "@/app/types/roadmap";
+import { resourceProps } from "@/app/types/api";
+import { RoadmapDetailsSectionsProps } from "@/app/types/UI";
 import Link from "next/link";
-import React from "react";
 import toast from "react-hot-toast";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import {
@@ -17,14 +16,7 @@ const RoadmapDetailsSections = ({
   userProgress,
   setUserProgress,
   sectionDetails,
-}: {
-  sectionDetails?: sectionDataProps[];
-  isAuthenticated: boolean;
-  userProgress?: userProgressProps;
-  setUserProgress: React.Dispatch<
-    React.SetStateAction<userProgressProps | undefined>
-  >;
-}) => {
+}: RoadmapDetailsSectionsProps) => {
   const toggleCompletionSection = async (index: number, sectionId: string) => {
     setUserProgress((prev) => {
       if (!prev) return prev;
@@ -63,7 +55,7 @@ const RoadmapDetailsSections = ({
     }
   };
   return (
-    <div className="flex flex-col gap-6 mb-10">
+    <div className="flex flex-col gap-6 my-10">
       {isAuthenticated
         ? userProgress?.sections.map((section, index) => (
             <div

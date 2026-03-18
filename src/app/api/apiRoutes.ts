@@ -37,16 +37,16 @@ export const apiRoutes = {
         `/api/v1/users?${convertToQueryString(filters)}`,
     },
     getUserById: {
-      route: (id: string) => `/api/v1/users/${id}`,
+      route: (userId: string) => `/api/v1/users/${userId}`,
     },
     deleteUserById: {
-      route: (id: string) => `/api/v1/users/${id}`,
+      route: (userId: string) => `/api/v1/users/${userId}`,
     },
     updateUserById: {
-      route: (id: string) => `/api/v1/users/${id}`,
+      route: (userId: string) => `/api/v1/users/${userId}`,
     },
     toggleRole: {
-      route: (id: string) => `/api/v1/users/${id}/role`,
+      route: (userId: string) => `/api/v1/users/${userId}/role`,
     },
   },
   Quiz: {
@@ -54,16 +54,25 @@ export const apiRoutes = {
       route: "/api/v1/quiz",
     },
     getQuizById: {
-      route: (id: string) => `/api/v1/quiz/${id}`,
+      route: (quizId: string) => `/api/v1/quiz/${quizId}`,
     },
     updateQuizById: {
-      route: (id: string) => `/api/v1/quiz/${id}`,
+      route: (quizId: string) => `/api/v1/quiz/${quizId}`,
     },
     deleteQuizById: {
-      route: (id: string) => `/api/v1/quiz/${id}`,
+      route: (quizId: string) => `/api/v1/quiz/${quizId}`,
     },
     createQuiz: {
       route: `/api/v1/quiz`,
+    },
+    exportQuizToPDF: {
+      route: (quizId: string) => `api/v1/quiz/${quizId}/export/pdf`,
+    },
+    exportQuizToJSON: {
+      route: (quizId: string) => `api/v1/quiz/${quizId}/export/pdf`,
+    },
+    exportQuizToCSV: {
+      route: (quizId: string) => `api/v1/quiz/${quizId}/export/pdf`,
     },
   },
   Question: {
@@ -98,36 +107,39 @@ export const apiRoutes = {
       route: `/api/v1/roadmap`,
     },
     getRoadmapById: {
-      route: (id: string) => `/api/v1/roadmap/${id}`,
+      route: (roadmapId: string) => `/api/v1/roadmap/${roadmapId}`,
     },
     updateRoadmapById: {
-      route: (id: string) => `/api/v1/roadmap/${id}`,
+      route: (roadmapId: string) => `/api/v1/roadmap/${roadmapId}`,
     },
     deleteRoadmapById: {
-      route: (id: string) => `/api/v1/roadmap/${id}`,
+      route: (roadmapId: string) => `/api/v1/roadmap/${roadmapId}`,
     },
     createRoadmap: {
       route: `/api/v1/roadmap`,
     },
     getProgress: {
-      route: (id: string) => `/api/v1/roadmap/${id}/progress`,
+      route: (roadmapId: string) => `/api/v1/roadmap/${roadmapId}/progress`,
     },
     exportRoadmapToPDF: {
-      route: (id: string) => `/api/v1/roadmap/${id}/progress/export/pdf`,
+      route: (roadmapId: string) =>
+        `/api/v1/roadmap/${roadmapId}/progress/export/pdf`,
     },
     exportRoadmapToJSON: {
-      route: (id: string) => `/api/v1/roadmap/${id}/progress/export/json`,
+      route: (roadmapId: string) =>
+        `/api/v1/roadmap/${roadmapId}/progress/export/json`,
     },
     exportRoadmapToCSV: {
-      route: (id: string) => `/api/v1/roadmap/${id}/progress/export/csv`,
+      route: (roadmapId: string) =>
+        `/api/v1/roadmap/${roadmapId}/progress/export/csv`,
     },
   },
   Section: {
     getAllRoadmapSections: {
-      route: (id: string) => `/api/v1/roadmap/${id}/sections`,
+      route: (roadmapId: string) => `/api/v1/roadmap/${roadmapId}/sections`,
     },
     createSectionToRoadmap: {
-      route: (id: string) => `/api/v1/roadmap/${id}/sections`,
+      route: (roadmapId: string) => `/api/v1/roadmap/${roadmapId}/sections`,
     },
     getSectionToRoadmap: {
       route: (roadmapId: string, sectionId: string) =>
@@ -184,6 +196,15 @@ export const apiRoutes = {
     },
     deleteProjectById: {
       route: (projectId: string) => `/api/v1/project/${projectId}`,
+    },
+    exportProjectToPDF: {
+      route: (projectId: string) => `/api/v1/project/${projectId}/export/pdf`,
+    },
+    exportProjectToJSON: {
+      route: (projectId: string) => `/api/v1/project/${projectId}/export/json`,
+    },
+    exportProjectToCSV: {
+      route: (projectId: string) => `/api/v1/project/${projectId}/export/csv`,
     },
   },
   Steps: {

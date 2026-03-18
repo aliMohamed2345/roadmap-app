@@ -1,5 +1,6 @@
 import { ReactNode, SetStateAction, Dispatch } from "react";
-import { UserProps, UsersProps } from "./api";
+import { userProgressProps, UserProps, UsersProps } from "./api";
+import { sectionDataProps } from "./roadmap";
 export interface AuthInputProps {
   label: string;
   placeholder: string;
@@ -63,4 +64,21 @@ export interface EditProfileModalProps {
   profile: UserProps;
   setEditProfile: Dispatch<SetStateAction<boolean>>;
   setUsersData?: Dispatch<SetStateAction<UsersProps>>;
+}
+
+export interface ExportBTNProps {
+  id: string;
+  title: string;
+  exportToJSON: (roadmapId: string, roadmapTitle: string) => void;
+  exportToCSV: (roadmapId: string, roadmapTitle: string) => void;
+  exportToPDF: (roadmapId: string, roadmapTitle: string) => void;
+}
+
+export interface RoadmapDetailsSectionsProps {
+  sectionDetails?: sectionDataProps[];
+  isAuthenticated: boolean;
+  userProgress?: userProgressProps;
+  setUserProgress: React.Dispatch<
+    React.SetStateAction<userProgressProps | undefined>
+  >;
 }
