@@ -440,3 +440,105 @@ export const validateEditResource = (
 
   return "";
 };
+
+export const validateProjectCreation = (
+  title: string,
+  description: string,
+  level: difficultySectionProps,
+  tags: string[],
+): string => {
+  const ALLOWED_LEVELS = ["Beginner", "Intermediate", "Advanced"];
+  if (!title || typeof title !== "string" || !title.trim()) {
+    return "Title is required and must be a valid string.";
+  }
+
+  if (!description || typeof description !== "string" || !description.trim()) {
+    return "Description is required and must be a valid string.";
+  }
+
+  if (!level || typeof level !== "string") {
+    return "Level is required.";
+  }
+
+  if (!ALLOWED_LEVELS.includes(level)) {
+    return `Level must be one of: ${ALLOWED_LEVELS.join(", ")}`;
+  }
+
+  if (!Array.isArray(tags)) {
+    return "Tags must be an array of strings.";
+  }
+
+  for (const tag of tags) {
+    if (typeof tag !== "string") {
+      return "Each tag must be a string.";
+    }
+  }
+
+  return ""; // valid
+};
+
+export const validateEditProject = (
+  title: string,
+  description: string,
+  level: difficultySectionProps,
+  tags: string[],
+): string => {
+  const ALLOWED_LEVELS = ["Beginner", "Intermediate", "Advanced"];
+
+  if (title && typeof title !== "string") {
+    return "Title must be a valid string.";
+  }
+
+  if (description && typeof description !== "string") {
+    return "Description must be a valid string.";
+  }
+
+  if (level) {
+    if (typeof level !== "string") {
+      return "Level must be a valid string.";
+    }
+
+    if (!ALLOWED_LEVELS.includes(level)) {
+      return `Level must be one of: ${ALLOWED_LEVELS.join(", ")}`;
+    }
+  }
+
+  if (tags) {
+    if (!Array.isArray(tags)) {
+      return "Tags must be an array of strings.";
+    }
+
+    for (const tag of tags) {
+      if (typeof tag !== "string") {
+        return "Each tag must be a string.";
+      }
+    }
+  }
+
+  return ""; // valid
+};
+
+export const validateStepsCreation = (title: string, description: string) => {
+  if (typeof title !== "string" || !title.trim()) {
+    return `Title is required and must be a valid string.`;
+  }
+  if (typeof description !== "string" || !description.trim()) {
+    return `Description is required and must be a valid string.`;
+  }
+  return "";
+};
+
+export const validateEditSteps = (title: string, description: string) => {
+  if (title) {
+    if (typeof title !== "string" || !title.trim()) {
+      return `Title is required and must be a valid string.`;
+    }
+  }
+  if (description) {
+    if (typeof description !== "string" || !description.trim()) {
+      return `Description is required and must be a valid string.`;
+    }
+  }
+
+  return "";
+};

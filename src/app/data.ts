@@ -4,6 +4,8 @@ import { FiTarget, FiUsers, FiZap } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
 import { FaRegMap } from "react-icons/fa";
 import { IoMdHelpCircleOutline } from "react-icons/io";
+import { LiaProjectDiagramSolid } from "react-icons/lia";
+
 export const features = [
   {
     icon: IoBookOutline,
@@ -57,6 +59,11 @@ export const adminTabs = [
     label: "Users",
     icon: FiUsers,
   },
+  {
+    id: "projects",
+    label: "Projects",
+    icon: LiaProjectDiagramSolid,
+  },
 ];
 
-
+export const DIFFICULTY_LEVELS = ["Beginner", "Intermediate", "Advanced"] as const;

@@ -52,7 +52,7 @@ export interface AddAndEditQuestionModalProps {
   onClose: () => void;
 }
 
-export type adminTypeProps = "roadmaps" | "quizzes" | "users";
+export type adminTypeProps = "roadmaps" | "quizzes" | "users" | "projects";
 
 export type ModalTypeProps =
   | "ADD_ROADMAP"
@@ -156,4 +156,70 @@ export interface DeleteUserModalProps {
   onCancel: Dispatch<SetStateAction<WindowProps>>;
   setUserData: Dispatch<SetStateAction<UsersProps>>;
   userId: string;
+}
+export type ProjectModalType =
+  | "ADD_PROJECT"
+  | "EDIT_PROJECT"
+  | "DELETE_PROJECT"
+  | "ADD_STEP"
+  | "EDIT_STEP"
+  | "DELETE_STEP"
+  | null;
+
+export interface StepProps {
+  _id?: string;
+  title: string;
+  description: string;
+  isCompleted?: boolean;
+  createdAt?: string;
+}
+
+export interface ProjectProps {
+  _id?: string;
+  title: string;
+  description?: string;
+  difficulty: "Beginner" | "Intermediate" | "Advanced";
+  tags?: string[];
+  roadmapId?: string;
+  createdAt?: string;
+}
+
+export interface ModalPayload extends ProjectProps {
+  stepId?: string;
+  stepTitle?: string;
+  stepDescription?: string;
+}
+
+export interface ActiveProjectModalState {
+  type: ProjectModalType;
+  payload?: ModalPayload;
+}
+
+export interface DeleteStepModalProps {
+  onCancel: () => void;
+  onConfirm: () => Promise<void>;
+}
+
+export interface AddAndEditProjectModalProps {
+  mode: "ADD" | "EDIT";
+  payload?: ProjectProps;
+  onClose: () => void;
+  onSuccess: (project: ProjectProps) => void;
+}
+
+export interface AddAndEditStepModalProps {
+  mode: "ADD" | "EDIT";
+  projectId: string;
+  stepId?: string;
+  initialTitle?: string;
+  initialDescription?: string;
+  onClose: () => void;
+  onSuccess: (step: StepProps) => void;
+}
+
+export interface ProjectActiveModalProps {
+  modal: ActiveProjectModalState;
+  onClose: () => void;
+  setProjects: Dispatch<SetStateAction<ProjectProps[]>>;
+  setStepsMap: Dispatch<SetStateAction<Record<string, StepProps[]>>>;
 }

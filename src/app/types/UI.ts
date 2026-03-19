@@ -1,6 +1,7 @@
 import { ReactNode, SetStateAction, Dispatch } from "react";
 import { userProgressProps, UserProps, UsersProps } from "./api";
 import { sectionDataProps } from "./roadmap";
+import { adminTypeProps, ProjectProps } from "./admin";
 export interface AuthInputProps {
   label: string;
   placeholder: string;
@@ -108,4 +109,15 @@ export interface RoadmapContentsListProps {
   isAuthenticated: boolean;
   userProgress?: userProgressProps;
   sectionDetails?: sectionDataProps[];
+}
+
+export interface DeleteProjectModalProps {
+  project?: ProjectProps;
+  onCancel: () => void;
+  onConfirm: () => Promise<void>;
+}
+
+export interface AdminTabsProps {
+  currentTab: adminTypeProps;
+  setCurrentTab: Dispatch<SetStateAction<adminTypeProps>>;
 }

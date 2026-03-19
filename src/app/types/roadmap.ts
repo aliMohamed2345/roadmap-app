@@ -6,6 +6,7 @@ export type difficultySectionProps =
   | "Advanced"
   | "Expert"
   | "Master";
+export type rankProps = "Beginner" | "Intermediate" | "Advanced";
 
 export type resourcesTypeSectionProps = "video" | "article" | "course";
 
@@ -35,7 +36,7 @@ export interface sectionDataProps {
   description: string;
   id: string;
   _id?: string;
-  roadmapId:string
+  roadmapId: string;
   difficulty: difficultySectionProps;
   resources: resourceProps[];
 }
