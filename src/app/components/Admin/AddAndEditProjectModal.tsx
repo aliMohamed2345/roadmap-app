@@ -12,6 +12,10 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { FaPlus } from "react-icons/fa";
 import { validateEditProject, validateProjectCreation } from "../../validators";
+import {
+  difficultySectionProps,
+  roadmapDummyDataProps,
+} from "@/app/types/roadmap";
 const AddAndEditProjectModal = ({
   mode,
   payload,
@@ -150,7 +154,8 @@ const AddAndEditProjectModal = ({
               }
               className={`flex-1 py-2 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
                 form.difficulty === level
-                  ? difficultyStyle(level) + " border-current scale-[1.03]"
+                  ? difficultyStyle(level as unknown as roadmapDummyDataProps) +
+                    " border-current scale-[1.03]"
                   : "border-border text-muted-foreground hover:bg-muted"
               }`}
             >
