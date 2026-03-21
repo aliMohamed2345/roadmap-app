@@ -4,7 +4,7 @@ import { IoShieldOutline } from "react-icons/io5";
 import { adminTypeProps } from "@/app/types/admin";
 import RoadmapsTab from "@/app/components/Admin/Roadmaps/RoadmapsTab";
 import QuizzesTab from "@/app/components/Admin/Quizzes/QuizzesTab";
-import UsersTab from "@/app/components/Admin/UsersTab";
+import UsersTab from "@/app/components/Admin/Users/UsersTab";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
 import UnauthorizedPage from "@/app/components/Auth/UnauthorizedPage";
