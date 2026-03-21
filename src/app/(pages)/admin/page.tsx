@@ -17,7 +17,7 @@ const Page = () => {
   );
   const [currentTab, setCurrentTab] = useState<adminTypeProps>("roadmaps");
 
-  if (!loading) return <AdminPageLoading />;
+  if (loading) return <AdminPageLoading />;
 
   if (!isAuthenticated || !user?.isAdmin)
     return <UnauthorizedPage mode="admin" />;
