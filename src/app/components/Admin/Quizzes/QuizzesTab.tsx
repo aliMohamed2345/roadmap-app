@@ -42,7 +42,7 @@ const QuizzesTab = () => {
           apiRoutes.Quiz.getAllQuizzes.route,
         );
         if (res.data.success) {
-          setQuizzes(res.data.quizData);
+          setQuizzes(res.data?.quizData);
         }
       } catch (error) {
         const axiosError = error as AxiosError<{ message: string }>;
@@ -80,8 +80,8 @@ const QuizzesTab = () => {
           return {
             ...res.data,
             questions: [
-              ...(prev.questions || []),
-              ...(res.data.questions || []),
+              ...(prev?.questions || []),
+              ...(res.data?.questions || []),
             ],
           };
         });
@@ -157,10 +157,13 @@ const QuizzesTab = () => {
           </button>
         </div>
         {Quizzes?.map((quiz) => {
-          const isQuizOpen = openQuiz === quiz._id;
+          const isQuizOpen = openQuiz === quiz?._id;
+          const selectedQuestion = Questions?.questions.find(
+            (q) => q.quizId === quiz?._id,
+          );
           return (
             <motion.div
-              key={quiz._id}
+              key={quiz?._id}
               layout
               className="rounded-2xl transition-all border bg-card text-card-foreground shadow-sm border-border"
             >
@@ -178,7 +181,7 @@ const QuizzesTab = () => {
 
                   <div>
                     <h3 className="font-semibold text-base sm:text-xl hover:text-primary transition">
-                      {quiz.title}
+                      {quiz?.title}
                     </h3>
                   </div>
                 </div>
@@ -229,7 +232,13 @@ const QuizzesTab = () => {
                           onAddQuestion={() =>
                             setActiveModal({
                               type: "ADD_QUESTION",
-                              payload: Questions.questions[0],
+                              payload: {
+                                quizId: quiz?._id,
+                                question: selectedQuestion?._id,
+                                title: selectedQuestion?.question,
+                                answers: selectedQuestion?.answers,
+                                correctAnswer: selectedQuestion?.answer,
+                              },
                             })
                           }
                         />
@@ -243,7 +252,13 @@ const QuizzesTab = () => {
                               onClick={() =>
                                 setActiveModal({
                                   type: "ADD_QUESTION",
-                                  payload: Questions.questions[0],
+                                  payload: {
+                                    quizId: quiz?._id,
+                                    question: selectedQuestion?._id,
+                                    title: selectedQuestion?.question,
+                                    answers: selectedQuestion?.answers,
+                                    correctAnswer: selectedQuestion?.answer,
+                                  },
                                 })
                               }
                               className="flex items-center gap-2 cursor-pointer border-border text-sm px-3 py-1.5 rounded-lg border hover:bg-muted transition"
@@ -254,7 +269,7 @@ const QuizzesTab = () => {
                           <div className="space-y-4">
                             {Questions?.questions?.map((question, i) => {
                               const isQuestionOpen =
-                                openQuestion === question._id;
+                                openQuestion === question?._id;
                               return (
                                 <motion.div
                                   layout
@@ -277,7 +292,7 @@ const QuizzesTab = () => {
                                               {i + 1}
                                             </span>
                                             <span className="font-medium text-center sm:text-left">
-                                              {question.question}
+                                              {question?.question}
                                             </span>
                                           </div>
                                           <div className="flex items-center gap-4 text-muted-foreground">

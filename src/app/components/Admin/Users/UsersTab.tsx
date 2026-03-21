@@ -14,14 +14,14 @@ import { useDebounce } from "@/app/hooks/useDebounce";
 import Image from "next/image";
 import { BsArrowDown } from "react-icons/bs";
 
-import Modal from "../UI/Modal";
+import Modal from "../../UI/Modal";
 import ViewProfileModal from "./ViewProfileModal";
-import EditProfileModal from "../Profile/EditProfileModal";
+import EditProfileModal from "../../Profile/EditProfileModal";
 import DeleteUserModal from "./DeleteUserModal";
 import UsersTableLoading from "./UserTableLoading";
 import UsersNotFound from "./UserNotFound";
 import UserActions from "./UserActions";
-import DropDownMenu from "../UI/DropDownMenu";
+import DropDownMenu from "../../UI/DropDownMenu";
 import { roleTypeProps } from "@/app/types/admin";
 
 const UsersTab = () => {
@@ -348,7 +348,7 @@ const UsersTab = () => {
         >
           <EditProfileModal
             profile={selectedUser}
-            setUsersData={()=>setUsersData}
+            setUsersData={() => setUsersData}
             setEditProfile={(v) =>
               setEditWindow((prev) => ({
                 ...prev,
@@ -366,7 +366,7 @@ const UsersTab = () => {
           onClose={() => setDeleteWindow({ open: false, userId: "" })}
         >
           <DeleteUserModal
-            userId={deleteWindow.userId??""}
+            userId={deleteWindow.userId ?? ""}
             setUserData={() => setUsersData}
             onCancel={() => setDeleteWindow({ open: false, userId: "" })}
           />

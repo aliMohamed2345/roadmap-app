@@ -2,7 +2,7 @@ import AddAndEditResourceModal from "./AddAndEditResourceModal";
 import AddAndEditSectionModal from "./AddAndEditSectionModal";
 import DeleteModal from "./DeleteRoadmapModal";
 import AddAndEditRoadmapModal from "./AddAndEditRoadmapModal";
-import Modal from "../UI/Modal";
+import Modal from "../../UI/Modal";
 import { ActiveModalProps } from "@/app/types/admin";
 const ActiveModal = ({
   modal,

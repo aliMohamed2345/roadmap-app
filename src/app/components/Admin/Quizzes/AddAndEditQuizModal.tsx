@@ -1,6 +1,6 @@
 import { difficultySectionProps } from "@/app/types/roadmap";
 import { useState } from "react";
-import DropDownMenu from "../UI/DropDownMenu";
+import DropDownMenu from "../../UI/DropDownMenu";
 import { AddAndEditQuizModalProps } from "@/app/types/admin";
 import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
 import { apiRoutes } from "@/app/api/apiRoutes";

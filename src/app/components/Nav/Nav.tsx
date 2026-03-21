@@ -3,17 +3,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import MainTitle from "../Home/MainTitle";
-import Theme from "./Theme";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
-import ProfileWindow from "./ProfileWindow";
+import RenderAuthArea from "./RenderAuthArea";
 
 const Nav = () => {
   const [openProfile, setOpenProfile] = useState(false);
-  const { isAuthenticated, user } = useSelector(
+  const { isAuthenticated, user, loading } = useSelector(
     (state: RootState) => state.user,
   );
-  console.log(user);
+
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const path = usePathname();
 
@@ -26,52 +25,51 @@ const Nav = () => {
         setOpenProfile(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
-    <header className="border-b border-border fixed w-full z-10 bg-muted ">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
+    <header className="border-b border-border fixed w-full z-10 bg-muted">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
-            <div className="flex items-center gap-3 ">
+            <div className="flex items-center gap-3">
               <MainTitle />
             </div>
           </div>
 
           <div className="hidden md:block font-bold">
-            <div className="flex items-center gap-5" ref={dropdownRef}>
+            <div className="flex items-center gap-5">
               <Link
-                href={"/roadmap"}
-                className={`hover:bg-background p-2 transition rounded-md  ${
-                  path.includes(`roadmap`) && `text-green bg-background`
+                href="/roadmap"
+                className={`hover:bg-background p-2 transition rounded-md ${
+                  path.includes("roadmap") && "text-green bg-background"
                 }`}
               >
                 Roadmaps
               </Link>
               <Link
-                href={`/quiz`}
-                className={`hover:bg-background p-2 transition rounded-md  ${
-                  path.includes(`quiz`) && `text-green bg-background`
+                href="/quiz"
+                className={`hover:bg-background p-2 transition rounded-md ${
+                  path.includes("quiz") && "text-green bg-background"
                 }`}
               >
                 Quizzes
               </Link>
               <Link
-                href={`/project`}
-                className={`hover:bg-background p-2 transition rounded-md  ${
-                  path.includes(`project`) && `text-green bg-background`
+                href="/project"
+                className={`hover:bg-background p-2 transition rounded-md ${
+                  path.includes("project") && "text-green bg-background"
                 }`}
               >
                 Projects
               </Link>
               {user?.isAdmin && (
                 <Link
-                  href={`/admin`}
-                  className={`hover:bg-background p-2 transition rounded-md  ${
-                    path.includes(`admin`) && `text-green bg-background`
+                  href="/admin"
+                  className={`hover:bg-background p-2 transition rounded-md ${
+                    path.includes("admin") && "text-green bg-background"
                   }`}
                 >
                   Admin
@@ -80,22 +78,17 @@ const Nav = () => {
             </div>
           </div>
 
-          <div className="gap-1 sm:gap-3 cursor-pointer flex items-center">
-            <Theme />
-            {isAuthenticated ? (
-              <ProfileWindow
-                setOpenProfile={setOpenProfile}
+          <div className="cursor-pointer flex items-center">
+            {
+              <RenderAuthArea
+                dropdownRef={dropdownRef}
+                isAuthenticated={isAuthenticated}
+                loading={loading}
                 openProfile={openProfile}
+                setOpenProfile={setOpenProfile}
                 user={user!}
               />
-            ) : (
-              <Link
-                href="/auth"
-                className="text-white text-xs sm:text-lg md:text-xl bg-linear-to-br from-neon-cyan to-neon-purple p-2 rounded-lg hover:scale-105 transition-all"
-              >
-                Get Started
-              </Link>
-            )}
+            }
           </div>
         </div>
       </div>

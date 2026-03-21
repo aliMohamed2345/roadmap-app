@@ -59,8 +59,8 @@ function Page() {
     };
     loadingProfileData();
   }, [user, isAuthenticated]);
-  if (!isAuthenticated) return <UnauthorizedPage  mode="authenticate"/>;
   if (loading) return <ProfileDetailsLoading />;
+  if (!isAuthenticated) return <UnauthorizedPage  mode="authenticate"/>;
   return (
     <>
       <div className="pt-24 sm:px-6 pb-20 text-foreground space-y-8">

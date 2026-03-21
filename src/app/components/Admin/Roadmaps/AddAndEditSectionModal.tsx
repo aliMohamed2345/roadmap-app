@@ -1,77 +1,69 @@
-"use client";
-import { AddAndEditResourceModalProps } from "@/app/types/admin";
-import { resourcesTypeSectionProps } from "@/app/types/roadmap";
 import { useState } from "react";
-import DropDownMenu from "../UI/DropDownMenu";
-import {
-  validateEditResource,
-  validateResourceCreation,
-} from "@/app/validators";
-import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
-import { apiRoutes } from "@/app/api/apiRoutes";
+import DropDownMenu from "../../UI/DropDownMenu";
+import { difficultySectionProps } from "@/app/types/roadmap";
+import { AddAndEditSectionModalProps } from "@/app/types/admin";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
+import { apiRoutes } from "@/app/api/apiRoutes";
+import { validateEditSection, validateSectionCreation } from "@/app/validators";
+import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-const AddAndEditResourceModal = ({
+
+const AddAndEditSectionModal = ({
   mode,
-  Type,
   title,
-  url,
-  roadmapId,
-  sectionId,
-  onClose,
-  resourceId,
+  description,
+  difficulty,
   setSections,
-}: AddAndEditResourceModalProps) => {
+  onClose,
+  sectionId,
+  roadmapId,
+}: AddAndEditSectionModalProps) => {
   const [currentTitle, setCurrentTitle] = useState<string>(
     mode === "ADD" ? "" : title || "",
   );
-  const [currentURL, setCurrentURL] = useState<string>(
-    mode === "ADD" ? "" : url || "",
+  const [currentDescription, setCurrentDescription] = useState<string>(
+    mode === "ADD" ? "" : description || "",
   );
-
-  const [currentType, setCurrentType] = useState<resourcesTypeSectionProps>(
-    mode === "ADD" ? "video" : Type || "video",
-  );
+  const [currentDifficulty, setCurrentDifficulty] =
+    useState<difficultySectionProps>(
+      mode === "ADD" ? "Beginner" : difficulty || "Beginner",
+    );
 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
-
-  const handleSubmitResource = async (mode: "ADD" | "EDIT") => {
+  const handleAddOrEditSection = async (mode: "ADD" | "EDIT") => {
     setLoading(true);
     if (mode === "ADD") {
       try {
-        const message = validateResourceCreation(
-          currentURL,
+        const message = validateSectionCreation(
           currentTitle,
-          currentType,
+          currentDescription,
+          currentDifficulty,
         );
         if (message) {
-          setError(message as string);
+          setError(message);
           setLoading(false);
           return;
         }
 
         const res = await RoadmapApiAxiosInstance.post(
-          apiRoutes.Resource.createResourceToRoadmap.route(
-            roadmapId ?? "",
-            sectionId ?? "",
-          ),
+          apiRoutes.Section.createSectionToRoadmap.route(roadmapId ?? ""),
           {
-            url: currentURL,
             title: currentTitle,
-            type: currentType,
+            description: currentDescription,
+            difficulty: currentDifficulty,
           },
         );
 
         if (res.data.success) {
           toast.success(res.data.message);
           setCurrentTitle("");
-          setCurrentType("article");
-          setCurrentURL("");
+          setCurrentDescription("");
+          setCurrentDifficulty("Beginner");
           setError("");
-          setSections((prev) => [...prev, res.data.resource]);
+          setSections((prev) => [...prev, res.data.section]);
           onClose();
         }
       } catch (error) {
@@ -84,10 +76,10 @@ const AddAndEditResourceModal = ({
       }
     } else if (mode === "EDIT") {
       try {
-        const message = validateEditResource(
-          currentURL,
+        const message = validateEditSection(
           currentTitle,
-          currentType,
+          currentDescription,
+          currentDifficulty,
         );
         if (message) {
           setError(message);
@@ -95,32 +87,30 @@ const AddAndEditResourceModal = ({
           return;
         }
         const res = await RoadmapApiAxiosInstance.put(
-          apiRoutes.Resource.updateResourceByIdToRoadmap.route(
+          apiRoutes.Section.updateSectionToRoadmap.route(
             roadmapId ?? "",
             sectionId ?? "",
-            resourceId ?? "",
           ),
           {
             title: currentTitle,
-            url: currentURL,
-            type: currentType,
+            description: currentDescription,
+            difficulty: currentDifficulty,
           },
         );
 
         if (res.data.success) {
           toast.success(res.data.message);
           setCurrentTitle("");
-          setCurrentType("article");
-          setCurrentURL("");
+          setCurrentDescription("");
           setError("");
           setSections((prev) =>
             prev.map((section) =>
-              section._id === resourceId
+              section._id === sectionId
                 ? {
                     ...section,
                     title: currentTitle,
-                    url: currentURL,
-                    type: currentType,
+                    description: currentDescription,
+                    difficulty: currentDifficulty,
                   }
                 : section,
             ),
@@ -149,22 +139,23 @@ const AddAndEditResourceModal = ({
         placeholder="Enter title"
         className="border border-border bg-background rounded-lg p-2"
       />
-      <p className="text-sm sm:text-lg font-bold">URL</p>
+      <p className="text-sm sm:text-lg font-bold">Description</p>
       <input
-        value={currentURL}
-        onChange={(e) => setCurrentURL(e.target.value)}
+        value={currentDescription}
+        onChange={(e) => setCurrentDescription(e.target.value)}
         type="text"
         id="description"
         placeholder="Enter description"
         className="border border-border bg-background rounded-lg p-2"
       />
-      <p className="text-sm sm:text-lg font-bold">Media</p>
+      <p className="text-sm sm:text-lg font-bold">Difficulty</p>
       <DropDownMenu
-        option={mode === "ADD" ? `select Media` : `${currentType}`}
-        optionList={["video", "article", "course"]}
-        onChange={(value) => setCurrentType(value as resourcesTypeSectionProps)}
+        option={mode === "ADD" ? `select Difficulty` : `${currentDifficulty}`}
+        optionList={["Beginner", "Intermediate", "Advanced", "Expert"]}
+        onChange={(value) =>
+          setCurrentDifficulty(value as difficultySectionProps)
+        }
       />
-
       {error && (
         <p
           className={`text-destructive text-center ${error ? "opacity-100" : "opacity-0"}`}
@@ -172,9 +163,8 @@ const AddAndEditResourceModal = ({
           {error}
         </p>
       )}
-
       <button
-        onClick={() => handleSubmitResource(mode)}
+        onClick={() => handleAddOrEditSection(mode)}
         className="p-2 rounded-lg bg-linear-to-br from-neon-cyan to-neon-purple text-white cursor-pointer hover:scale-105 transition-all gap-2 my-5 w-full max-w-md mx-auto"
       >
         {loading ? (
@@ -183,13 +173,13 @@ const AddAndEditResourceModal = ({
             size={22}
           />
         ) : mode === "ADD" ? (
-          `Create Resource`
+          `Create Section`
         ) : (
-          `Update Resource`
+          `Update Section`
         )}
       </button>
     </div>
   );
 };
 
-export default AddAndEditResourceModal;
+export default AddAndEditSectionModal;

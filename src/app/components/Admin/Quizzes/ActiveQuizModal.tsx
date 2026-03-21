@@ -2,10 +2,10 @@ import {
   ActiveModalPayloadQuizDataProps,
   ActiveQuizModalProps,
 } from "@/app/types/admin";
-import Modal from "../UI/Modal";
+import Modal from "../../UI/Modal";
 import AddAndEditQuestionModal from "./AddAndEditQuestionModal";
 import AddAndEditQuizModal from "./AddAndEditQuizModal";
-import DeleteModal from "./DeleteRoadmapModal";
+import DeleteModal from "../Roadmaps/DeleteRoadmapModal";
 import { QuestionItemProps } from "@/app/types/quiz";
 
 const ActiveQuizModal = ({

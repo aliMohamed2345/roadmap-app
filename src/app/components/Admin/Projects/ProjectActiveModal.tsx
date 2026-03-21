@@ -2,7 +2,7 @@ import { apiRoutes } from "@/app/api/apiRoutes";
 import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
 import { ProjectActiveModalProps } from "@/app/types/admin";
 import toast from "react-hot-toast";
-import Modal from "../UI/Modal";
+import Modal from "../../UI/Modal";
 import AddAndEditProjectModal from "./AddAndEditProjectModal";
 import DeleteProjectModal from "./DeleteProjectModal";
 import AddAndEditStepModal from "./AddAndEditStepModal";

@@ -9,8 +9,8 @@ import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
 import { apiRoutes } from "@/app/api/apiRoutes";
-import QuizTabLoading from "./QuizTabLoading";
-import { difficultyStyle } from "../Roadmap/RoadmapItem";
+import QuizTabLoading from "../Quizzes/QuizTabLoading";
+import { difficultyStyle } from "../../Roadmap/RoadmapItem";
 import {
   ActiveProjectModalState,
   ModalPayload,

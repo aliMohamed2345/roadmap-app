@@ -4,7 +4,7 @@ import { FaPlus, FaRegFileAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { FiChevronRight, FiEdit2, FiPlus, FiTrash2 } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
-import { difficultyStyle } from "../Roadmap/RoadmapItem";
+import { difficultyStyle } from "../../Roadmap/RoadmapItem";
 import ActiveModal from "./ActiveModal";
 import {
   ActiveModalPayloadDataProps,
@@ -16,7 +16,7 @@ import { apiRoutes } from "@/app/api/apiRoutes";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
 import { roadmapProps } from "@/app/types/api";
-import QuizTabLoading from "./QuizTabLoading";
+import QuizTabLoading from "../Quizzes/QuizTabLoading";
 import { sectionDataProps } from "@/app/types/roadmap";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
@@ -45,8 +45,8 @@ const RoadmapsTab = () => {
         const res = await RoadmapApiAxiosInstance.get(
           apiRoutes.Roadmap.getAllRoadmaps.route,
         );
-        if (res.data.success) {
-          setRoadmaps(res.data.roadmap);
+        if (res.data?.success) {
+          setRoadmaps(res.data?.roadmap);
         }
       } catch (error) {
         const axiosError = error as AxiosError<{ message: string }>;
@@ -75,7 +75,7 @@ const RoadmapsTab = () => {
         apiRoutes.Section.getAllRoadmapSections.route(roadmap._id!),
       );
       if (res.data.success) {
-        setSections(res.data.sections);
+        setSections(res.data?.sections);
       }
     } catch (error) {
       const axiosError = error as AxiosError<{ message: string }>;
@@ -102,11 +102,11 @@ const RoadmapsTab = () => {
           </div>
 
           {roadmaps.map((roadmap) => {
-            const isRoadmapOpen = String(openRoadmap) === roadmap._id;
+            const isRoadmapOpen = String(openRoadmap) === roadmap?._id;
 
             return (
               <motion.div
-                key={roadmap._id}
+                key={roadmap?._id}
                 layout
                 className="rounded-2xl transition-all border bg-card text-card-foreground shadow-sm border-border"
               >
@@ -124,10 +124,10 @@ const RoadmapsTab = () => {
 
                     <div>
                       <h3 className="font-semibold text-base sm:text-xl hover:text-primary transition">
-                        {roadmap.title}
+                        {roadmap?.title}
                       </h3>
                       <p className="text-sm text-muted-foreground mt-1">
-                        {roadmap.numberOfSections} sections
+                        {roadmap?.numberOfSections} sections
                       </p>
                     </div>
                   </div>
@@ -149,7 +149,7 @@ const RoadmapsTab = () => {
                 <AnimatePresence initial={false}>
                   {isRoadmapOpen && (
                     <motion.div
-                      key={`roadmap-content-${roadmap._id}`}
+                      key={`roadmap-content-${roadmap?._id}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -157,9 +157,9 @@ const RoadmapsTab = () => {
                       className="overflow-hidden border-t border-border"
                     >
                       <div className="px-5 pb-5 space-y-5">
-                        {roadmap.description && (
+                        {roadmap?.description && (
                           <p className="text-sm text-muted-foreground">
-                            {roadmap.description}
+                            {roadmap?.description}
                           </p>
                         )}
 
@@ -171,7 +171,7 @@ const RoadmapsTab = () => {
                         ) : (
                           <div className="flex justify-between items-center">
                             <h4 className="font-medium">
-                              Sections ({sections.length})
+                              Sections ({sections?.length})
                             </h4>
                             <button
                               onClick={(e) =>
@@ -186,12 +186,12 @@ const RoadmapsTab = () => {
 
                         <div className="space-y-4">
                           {sections?.map((section) => {
-                            const isSectionOpen = openSection === section._id;
+                            const isSectionOpen = openSection === section?._id;
 
                             return (
                               <motion.div
                                 layout
-                                key={section._id}
+                                key={section?._id}
                                 className="rounded-xl border bg-muted/40 border-border"
                               >
                                 <div
@@ -200,7 +200,7 @@ const RoadmapsTab = () => {
                                     setOpenSection(
                                       isSectionOpen
                                         ? null
-                                        : (section._id ?? ""),
+                                        : (section?._id ?? ""),
                                     )
                                   }
                                 >
@@ -217,7 +217,7 @@ const RoadmapsTab = () => {
                                     <div>
                                       <div className="flex items-center gap-3">
                                         <span className="font-medium">
-                                          {section.title}
+                                          {section?.title}
                                         </span>
                                         <span
                                           className={`text-xs px-2 py-0.5 rounded-full ${difficultyStyle(
@@ -315,7 +315,7 @@ const RoadmapsTab = () => {
                                             >
                                               <div className="flex items-center gap-3 text-sm">
                                                 <FaRegFileAlt className="text-primary" />
-                                                {resource.title}
+                                                {resource?.title}
                                               </div>
 
                                               <div className="flex items-center gap-3 text-muted-foreground">
@@ -325,12 +325,12 @@ const RoadmapsTab = () => {
                                                     toggleModal(
                                                       e,
                                                       {
-                                                        _id: resource._id,
-                                                        sectionId: section._id,
-                                                        roadmapId: roadmap._id,
-                                                        title: resource.title,
-                                                        url: resource.url,
-                                                        type: resource.type,
+                                                        _id: resource?._id,
+                                                        sectionId: section?._id,
+                                                        roadmapId: roadmap?._id,
+                                                        title: resource?.title,
+                                                        url: resource?.url,
+                                                        type: resource?.type,
                                                       },
                                                       "EDIT_RESOURCE",
                                                     );
@@ -343,9 +343,9 @@ const RoadmapsTab = () => {
                                                     toggleModal(
                                                       e,
                                                       {
-                                                        _id: resource._id,
-                                                        sectionId: section._id,
-                                                        roadmapId: roadmap._id,
+                                                        _id: resource?._id,
+                                                        sectionId: section?._id,
+                                                        roadmapId: roadmap?._id,
                                                       },
                                                       "DELETE_RESOURCE",
                                                     )

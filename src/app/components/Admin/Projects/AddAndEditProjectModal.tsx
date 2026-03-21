@@ -1,17 +1,17 @@
 "use client";
 import { useState } from "react";
-import { AddAndEditProjectModalProps } from "../../types/admin";
-import { ProjectProps } from "../../types/admin";
-import RoadmapApiAxiosInstance from "../../api/axiosInstance";
-import { apiRoutes } from "../../api/apiRoutes";
+import { AddAndEditProjectModalProps } from "../../../types/admin";
+import { ProjectProps } from "../../../types/admin";
+import RoadmapApiAxiosInstance from "../../../api/axiosInstance";
+import { apiRoutes } from "../../../api/apiRoutes";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
-import { DIFFICULTY_LEVELS } from "../../data";
-import difficultyStyle from "../Roadmap/RoadmapItem";
+import { DIFFICULTY_LEVELS } from "../../../data";
+import difficultyStyle from "../../Roadmap/RoadmapItem";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { FaPlus } from "react-icons/fa";
-import { validateEditProject, validateProjectCreation } from "../../validators";
+import { validateEditProject, validateProjectCreation } from "../../../validators";
 import {
   difficultySectionProps,
   roadmapDummyDataProps,

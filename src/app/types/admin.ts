@@ -89,6 +89,7 @@ export interface ActiveModalPayloadQuizDataProps {
   correctAnswer?: string;
   _id?: string;
   id?: string;
+  quizId?:string
 }
 
 export interface ActiveModalPayloadDataProps {

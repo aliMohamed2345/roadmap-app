@@ -1,4 +1,4 @@
-import { ReactNode, SetStateAction, Dispatch } from "react";
+import { ReactNode, SetStateAction, Dispatch, Ref } from "react";
 import { userProgressProps, UserProps, UsersProps } from "./api";
 import { sectionDataProps } from "./roadmap";
 import { adminTypeProps, ProjectProps } from "./admin";
@@ -120,4 +120,14 @@ export interface DeleteProjectModalProps {
 export interface AdminTabsProps {
   currentTab: adminTypeProps;
   setCurrentTab: Dispatch<SetStateAction<adminTypeProps>>;
+}
+
+
+export interface RenderAuthAreaProps{
+  loading: boolean;
+  user: UserProps;
+  isAuthenticated: boolean;
+  openProfile: boolean;
+  setOpenProfile: Dispatch<SetStateAction<boolean>>;
+  dropdownRef: Ref<HTMLDivElement> | undefined;
 }
