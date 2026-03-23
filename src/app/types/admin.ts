@@ -179,10 +179,11 @@ export interface ProjectProps {
   _id?: string;
   title: string;
   description?: string;
-  difficulty: "Beginner" | "Intermediate" | "Advanced";
+  difficulty?: "Beginner" | "Intermediate" | "Advanced";
   tags?: string[];
   roadmapId?: string;
   createdAt?: string;
+  level:"Beginner"|"Intermediate"|"Advanced"
 }
 
 export interface ModalPayload extends ProjectProps {

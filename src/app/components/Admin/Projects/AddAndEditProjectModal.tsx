@@ -11,11 +11,11 @@ import difficultyStyle from "../../Roadmap/RoadmapItem";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { FaPlus } from "react-icons/fa";
-import { validateEditProject, validateProjectCreation } from "../../../validators";
 import {
-  difficultySectionProps,
-  roadmapDummyDataProps,
-} from "@/app/types/roadmap";
+  validateEditProject,
+  validateProjectCreation,
+} from "../../../validators";
+import { roadmapDummyDataProps } from "@/app/types/roadmap";
 const AddAndEditProjectModal = ({
   mode,
   payload,
@@ -27,7 +27,7 @@ const AddAndEditProjectModal = ({
   const [form, setForm] = useState<Omit<ProjectProps, "_id" | "createdAt">>({
     title: payload?.title ?? "",
     description: payload?.description ?? "",
-    difficulty: payload?.difficulty ?? "Beginner",
+    level: payload?.difficulty ?? "Beginner",
     tags: payload?.tags ?? [],
     roadmapId: payload?.roadmapId ?? "",
   });
@@ -60,7 +60,7 @@ const AddAndEditProjectModal = ({
         const message = validateProjectCreation(
           form.title,
           form.description ?? "",
-          form.difficulty,
+          form.level,
           form.tags ?? [],
         );
         if (message) {
@@ -81,7 +81,7 @@ const AddAndEditProjectModal = ({
         const message = validateEditProject(
           form.title,
           form.description ?? "",
-          form.difficulty,
+          form.level,
           form.tags ?? [],
         );
         if (message) {
@@ -150,12 +150,12 @@ const AddAndEditProjectModal = ({
               key={level}
               type="button"
               onClick={() =>
-                setForm((prev) => ({ ...prev, difficulty: level }))
+                setForm((prev) => ({ ...prev, level }))
               }
               className={`flex-1 py-2 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
-                form.difficulty === level
+                form.level === level
                   ? difficultyStyle(level as unknown as roadmapDummyDataProps) +
-                    " border-current scale-[1.03]"
+                    " border-current scale-[1.03] bg-primary text-white"
                   : "border-border text-muted-foreground hover:bg-muted"
               }`}
             >
