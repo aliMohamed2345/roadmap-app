@@ -135,9 +135,9 @@ const ProjectsTab = () => {
                     </h3>
                     <div className="flex items-center gap-2 mt-1">
                       <span
-                        className={`text-xs px-2 py-0.5 rounded-full ${difficultyStyle(project.difficulty)}`}
+                        className={`text-xs px-2 py-0.5 rounded-full ${difficultyStyle(project?.difficulty??"Beginner")}`}
                       >
-                        {project.difficulty}
+                        {project?.difficulty ?? "Beginner"}
                       </span>
                       {(project.tags?.length ?? 0) > 0 && (
                         <span className="text-xs text-muted-foreground">
@@ -268,7 +268,6 @@ const ProjectsTab = () => {
                           </motion.div>
                         ))}
                       </div>
-
                     </div>
                   </motion.div>
                 )}
