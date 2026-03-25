@@ -71,7 +71,7 @@ const AddAndEditStepModal = ({
       onClose();
     } catch (err) {
       const axiosError = err as AxiosError<{ message: string }>;
-      setError(axiosError.response?.data?.message ?? "Something went wrong");
+      setError(axiosError.message ?? "Something went wrong");
     } finally {
       setLoading(false);
     }

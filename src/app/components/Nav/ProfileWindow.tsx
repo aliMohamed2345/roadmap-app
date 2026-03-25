@@ -39,7 +39,7 @@ const ProfileWindow = ({
       }
     } catch (err: unknown) {
       const axiosError = err as AxiosError<{ message: string }>;
-      toast.error(axiosError.response?.data?.message || "Something went wrong");
+      toast.error(axiosError.message || "Something went wrong");
     } finally {
       setLoading(false);
       setOpenProfile(false);

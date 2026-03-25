@@ -82,7 +82,7 @@ const Page = () => {
         } catch (err) {
           const axiosError = err as AxiosError<{ message: string }>;
           toast.error(
-            axiosError.response?.data?.message || "Something went wrong",
+            axiosError.message || "Something went wrong",
           );
         } finally {
           setLoading(false);

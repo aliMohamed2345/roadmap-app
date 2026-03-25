@@ -16,7 +16,7 @@ const ProfileImageUploader = ({
   setOpenImage,
   alt,
   setProfile,
-}:ProfileImageUploaderProps ) => {
+}: ProfileImageUploaderProps) => {
   const dispatch = useDispatch();
   const [imageSrc, setImageSrc] = useState<string>(initialImage || "");
   const [loading, setLoading] = useState(false);
@@ -46,9 +46,7 @@ const ProfileImageUploader = ({
         }
       } catch (error: unknown) {
         const axiosError = error as AxiosError<{ message: string }>;
-        toast.error(
-          axiosError.response?.data?.message || "Something went wrong",
-        );
+        toast.error(axiosError.message || "Something went wrong");
       } finally {
         setLoading(false);
       }
@@ -71,7 +69,7 @@ const ProfileImageUploader = ({
       }
     } catch (error: unknown) {
       const axiosError = error as AxiosError<{ message: string }>;
-      toast.error(axiosError.response?.data?.message || "Something went wrong");
+      toast.error(axiosError.message || "Something went wrong");
     } finally {
       setLoading(false);
     }

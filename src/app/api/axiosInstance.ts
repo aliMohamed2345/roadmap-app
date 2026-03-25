@@ -44,7 +44,7 @@ RoadmapApiAxiosInstance.interceptors.response.use(
     )?._silentAuth;
 
     if (process.env.NODE_ENV === "development") {
-      toast.error(`❌ API Error:${error.response || error.message}`);
+      console.error({ error });
       console.error("❌ API Error:", error.response || error.message);
     }
 
@@ -53,12 +53,10 @@ RoadmapApiAxiosInstance.interceptors.response.use(
     }
 
     if (status === 403) {
-      toast.error("Forbidden - invalid API key?");
       console.warn("Forbidden - invalid API key?");
     }
 
     if (status === 500) {
-      toast.error("Internal server error");
       console.error("Internal server error");
     }
 

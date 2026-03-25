@@ -87,7 +87,7 @@ const UsersTab = () => {
       } catch (err) {
         const axiosError = err as AxiosError<{ message: string }>;
         toast.error(
-          axiosError.response?.data?.message || "Something went wrong",
+          axiosError.message || "Something went wrong",
         );
       } finally {
         setUserLoading(false);
@@ -131,7 +131,7 @@ const UsersTab = () => {
     } catch (err) {
       const axiosError = err as AxiosError<{ message: string }>;
       toast.error(
-        "Failed to toggle role: " + (axiosError.response?.data?.message || ""),
+        "Failed to toggle role: " + (axiosError.message || ""),
       );
     }
   };

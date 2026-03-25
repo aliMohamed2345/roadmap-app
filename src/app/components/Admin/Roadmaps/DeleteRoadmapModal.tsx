@@ -71,7 +71,7 @@ const DeleteModal = ({
       }
     } catch (error) {
       const axiosError = error as AxiosError<{ message: string }>;
-      toast.error(axiosError.response?.data?.message || "Something went wrong");
+      toast.error(axiosError.message || "Something went wrong");
     } finally {
       setLoading(false);
     }

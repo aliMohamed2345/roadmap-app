@@ -70,7 +70,7 @@ const EditProfileModal = ({
       }
     } catch (error: unknown) {
       const axiosError = error as AxiosError<{ message: string }>;
-      setError(axiosError.response?.data?.message || "Something went wrong");
+      setError(axiosError.message || "Something went wrong");
     } finally {
       setLoading(false);
     }

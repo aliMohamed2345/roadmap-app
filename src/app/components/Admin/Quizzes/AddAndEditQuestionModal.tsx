@@ -75,7 +75,7 @@ const AddAndEditQuestionModal = ({
       } catch (error) {
         const axiosError = error as AxiosError<{ message: string }>;
         toast.error(
-          axiosError.response?.data?.message || "Something went wrong",
+          axiosError.message || "Something went wrong",
         );
       } finally {
         setLoading(false);
@@ -122,7 +122,7 @@ const AddAndEditQuestionModal = ({
       } catch (error) {
         const axiosError = error as AxiosError<{ message: string }>;
         toast.error(
-          axiosError.response?.data?.message || "Something went wrong",
+          axiosError.message || "Something went wrong",
         );
       } finally {
         setLoading(false);

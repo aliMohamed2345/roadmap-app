@@ -24,9 +24,13 @@ import ProjectNotFound from "./ProjectNotFound";
 const ProjectsTab = () => {
   const [projects, setProjects] = useState<ProjectProps[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const [page, setPage] = useState(1);
+  const [fetchingMore, setFetchingMore] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+
   const [openProject, setOpenProject] = useState<string | null>(null);
   const [loadingSteps, setLoadingSteps] = useState(false);
-
   const [stepsMap, setStepsMap] = useState<Record<string, StepProps[]>>({});
 
   const [activeModal, setActiveModal] = useState<ActiveProjectModalState>({
@@ -35,22 +39,54 @@ const ProjectsTab = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
+      if (!hasMore && page !== 1) return;
+
+      if (page === 1) setLoading(true);
+      else setFetchingMore(true);
+
       try {
         const res = await RoadmapApiAxiosInstance.get(
-          apiRoutes.Project.getAllProjects.route({}),
+          apiRoutes.Project.getAllProjects.route({ page }),
         );
-        if (res.data.success) setProjects(res.data.projects);
+
+        if (res.data.success) {
+          const newProjects = res.data.projects || [];
+
+          setProjects((prev) =>
+            page === 1 ? newProjects : [...prev, ...newProjects],
+          );
+
+          if (newProjects.length === 0) {
+            setHasMore(false);
+          }
+        }
       } catch (err) {
         const axiosError = err as AxiosError<{ message: string }>;
-        toast.error(
-          axiosError.response?.data?.message ?? "Something went wrong",
-        );
+        toast.error(axiosError.message ?? "Something went wrong");
       } finally {
         setLoading(false);
+        setFetchingMore(false);
       }
     };
+
     fetchProjects();
-  }, []);
+  }, [page, hasMore]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + window.scrollY >=
+          document.body.offsetHeight - 200 &&
+        hasMore &&
+        !fetchingMore
+      ) {
+        setPage((prev) => prev + 1);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [hasMore, fetchingMore]);
 
   const handleOpenProject = async (isOpen: boolean, project: ProjectProps) => {
     setOpenProject(isOpen ? null : (project._id ?? ""));
@@ -72,9 +108,7 @@ const ProjectsTab = () => {
       if (axiosError.response?.status === 404) {
         setStepsMap((prev) => ({ ...prev, [project._id!]: [] }));
       } else {
-        toast.error(
-          axiosError.response?.data?.message ?? "Something went wrong",
-        );
+        toast.error(axiosError.message ?? "Something went wrong");
       }
     } finally {
       setLoadingSteps(false);
@@ -90,7 +124,7 @@ const ProjectsTab = () => {
     setActiveModal({ type: type ?? null, payload });
   };
 
-  if (loading) return <QuizTabLoading />;
+  if (loading && page === 1) return <QuizTabLoading />;
 
   return (
     <>
@@ -135,7 +169,7 @@ const ProjectsTab = () => {
                     </h3>
                     <div className="flex items-center gap-2 mt-1">
                       <span
-                        className={`text-xs px-2 py-0.5 rounded-full ${difficultyStyle(project?.difficulty??"Beginner")}`}
+                        className={`text-xs px-2 py-0.5 rounded-full ${difficultyStyle(project?.difficulty ?? "Beginner")}`}
                       >
                         {project?.difficulty ?? "Beginner"}
                       </span>
@@ -194,10 +228,7 @@ const ProjectsTab = () => {
                       )}
 
                       {loadingSteps ? (
-                        <AiOutlineLoading3Quarters
-                          className="w-6 h-6 animate-spin mx-auto my-5 text-primary font-bold"
-                          size={25}
-                        />
+                        <AiOutlineLoading3Quarters className="w-6 h-6 animate-spin mx-auto my-5 text-primary font-bold" />
                       ) : (
                         <div className="flex justify-between items-center">
                           <h4 className="font-medium">
@@ -218,10 +249,6 @@ const ProjectsTab = () => {
                         {steps.map((step) => (
                           <motion.div
                             key={step._id}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            transition={{ duration: 0.2 }}
                             className="flex justify-between items-start p-3 rounded-lg bg-card border border-border flex-col sm:flex-row gap-3"
                           >
                             <div className="flex items-start gap-3 text-sm flex-1 min-w-0">
@@ -235,36 +262,6 @@ const ProjectsTab = () => {
                                 )}
                               </div>
                             </div>
-
-                            <div className="flex items-center gap-3 text-muted-foreground shrink-0">
-                              <FiEdit2
-                                size={22}
-                                onClick={(e) =>
-                                  toggleModal(
-                                    e,
-                                    {
-                                      ...project,
-                                      stepId: step._id,
-                                      stepTitle: step.title,
-                                      stepDescription: step.description,
-                                    },
-                                    "EDIT_STEP",
-                                  )
-                                }
-                                className="hover:text-primary cursor-pointer rounded-lg hover:bg-primary/20 p-1 transition-all"
-                              />
-                              <FiTrash2
-                                size={22}
-                                onClick={(e) =>
-                                  toggleModal(
-                                    e,
-                                    { ...project, stepId: step._id },
-                                    "DELETE_STEP",
-                                  )
-                                }
-                                className="hover:text-destructive cursor-pointer rounded-lg hover:bg-destructive/20 p-1 transition-all"
-                              />
-                            </div>
                           </motion.div>
                         ))}
                       </div>
@@ -277,6 +274,21 @@ const ProjectsTab = () => {
         })}
 
         {projects.length === 0 && <ProjectNotFound toggleModal={toggleModal} />}
+
+        {fetchingMore && (
+          <div className="flex justify-center">
+            <AiOutlineLoading3Quarters
+              className="animate-spin text-primary"
+              size={25}
+            />
+          </div>
+        )}
+
+        {!hasMore && (
+          <p className="text-center text-destructive text-sm">
+            No more projects
+          </p>
+        )}
       </div>
 
       <ProjectActiveModal
