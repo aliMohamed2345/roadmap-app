@@ -85,7 +85,6 @@ const Page = () => {
 
   if (loading) return <ProjectDetailsLoading />;
 
-  if (!isAuthenticated) return <UnauthorizedPage mode="authenticate" />;
 
   return (
     <>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { FaPlus, FaRegFileAlt } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiChevronRight, FiEdit2, FiPlus, FiTrash2 } from "react-icons/fi";
@@ -24,10 +24,9 @@ import ProjectNotFound from "./ProjectNotFound";
 const ProjectsTab = () => {
   const [projects, setProjects] = useState<ProjectProps[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const [page, setPage] = useState(1);
   const [fetchingMore, setFetchingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(1);
 
   const [openProject, setOpenProject] = useState<string | null>(null);
   const [loadingSteps, setLoadingSteps] = useState(false);
@@ -37,48 +36,52 @@ const ProjectsTab = () => {
     type: null,
   });
 
-  useEffect(() => {
-    const fetchProjects = async () => {
-      if (!hasMore && page !== 1) return;
+  const fetchProjects = useCallback(async (currentPage: number) => {
+    if (currentPage === 1) {
+      setLoading(true);
+    } else {
+      setFetchingMore(true);
+    }
 
-      if (page === 1) setLoading(true);
-      else setFetchingMore(true);
+    try {
+      const res = await RoadmapApiAxiosInstance.get(
+        apiRoutes.Project.getAllProjects.route({ page: currentPage })
+      );
 
-      try {
-        const res = await RoadmapApiAxiosInstance.get(
-          apiRoutes.Project.getAllProjects.route({ page }),
+      if (res.data.success) {
+        const newProjects = res.data.projects || [];
+
+        setProjects((prev) =>
+          currentPage === 1 ? newProjects : [...prev, ...newProjects]
         );
 
-        if (res.data.success) {
-          const newProjects = res.data.projects || [];
-
-          setProjects((prev) =>
-            page === 1 ? newProjects : [...prev, ...newProjects],
-          );
-
-          if (newProjects.length === 0) {
-            setHasMore(false);
-          }
-        }
-      } catch (err) {
-        const axiosError = err as AxiosError<{ message: string }>;
-        toast.error(axiosError.message ?? "Something went wrong");
-      } finally {
-        setLoading(false);
-        setFetchingMore(false);
+        // Stop fetching more if no projects returned
+        setHasMore(newProjects.length > 0);
       }
-    };
+    } catch (err) {
+      const axiosError = err as AxiosError<{ message: string }>;
+      toast.error(axiosError.message ?? "Something went wrong");
+      setHasMore(false); 
+    } finally {
+      setLoading(false);
+      setFetchingMore(false);
+    }
+  }, []);
 
-    fetchProjects();
-  }, [page, hasMore]);
 
+  useEffect(() => {
+    fetchProjects(page);
+  }, [fetchProjects, page]);
+
+  
   useEffect(() => {
     const handleScroll = () => {
       if (
         window.innerHeight + window.scrollY >=
-          document.body.offsetHeight - 200 &&
+          document.body.offsetHeight - 250 &&
         hasMore &&
-        !fetchingMore
+        !fetchingMore &&
+        !loading
       ) {
         setPage((prev) => prev + 1);
       }
@@ -86,27 +89,30 @@ const ProjectsTab = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [hasMore, fetchingMore]);
+  }, [hasMore, fetchingMore, loading]);
 
   const handleOpenProject = async (isOpen: boolean, project: ProjectProps) => {
-    setOpenProject(isOpen ? null : (project._id ?? ""));
-    if (isOpen || !project._id) return;
+    const projectId = project._id ?? "";
+    setOpenProject(isOpen ? null : projectId);
+
+    if (isOpen || !projectId) return;
 
     setLoadingSteps(true);
     try {
       const res = await RoadmapApiAxiosInstance.get(
-        apiRoutes.Steps.getAllSteps.route(project._id),
+        apiRoutes.Steps.getAllSteps.route(projectId)
       );
+
       if (res.data.success) {
         setStepsMap((prev) => ({
           ...prev,
-          [project._id!]: res.data.steps,
+          [projectId]: res.data.steps || [],
         }));
       }
     } catch (err) {
       const axiosError = err as AxiosError<{ message: string }>;
       if (axiosError.response?.status === 404) {
-        setStepsMap((prev) => ({ ...prev, [project._id!]: [] }));
+        setStepsMap((prev) => ({ ...prev, [projectId]: [] }));
       } else {
         toast.error(axiosError.message ?? "Something went wrong");
       }
@@ -118,7 +124,7 @@ const ProjectsTab = () => {
   const toggleModal = (
     e: React.MouseEvent,
     payload?: ModalPayload,
-    type?: ProjectModalType,
+    type?: ProjectModalType
   ) => {
     e.stopPropagation();
     setActiveModal({ type: type ?? null, payload });
@@ -169,7 +175,9 @@ const ProjectsTab = () => {
                     </h3>
                     <div className="flex items-center gap-2 mt-1">
                       <span
-                        className={`text-xs px-2 py-0.5 rounded-full ${difficultyStyle(project?.difficulty ?? "Beginner")}`}
+                        className={`text-xs px-2 py-0.5 rounded-full ${difficultyStyle(
+                          project?.difficulty ?? "Beginner"
+                        )}`}
                       >
                         {project?.difficulty ?? "Beginner"}
                       </span>
@@ -228,7 +236,7 @@ const ProjectsTab = () => {
                       )}
 
                       {loadingSteps ? (
-                        <AiOutlineLoading3Quarters className="w-6 h-6 animate-spin mx-auto my-5 text-primary font-bold" />
+                        <AiOutlineLoading3Quarters className="w-6 h-6 animate-spin mx-auto my-5 text-primary" />
                       ) : (
                         <div className="flex justify-between items-center">
                           <h4 className="font-medium">
@@ -273,10 +281,10 @@ const ProjectsTab = () => {
           );
         })}
 
-        {projects.length === 0 && <ProjectNotFound toggleModal={toggleModal} />}
+        {projects.length === 0 && !loading && <ProjectNotFound toggleModal={toggleModal} />}
 
         {fetchingMore && (
-          <div className="flex justify-center">
+          <div className="flex justify-center py-6">
             <AiOutlineLoading3Quarters
               className="animate-spin text-primary"
               size={25}
@@ -284,9 +292,9 @@ const ProjectsTab = () => {
           </div>
         )}
 
-        {!hasMore && (
-          <p className="text-center text-destructive text-sm">
-            No more projects
+        {!hasMore && projects.length > 0 && (
+          <p className="text-center text-muted-foreground text-sm py-6">
+            You&apos;ve reached the end 🎉
           </p>
         )}
       </div>

@@ -9,7 +9,7 @@ import {
 const QuestionItem = ({
   question,
   _id,
-  answers,
+  answers, 
   questionNumber,
   selectedAnswer,
   onSelectAnswer,
@@ -28,12 +28,12 @@ const QuestionItem = ({
         </div>
 
         <div className="flex flex-col gap-3">
-          {answers!.map((answer, index) => {
+          {answers?.map((answer) => {
             const isSelected = selectedAnswer === answer;
 
             return (
               <button
-                key={index}
+                key={answer} // Better key
                 onClick={() => onSelectAnswer(_id!, answer)}
                 className={`flex items-center gap-4 rounded-xl cursor-pointer px-4 py-3 text-left transition-all duration-200 border
                 ${
@@ -43,14 +43,15 @@ const QuestionItem = ({
                 }`}
               >
                 {isSelected ? (
-                  <MdOutlineRadioButtonChecked size={24}  className="text-primary"/>
+                  <MdOutlineRadioButtonChecked
+                    size={24}
+                    className="text-primary"
+                  />
                 ) : (
                   <MdOutlineRadioButtonUnchecked size={24} />
                 )}
 
-                <span className="font-medium text-sm sm:text-lg">
-                  {answer}
-                </span>
+                <span className="font-medium text-sm sm:text-lg">{answer}</span>
               </button>
             );
           })}

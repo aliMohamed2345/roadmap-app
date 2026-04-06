@@ -217,3 +217,9 @@ export const exportHelper = async (
     }
   }
 };
+
+export const randomizeAnswers = (answers: string[]) => {
+    if (!answers) return [];
+    const shuffledAnswers = answers.sort(() => Math.random() - 0.5);
+    return shuffledAnswers;
+  };

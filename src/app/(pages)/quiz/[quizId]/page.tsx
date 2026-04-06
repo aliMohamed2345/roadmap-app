@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
 import UnauthorizedPage from "@/app/components/Auth/UnauthorizedPage";
+import { randomizeAnswers } from "@/app/helper";
 const Page = () => {
   const searchParams = useSearchParams();
   const { quizId } = useParams();
@@ -77,13 +78,21 @@ const Page = () => {
           );
 
           if (res.data.success) {
-            setQuestionDetails(res.data);
+            const shuffledQuestions = res.data.questions.map(
+              (q: QuestionItemProps) => ({
+                ...q,
+                options: q.options ? randomizeAnswers(q.options) : q.options,
+              }),
+            );
+
+            setQuestionDetails({
+              ...res.data,
+              questions: shuffledQuestions,
+            });
           }
         } catch (err) {
           const axiosError = err as AxiosError<{ message: string }>;
-          toast.error(
-            axiosError.message || "Something went wrong",
-          );
+          toast.error(axiosError.message || "Something went wrong");
         } finally {
           setLoading(false);
         }

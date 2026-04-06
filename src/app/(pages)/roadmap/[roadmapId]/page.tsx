@@ -1,4 +1,5 @@
 "use client";
+
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { AxiosError } from "axios";
@@ -15,10 +16,8 @@ import RoadmapContentsList from "@/app/components/Roadmap/RoadmapContentsList";
 import ProgressCircle from "@/app/components/Roadmap/ProgressCircle";
 import RoadmapDetailsSections from "@/app/components/Roadmap/RoadmapDetailsSections";
 import ExportBTN from "@/app/components/UI/ExportBTN";
+import { exportHelper } from "@/app/helper";
 import { sectionDataProps } from "@/app/types/roadmap";
-import {
-  exportHelper,
-} from "@/app/helper";
 
 const Page = () => {
   const { isAuthenticated } = useSelector((state: RootState) => state.user);
@@ -28,30 +27,37 @@ const Page = () => {
   const [userProgress, setUserProgress] = useState<userProgressProps>();
   const [sectionDetails, setSectionDetails] = useState<sectionDataProps[]>();
   const [loading, setLoading] = useState(true);
-  const [openCongratsModal, setOpenCongratsModal] = useState(false);
+  const [showCongrats, setShowCongrats] = useState(false);
+
   useEffect(() => {
-    const isCompleted =
-      userProgress?.total ||
-      (0 > 0 && userProgress?.completed === userProgress?.total);
+    if (!userProgress || !isAuthenticated) return;
 
-    const storageKey = `roadmap-${roadmapId}-completed`;
-    const alreadyShown = localStorage.getItem(storageKey);
+    const { completed = 0, total = 0 } = userProgress;
 
-    if (isCompleted && !alreadyShown) {
-      setOpenCongratsModal(true);
+    // Only show if ALL sections are completed
+    const isFullyCompleted = total > 0 && completed === total;
+
+    if (!isFullyCompleted) return;
+
+    const storageKey = `roadmap-completed-${roadmapId}`;
+    const hasAlreadyShown = localStorage.getItem(storageKey);
+
+    if (!hasAlreadyShown) {
+      setShowCongrats(true);
       localStorage.setItem(storageKey, "true");
     }
-  }, [userProgress?.completed, userProgress?.total, roadmapId]);
+  }, [userProgress, roadmapId, isAuthenticated]);
 
   useEffect(() => {
     const fetchRoadmapDetails = async () => {
       try {
         if (isAuthenticated) {
-          const roadmapRes = await RoadmapApiAxiosInstance.get(
+          const res = await RoadmapApiAxiosInstance.get(
             apiRoutes.Roadmap.getProgress.route(roadmapId?.toString() || "1"),
           );
-          if (roadmapRes.data.success) {
-            setUserProgress(roadmapRes.data);
+
+          if (res.data.success) {
+            setUserProgress(res.data);
           }
         } else {
           const [roadmapRes, sectionRes] = await Promise.all([
@@ -67,18 +73,14 @@ const Page = () => {
             ),
           ]);
 
-          if (roadmapRes.data.success) {
+          if (roadmapRes.data.success)
             setRoadmapDetails(roadmapRes.data.roadmap);
-          }
-          if (sectionRes.data.success) {
+          if (sectionRes.data.success)
             setSectionDetails(sectionRes.data.sections);
-          }
         }
       } catch (err: unknown) {
         const axiosError = err as AxiosError<{ message: string }>;
-        toast.error(
-          axiosError.message || "Something went wrong",
-        );
+        toast.error(axiosError.message || "Something went wrong");
       } finally {
         setLoading(false);
       }
@@ -92,10 +94,10 @@ const Page = () => {
   const title = isAuthenticated
     ? userProgress?.roadmap.title
     : roadmapDetails?.title;
-
   const description = isAuthenticated
     ? userProgress?.roadmap.description
     : roadmapDetails?.description;
+
   return (
     <>
       <div className="pt-24 pb-10">
@@ -115,6 +117,7 @@ const Page = () => {
             <p className="text-base sm:text-lg font-bold text-muted-foreground mb-5 text-center sm:text-left">
               {description}
             </p>
+
             {isAuthenticated && (
               <ExportBTN
                 exportToCSV={() =>
@@ -135,6 +138,7 @@ const Page = () => {
                 title={title ?? ""}
               />
             )}
+
             <RoadmapDetailsSections
               userProgress={userProgress}
               isAuthenticated={isAuthenticated}
@@ -149,11 +153,11 @@ const Page = () => {
         </div>
       </div>
 
-      {openCongratsModal && (
+      {showCongrats && (
         <Modal
-          title="Congratulations"
-          isOpen={openCongratsModal}
-          onClose={() => setOpenCongratsModal(false)}
+          title="Congratulations!"
+          isOpen={showCongrats}
+          onClose={() => setShowCongrats(false)}
         >
           <CongratsWindowModule userProgress={userProgress!} />
         </Modal>
