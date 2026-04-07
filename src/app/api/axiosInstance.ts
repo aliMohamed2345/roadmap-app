@@ -3,7 +3,6 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
-import toast from "react-hot-toast";
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -11,11 +10,9 @@ const RoadmapApiAxiosInstance = axios.create({
   baseURL,
   timeout: 20000,
   withCredentials: true,
-  params: {
-    key: apiKey,
-  },
   headers: {
     "Content-Type": "application/json",
+    "x-api-key":apiKey
   },
 });
 

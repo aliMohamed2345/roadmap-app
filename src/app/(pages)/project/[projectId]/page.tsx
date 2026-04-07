@@ -2,7 +2,6 @@
 
 import { apiRoutes } from "@/app/api/apiRoutes";
 import RoadmapApiAxiosInstance from "@/app/api/axiosInstance";
-import UnauthorizedPage from "@/app/components/Auth/UnauthorizedPage";
 import CongratsProjectMessageModal from "@/app/components/Project/CongratsProjectMessageModal";
 import ProjectDetailsLoading from "@/app/components/Project/ProjectDetailsLoading";
 import { difficultyStyle } from "@/app/components/Roadmap/RoadmapItem";
@@ -50,28 +49,25 @@ const Page = () => {
 
   useEffect(() => {
     const fetchProject = async () => {
-      if (isAuthenticated) {
-        try {
-          const res = await RoadmapApiAxiosInstance.get(
-            apiRoutes.Project.getProjectById.route(String(projectId)),
-          );
-          if (res.data.success) {
-            setProject(res.data.project);
-            // Initialize completedSteps once project is loaded
-            setCompletedSteps(res.data.project.steps.map(() => false));
-          }
-        } catch (err: unknown) {
-          const axiosError = err as AxiosError<{ message: string }>;
-          toast.error(
-            axiosError.response?.data?.message || "Something went wrong",
-          );
-        } finally {
-          setLoading(false);
+      try {
+        const res = await RoadmapApiAxiosInstance.get(
+          apiRoutes.Project.getProjectById.route(String(projectId)),
+        );
+        if (res.data.success) {
+          setProject(res.data.project);
+          setCompletedSteps(res.data.project.steps.map(() => false));
         }
+      } catch (err: unknown) {
+        const axiosError = err as AxiosError<{ message: string }>;
+        toast.error(
+          axiosError.response?.data?.message || "Something went wrong",
+        );
+      } finally {
+        setLoading(false);
       }
     };
     fetchProject();
-  }, [projectId, isAuthenticated]);
+  }, [projectId]);
 
   useEffect(() => {
     const storageKey = `project-${projectId}-completed`;
@@ -84,7 +80,6 @@ const Page = () => {
   }, [isProjectCompleted, projectId]);
 
   if (loading) return <ProjectDetailsLoading />;
-
 
   return (
     <>
