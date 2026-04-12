@@ -42,7 +42,7 @@ const RoadmapItem = ({
       ? `/roadmap/${id}`
       : mode === "project"
         ? `/project/${id}`
-        : ``;
+        : `/auth`;
   return (
     <div className="group relative rounded-3xl border border-border/60 bg-card/70 backdrop-blur-xl p-6 shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 overflow-hidden">
       <div className="absolute -inset-1 bg-linear-to-r from-neon-cyan via-neon-purple to-neon-pink opacity-0 group-hover:opacity-20 blur-2xl transition duration-500" />
